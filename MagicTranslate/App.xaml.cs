@@ -19,6 +19,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,6 +38,10 @@ namespace MagicTranslate
         public App()
         {
             this.InitializeComponent();
+            NlogConfiguration.NlogConfig.Configure(
+                System.IO.Path.Combine(ApplicationData.Current.TemporaryFolder.Path, "MagicTranslateLog.txt"),
+                NLog.LogLevel.Debug,
+                NLog.LogLevel.Fatal);
         }
 
         /// <summary>
