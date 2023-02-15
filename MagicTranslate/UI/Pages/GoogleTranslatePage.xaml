@@ -78,7 +78,8 @@
                         Text="{Binding word, Converter={StaticResource FirstCharToUpperStringConverter}}"
                         FontSize="12"
                         Foreground="{ThemeResource TextBrush}"
-                        TextWrapping="Wrap" />
+                        TextWrapping="Wrap"
+                        IsTextSelectionEnabled="True"/>
                     <TextBlock
                         Margin="8,0,0,0"
                         Grid.Column="1"
@@ -86,7 +87,8 @@
                         FontSize="12"
                         Foreground="{ThemeResource TextBrush}"
                         Text="{Binding reverse_translation, Converter={StaticResource StringListToStringConverter}}"
-                        TextWrapping="Wrap" />
+                        TextWrapping="Wrap"
+                        IsTextSelectionEnabled="True"/>
                     <StackPanel
                         Grid.Column="2"
                         Margin="8,7,0,0"
@@ -194,7 +196,8 @@
                     TextWrapping="Wrap"
                     Foreground="{ThemeResource TextBrush}"
                     Text="{Binding TranslateResult.sentences, Converter={StaticResource ListSentencesToStringConverter}}"
-                    FontSize="14" />
+                    FontSize="14"
+                    IsTextSelectionEnabled="True"/>
 
                 <HyperlinkButton                               
                     Grid.Row="0"
