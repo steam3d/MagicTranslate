@@ -39,9 +39,16 @@ namespace MagicTranslate.UI.Pages
             TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json),null,null,TimeSpan.Zero,null);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (sender is Control control)
+            {
+                var url = control.Tag as string;
+                if (!string.IsNullOrEmpty(url))
+                {
+                    await Windows.System.Launcher.LaunchUriAsync(new System.Uri(url));
+                }
+            }
         }
     }
 }

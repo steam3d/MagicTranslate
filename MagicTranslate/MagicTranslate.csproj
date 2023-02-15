@@ -13,6 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Logo.ico" />
+    <None Remove="UI\WIndows\PlayGroundWindow.xaml" />
     <None Remove="UI\WIndows\SearchWindow.xaml" />
     <None Remove="UI\WIndows\TrayIconWindow.xaml" />
   </ItemGroup>
@@ -55,6 +56,9 @@
     <None Update="json.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\WIndows\PlayGroundWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="UI\WIndows\TrayIconWindow.xaml">
