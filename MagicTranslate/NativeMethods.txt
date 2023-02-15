@@ -1,0 +1,13 @@
+﻿RegisterHotKey
+UnregisterHotKey
+GetSystemMetrics
+DwmSetWindowAttribute
+GetWindowLong
+GetWindowLongPtr
+GetWindowRect
+SetLastError
+SetWindowLongPtr
+SetWindowLong
+GetWindowRect
+SetWindowPos
+CallWindowProc
