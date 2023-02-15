@@ -47,6 +47,16 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="TranslateLibrary">
+      <HintPath>TranslateLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="json.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="UI\WIndows\TrayIconWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

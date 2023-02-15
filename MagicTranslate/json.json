@@ -1,0 +1,231 @@
+{
+  "sentences": [
+    {
+      "trans": "дом",
+      "orig": "house",
+      "backend": 1
+    }
+  ],
+  "dict": [
+    {
+      "pos": "имя существительное",
+      "terms": [ "дом", "жилище", "театр", "здание", "палата", "гостиница", "семья", "рубка", "хозяйство", "бордель", "род", "торговый дом", "династия", "монастырь", "постоялый двор", "сеанс", "работный дом", "торговая фирма", "представление", "пансион при школе", "колледж университета", "лондонская биржа", "религиозное братство", "публика", "зрители" ],
+      "entry": [
+        {
+          "word": "дом",
+          "reverse_translation": [ "house", "home", "dwelling", "door", "premises", "crib" ],
+          "score": 0.51075,
+          "gender": 1
+        },
+        {
+          "word": "жилище",
+          "reverse_translation": [ "housing", "home", "dwelling", "house", "habitation", "abode" ],
+          "score": 0.030197384,
+          "gender": 3
+        },
+        {
+          "word": "театр",
+          "reverse_translation": [ "theater", "house", "playhouse", "stage", "living theater", "theatre" ],
+          "score": 0.012987733,
+          "gender": 1
+        },
+        {
+          "word": "здание",
+          "reverse_translation": [ "building", "house", "structure", "edifice", "construction", "fabric" ],
+          "score": 0.0032838131,
+          "gender": 3
+        },
+        {
+          "word": "палата",
+          "reverse_translation": [ "chamber", "ward", "house" ],
+          "score": 0.0020230985,
+          "gender": 2
+        },
+        {
+          "word": "гостиница",
+          "reverse_translation": [ "hotel", "inn", "hostel", "guesthouse", "pub", "house" ],
+          "score": 2.0346837E-4,
+          "gender": 2
+        },
+        {
+          "word": "семья",
+          "reverse_translation": [ "family", "household", "home", "colony", "kin", "house" ],
+          "score": 1.4886064E-4,
+          "gender": 2
+        },
+        {
+          "word": "рубка",
+          "reverse_translation": [ "felling", "cutting", "deckhouse", "house", "chopping" ],
+          "score": 7.142412E-5,
+          "gender": 2
+        },
+        {
+          "word": "хозяйство",
+          "reverse_translation": [ "economy", "farm", "household", "property", "house", "establishment" ],
+          "score": 5.2255E-5,
+          "gender": 3
+        },
+        {
+          "word": "бордель",
+          "reverse_translation": [ "brothel", "whorehouse", "bordello", "bordel", "house", "bawdy house" ],
+          "score": 3.944414E-5,
+          "gender": 1
+        },
+        {
+          "word": "род",
+          "reverse_translation": [ "genus", "race", "kind", "family", "generation", "house" ],
+          "score": 3.8230573E-5,
+          "gender": 1
+        },
+        {
+          "word": "торговый дом",
+          "reverse_translation": [ "firm", "house" ],
+          "score": 3.647987E-5,
+          "gender": 1
+        },
+        {
+          "word": "династия",
+          "reverse_translation": [ "dynasty", "house" ],
+          "score": 2.7970085E-5,
+          "gender": 2
+        },
+        {
+          "word": "монастырь",
+          "reverse_translation": [ "monastery", "convent", "cloister", "priory", "abbey", "house" ],
+          "score": 2.2474595E-5,
+          "gender": 1
+        },
+        {
+          "word": "постоялый двор",
+          "reverse_translation": [ "inn", "house", "hostelry" ],
+          "score": 1.1659667E-5
+        },
+        {
+          "word": "сеанс",
+          "reverse_translation": [ "session", "seance", "sitting", "house" ],
+          "score": 8.8011775E-6,
+          "gender": 1
+        },
+        {
+          "word": "работный дом",
+          "reverse_translation": [ "workhouse", "house", "poorhouse" ],
+          "score": 3.6688768E-6
+        },
+        {
+          "word": "торговая фирма",
+          "reverse_translation": [ "house" ],
+          "score": 2.9023204E-6
+        },
+        {
+          "word": "представление",
+          "reverse_translation": [ "representation", "presentation", "idea", "represent", "submission", "house" ],
+          "score": 1.4593784E-6,
+          "gender": 3
+        },
+        {
+          "word": "пансион при школе",
+          "reverse_translation": [ "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "колледж университета",
+          "reverse_translation": [ "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "лондонская биржа",
+          "reverse_translation": [ "house", "Throgmorton", "Throgmorton Street" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "религиозное братство",
+          "reverse_translation": [ "congregation", "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "публика",
+          "reverse_translation": [ "public", "audience", "turnout", "house" ],
+          "score": 7.3382154E-7,
+          "gender": 2
+        },
+        {
+          "word": "зрители",
+          "reverse_translation": [ "audience", "house" ],
+          "score": 7.3382154E-7
+        }
+      ],
+      "base_form": "house",
+      "pos_enum": 1
+    },
+    {
+      "pos": "глагол",
+      "terms": [ "жить", "приютить", "вмещать", "расквартировывать", "убирать", "поселить", "загонять", "предоставлять жилище", "обеспечивать жильем", "помещать", "вмещаться", "помещаться" ],
+      "entry": [
+        {
+          "word": "жить",
+          "reverse_translation": [ "live", "dwell", "stay", "reside", "exist", "house" ],
+          "score": 1.983376E-5
+        },
+        {
+          "word": "приютить",
+          "reverse_translation": [ "shelter", "lodge", "house", "harbor", "put up", "give houseroom to" ],
+          "score": 1.0953243E-5
+        },
+        {
+          "word": "вмещать",
+          "reverse_translation": [ "accommodate", "hold", "contain", "house", "receive", "seat" ],
+          "score": 9.516342E-6
+        },
+        {
+          "word": "расквартировывать",
+          "reverse_translation": [ "house", "quarter", "accommodate", "billet", "canton" ],
+          "score": 4.356899E-6
+        },
+        {
+          "word": "убирать",
+          "reverse_translation": [ "remove", "take away", "tidy", "clean up", "tidy up", "house" ],
+          "score": 3.6688768E-6
+        },
+        {
+          "word": "поселить",
+          "reverse_translation": [ "settle", "lodge", "settle down", "house" ],
+          "score": 2.9023204E-6
+        },
+        {
+          "word": "загонять",
+          "reverse_translation": [ "drive in", "fold", "huddle", "pen", "bay", "house" ],
+          "score": 2.9023204E-6
+        },
+        {
+          "word": "предоставлять жилище",
+          "reverse_translation": [ "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "обеспечивать жильем",
+          "reverse_translation": [ "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "помещать",
+          "reverse_translation": [ "put", "place", "position", "insert", "set", "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "вмещаться",
+          "reverse_translation": [ "house" ],
+          "score": 1.4593784E-6
+        },
+        {
+          "word": "помещаться",
+          "reverse_translation": [ "place", "house", "stand", "belong" ],
+          "score": 1.4593784E-6
+        }
+      ],
+      "base_form": "house",
+      "pos_enum": 2
+    }
+  ],
+  "src": "en",
+  "spell": {}
+}

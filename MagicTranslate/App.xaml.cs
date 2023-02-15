@@ -50,7 +50,7 @@ namespace MagicTranslate
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new TrayIconWindow();
+            m_window = new SearchWindow();
             m_window.Activate();
         }
 

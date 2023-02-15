@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using MagicTranslate.UI.Pages;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -29,6 +30,7 @@ namespace MagicTranslate.UI.WIndows
         public SearchWindow()
         {
             this.InitializeComponent();
+            Content.Navigate(typeof(GoogleTranslatePage));
         }
     }
 }

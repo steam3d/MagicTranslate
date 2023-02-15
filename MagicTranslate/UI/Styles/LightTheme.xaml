@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="Background">#F3F3F3</Color>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource Background}" />
+
+    <Color x:Key="Text">#000000</Color>
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource Text}" />
+
+    <Color x:Key="Dash">#20000000</Color>
+    <SolidColorBrush x:Key="DashBrush" Color="{StaticResource Dash}" />
+
+    <!-- Windows 10 only see ContextMenu.cs-->
+    <Color x:Key="ContextMenuBorder">#CFCFCF</Color>
+    <SolidColorBrush x:Key="ContextMenuBorderBrush" Color="{StaticResource ContextMenuBorder}" />
+    <SolidColorBrush x:Key="AltSystemAccentColor" Color="{StaticResource SystemAccentColorDark2}" />
+</ResourceDictionary>

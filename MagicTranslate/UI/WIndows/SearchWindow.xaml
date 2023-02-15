@@ -11,6 +11,7 @@
     mc:Ignorable="d">
 
     <Grid>
-
+        <Frame
+            x:Name="Content" />
     </Grid>
 </Window>
