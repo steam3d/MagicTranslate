@@ -107,5 +107,17 @@ namespace MagicTranslate.Extensions
             var virtualDisplayRect = Win32Helper.GetVirtualDisplayRect();            
             PInvoke.SetWindowPos(new HWND(hWndMain), new HWND(BoolToHWndInsertAfter(isTopmost)), virtualDisplayRect.left, virtualDisplayRect.top, virtualDisplayRect.right, virtualDisplayRect.bottom, SET_WINDOW_POS_FLAGS.SWP_FRAMECHANGED);
         }
+
+        private const double DefaultPixelsPerInch = 96D; // Default pixels per Inch
+        public static double GetDpi(this Window window)
+        {
+            var hWndMain = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            var dpi = PInvoke.GetDpiForWindow(new HWND(hWndMain));
+
+            if (dpi == 0)
+                return 1D;
+
+            return dpi / DefaultPixelsPerInch;
+        }
     }
 }

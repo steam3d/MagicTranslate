@@ -11,3 +11,4 @@ SetWindowLong
 GetWindowRect
 SetWindowPos
 CallWindowProc
+GetDpiForWindow
