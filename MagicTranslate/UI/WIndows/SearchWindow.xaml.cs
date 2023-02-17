@@ -20,6 +20,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using MagicTranslate.Extensions;
 using System.Runtime.Intrinsics.Arm;
+using System.Timers;
+using Windows.UI.Core;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,6 +39,7 @@ namespace MagicTranslate.UI.WIndows
         private int minHeight = 54;
         private int maxHeight = 496;
         private int MaxWidth = 596;
+        Timer textChangedDebouncingTimer = new Timer(512);
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -54,7 +57,8 @@ namespace MagicTranslate.UI.WIndows
             this.CenterToScreen();
 
             Root.SizeChanged += Root_SizeChanged;
-            SearchBox.TextChanged += SearchBox_TextChanged;            
+            SearchBox.TextChanged += SearchBox_TextChanged;
+            textChangedDebouncingTimer.Elapsed += TextChangedDebouncingTimer_Elapsed;
         }
 
         /// <summary>
@@ -74,25 +78,42 @@ namespace MagicTranslate.UI.WIndows
             }
         }
 
+        private async void TextChangedDebouncingTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {
+                if (string.IsNullOrEmpty(SearchBox.Text))
+                {
+                    Root.Height = double.NaN;
+                    Content.Navigate(typeof(EmptyPage));
+                    Content.Visibility = Visibility.Collapsed;
+                }
+                else if (SearchBox.Text.Length == 1)
+                {
+                    Content.Visibility = Visibility.Visible;
+                    Root.Height = double.NaN;
+                    Content.Navigate(typeof(TestPage));
+                }
+                else
+                {
+                    Content.Visibility = Visibility.Visible;
+                    Root.Height = double.NaN;
+                    Content.Navigate(typeof(GoogleTranslatePage));
+                }
+            });           
+        }
+
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(SearchBox.Text))
+            if (!textChangedDebouncingTimer.Enabled)
             {
-                Root.Height = double.NaN;
-                Content.Navigate(typeof(EmptyPage));
-                Content.Visibility= Visibility.Collapsed;
-            }
-            else if (SearchBox.Text.Length == 1)
-            {
-                Content.Visibility = Visibility.Visible;
-                Root.Height = double.NaN;
-                Content.Navigate(typeof(TestPage));
+                textChangedDebouncingTimer.AutoReset = false;
+                textChangedDebouncingTimer.Start();
             }
             else
             {
-                Content.Visibility = Visibility.Visible;
-                Root.Height = double.NaN;
-                Content.Navigate(typeof(GoogleTranslatePage));
+                textChangedDebouncingTimer.Stop();
+                textChangedDebouncingTimer.Start();
             }
         }        
     }
