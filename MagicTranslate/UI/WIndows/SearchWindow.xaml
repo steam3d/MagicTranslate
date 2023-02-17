@@ -19,9 +19,10 @@
             <RowDefinition
                 Height="Auto" />
             <RowDefinition
+                x:Name="ContentRowDefinition"
                 Height="Auto"/>
         </Grid.RowDefinitions>
-        <StackPanel>
+        <StackPanel x:Name="SearchStack">
             <TextBox
                 x:Name="SearchBox"
                 AcceptsReturn="True"

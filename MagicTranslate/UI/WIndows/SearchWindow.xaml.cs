@@ -22,6 +22,7 @@ using MagicTranslate.Extensions;
 using System.Runtime.Intrinsics.Arm;
 using System.Timers;
 using Windows.UI.Core;
+using Microsoft.UI.Xaml.Media.Animation;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -73,18 +74,24 @@ namespace MagicTranslate.UI.WIndows
                 var windowContentSize = e.NewSize.Height > maxHeight ? maxHeight : e.NewSize.Height;
                 var dpi = this.GetDpi();
                 Root.Height = windowContentSize;
+
+                var newContentHeight = windowContentSize - SearchStack.ActualHeight - 24;
+                ContentRowDefinition.Height = new GridLength(1,GridUnitType.Star);
+                //newContentHeight = newContentHeight < 0 ? 0 : newContentHeight;
+                //Content.Height = newContentHeight;
                 _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(MaxWidth * dpi), Convert.ToInt32((windowContentSize + rootMagrin.Top + rootMagrin.Bottom) * dpi)));
                 Logger.Debug($"{Root.ActualHeight} {Root.Height}");
             }
         }
 
-        private async void TextChangedDebouncingTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private void TextChangedDebouncingTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             DispatcherQueue.TryEnqueue(() =>
             {
                 if (string.IsNullOrEmpty(SearchBox.Text))
                 {
                     Root.Height = double.NaN;
+                    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);                    
                     Content.Navigate(typeof(EmptyPage));
                     Content.Visibility = Visibility.Collapsed;
                 }
@@ -92,13 +99,17 @@ namespace MagicTranslate.UI.WIndows
                 {
                     Content.Visibility = Visibility.Visible;
                     Root.Height = double.NaN;
-                    Content.Navigate(typeof(TestPage));
+                    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
+                    Content.Navigate(typeof(TestPage), null, new DrillInNavigationTransitionInfo());
                 }
                 else
                 {
                     Content.Visibility = Visibility.Visible;
                     Root.Height = double.NaN;
-                    Content.Navigate(typeof(GoogleTranslatePage));
+                    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
+                    Content.Navigate(typeof(GoogleTranslatePage), null, new DrillInNavigationTransitionInfo());
+                    //Content.Navigate(typeof(GoogleTranslatePage));
+                    //ContentRowDefinition.Height = new GridLength(0, GridUnitType.Auto);
                 }
             });           
         }
