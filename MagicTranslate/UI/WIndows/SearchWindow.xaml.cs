@@ -33,9 +33,10 @@ namespace MagicTranslate.UI.WIndows
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         AppWindow _apw;
-        private int rootMagrin = 16;
+        private Thickness rootMagrin = new Thickness(16);
         private int minHeight = 54;
         private int maxHeight = 496;
+        private int MaxWidth = 596;
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -49,11 +50,11 @@ namespace MagicTranslate.UI.WIndows
             _presenter.SetBorderAndTitleBar(false, false);
             
             var dpi = this.GetDpi();
-            _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(596 * dpi), Convert.ToInt32(minHeight * dpi)));
+            _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(MaxWidth * dpi), Convert.ToInt32(minHeight * dpi)));
             this.CenterToScreen();
 
             Root.SizeChanged += Root_SizeChanged;
-            SearchBox1.TextChanged += SearchBox1_TextChanged;            
+            SearchBox.TextChanged += SearchBox_TextChanged;            
         }
 
         /// <summary>
@@ -68,20 +69,20 @@ namespace MagicTranslate.UI.WIndows
                 var windowContentSize = e.NewSize.Height > maxHeight ? maxHeight : e.NewSize.Height;
                 var dpi = this.GetDpi();
                 Root.Height = windowContentSize;
-                _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(596 * dpi), Convert.ToInt32((windowContentSize + (rootMagrin * 2)) * dpi)));
+                _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(MaxWidth * dpi), Convert.ToInt32((windowContentSize + rootMagrin.Top + rootMagrin.Bottom) * dpi)));
                 Logger.Debug($"{Root.ActualHeight} {Root.Height}");
             }
         }
 
-        private void SearchBox1_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(SearchBox1.Text))
+            if (string.IsNullOrEmpty(SearchBox.Text))
             {
                 Root.Height = double.NaN;
                 Content.Navigate(typeof(EmptyPage));
                 Content.Visibility= Visibility.Collapsed;
             }
-            else if (SearchBox1.Text.Length == 1)
+            else if (SearchBox.Text.Length == 1)
             {
                 Content.Visibility = Visibility.Visible;
                 Root.Height = double.NaN;
