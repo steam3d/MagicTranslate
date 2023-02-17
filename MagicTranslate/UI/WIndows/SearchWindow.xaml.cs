@@ -34,7 +34,7 @@ namespace MagicTranslate.UI.WIndows
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         AppWindow _apw;
         private int rootMagrin = 16;
-        private int minHeight = 32;
+        private int minHeight = 54;
         private int maxHeight = 496;
         public SearchWindow()
         {
@@ -50,59 +50,47 @@ namespace MagicTranslate.UI.WIndows
             
             var dpi = this.GetDpi();
             _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(596 * dpi), Convert.ToInt32(minHeight * dpi)));
-
             this.CenterToScreen();
 
-            SearchBox1.TextChanged += SearchBox1_TextChanged;
-            Content.SizeChanged += NewContent_SizeChanged;
-            SearchBox.SizeChanged += NewSearchBox_SizeChanged;
-
-            
+            Root.SizeChanged += Root_SizeChanged;
+            SearchBox1.TextChanged += SearchBox1_TextChanged;            
         }
 
-        private void NewContent_SizeChanged(object sender, SizeChangedEventArgs e)
+        /// <summary>
+        /// When SearchBox text contains 2 symbols new string the size after remove the will be incorrect.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Root_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            Logger.Debug($"Content {Content.ActualHeight} ContentRowHeight {ContentRowHeight.ActualHeight}");
-            ResizeWindow();
-        }
-
-        private void NewSearchBox_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Logger.Debug($"SearchBox {SearchBox.ActualHeight} SearchBoxRowHeight {SearchBoxRowHeight.ActualHeight}");
-            ResizeWindow();
-        }
-
-        private void ResizeWindow()
-        {
-            var windowContentSize = SearchBoxRowHeight.ActualHeight + ContentRowHeight.ActualHeight + (rootMagrin * 2);            
-            windowContentSize = windowContentSize > maxHeight ? maxHeight : windowContentSize;
-            var newContentSize = windowContentSize - (rootMagrin * 2) - SearchBoxRowHeight.ActualHeight - 24;
-            
-            if (Content.Height != newContentSize)
-                Content.Height = newContentSize;
-
-            var dpi = this.GetDpi();
-            if ((_apw.Size.Height / dpi) != windowContentSize)
-                _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(596 * dpi), Convert.ToInt32(windowContentSize * dpi)));
-
-            Logger.Debug($"WindowSize {windowContentSize} ContentSize {newContentSize}");
+            if (e.PreviousSize.Height != e.NewSize.Height)
+            {
+                var windowContentSize = e.NewSize.Height > maxHeight ? maxHeight : e.NewSize.Height;
+                var dpi = this.GetDpi();
+                Root.Height = windowContentSize;
+                _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(596 * dpi), Convert.ToInt32((windowContentSize + (rootMagrin * 2)) * dpi)));
+                Logger.Debug($"{Root.ActualHeight} {Root.Height}");
+            }
         }
 
         private void SearchBox1_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (string.IsNullOrEmpty(SearchBox1.Text))
             {
-                Content.Height = double.NaN;
+                Root.Height = double.NaN;
                 Content.Navigate(typeof(EmptyPage));
+                Content.Visibility= Visibility.Collapsed;
             }
             else if (SearchBox1.Text.Length == 1)
             {
-                Content.Height = double.NaN;
+                Content.Visibility = Visibility.Visible;
+                Root.Height = double.NaN;
                 Content.Navigate(typeof(TestPage));
             }
             else
             {
-                Content.Height = double.NaN;
+                Content.Visibility = Visibility.Visible;
+                Root.Height = double.NaN;
                 Content.Navigate(typeof(GoogleTranslatePage));
             }
         }        

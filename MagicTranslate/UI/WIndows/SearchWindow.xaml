@@ -51,6 +51,7 @@
         <Frame
             Grid.Row="1"
             Margin="0,24,0,0"
+            Visibility="Collapsed"
             x:Name="Content" />
     </Grid>
 </Window>
