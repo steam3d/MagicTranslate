@@ -8,10 +8,49 @@
     xmlns:local="using:MagicTranslate.UI.WIndows"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:MagicTranslate.ValueConverters"
     mc:Ignorable="d">
 
-    <Grid>
+    <Grid
+        Margin="16"
+        x:Name="Root"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto"
+                x:Name="SearchBoxRowHeight"/>
+            <!--Height="{Binding SearchBox.ActualHeight, Converter={StaticResource DoubleToGridLengthConverter}, Mode=OneWay}" />-->
+            <RowDefinition
+                Height="Auto"
+                x:Name="ContentRowHeight"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            x:Name="SearchBox">
+            <TextBox
+                x:Name="SearchBox1"
+                AcceptsReturn="True"
+                Grid.Row="0"
+                TextWrapping="Wrap"
+                MaxHeight="96"
+                Text="" />
+            <StackPanel
+                Margin="0,16,0,0"
+                Spacing="8"
+                Orientation="Horizontal">
+                <ToggleButton
+                    Content="Google" />
+                <ToggleButton
+                    Content="Yandex" />
+                <ToggleButton
+                    Content="Bing" />
+                <ToggleButton
+                    Content="Dictinary" />
+            </StackPanel>
+        </StackPanel>
         <Frame
+            Grid.Row="1"
+            Margin="0,24,0,0"
             x:Name="Content" />
     </Grid>
 </Window>

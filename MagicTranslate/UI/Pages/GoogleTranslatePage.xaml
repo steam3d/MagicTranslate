@@ -10,7 +10,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -148,7 +148,7 @@
         </ResourceDictionary>
         
     </Page.Resources>
-   
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition
@@ -161,6 +161,7 @@
             Background="Transparent"
             HorizontalAlignment="Stretch"
             Height="16"
+            Visibility="Collapsed"
             VerticalAlignment="Top">
             <Border
                 Width="32"
