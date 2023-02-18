@@ -93,11 +93,7 @@ namespace MagicTranslate.UI.WIndows
                 var windowContentSize = e.NewSize.Height > maxHeight ? maxHeight : e.NewSize.Height;
                 var dpi = this.GetDpi();
                 Root.Height = windowContentSize;
-
-                var newContentHeight = windowContentSize - SearchStack.ActualHeight - 24;
                 ContentRowDefinition.Height = new GridLength(1,GridUnitType.Star);
-                //newContentHeight = newContentHeight < 0 ? 0 : newContentHeight;
-                //Content.Height = newContentHeight;
                 _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(MaxWidth * dpi), Convert.ToInt32((windowContentSize + rootMagrin.Top + rootMagrin.Bottom) * dpi)));
                 Logger.Debug($"{Root.ActualHeight} {Root.Height}");
             }
@@ -127,8 +123,6 @@ namespace MagicTranslate.UI.WIndows
                     Root.Height = double.NaN;
                     ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
                     Content.Navigate(typeof(GoogleTranslatePage), null, new DrillInNavigationTransitionInfo());
-                    //Content.Navigate(typeof(GoogleTranslatePage));
-                    //ContentRowDefinition.Height = new GridLength(0, GridUnitType.Auto);
                 }
             });           
         }
