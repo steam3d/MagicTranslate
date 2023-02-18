@@ -23,6 +23,7 @@ using System.Runtime.Intrinsics.Arm;
 using System.Timers;
 using Windows.UI.Core;
 using Microsoft.UI.Xaml.Media.Animation;
+using MagicTranslate.Input;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -41,6 +42,7 @@ namespace MagicTranslate.UI.WIndows
         private int maxHeight = 496;
         private int MaxWidth = 596;
         Timer textChangedDebouncingTimer = new Timer(512);
+        private InputLanguage inputLanguage = new InputLanguage(); 
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -60,6 +62,23 @@ namespace MagicTranslate.UI.WIndows
             Root.SizeChanged += Root_SizeChanged;
             SearchBox.TextChanged += SearchBox_TextChanged;
             textChangedDebouncingTimer.Elapsed += TextChangedDebouncingTimer_Elapsed;
+
+            inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;
+            InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
+            this.Closed += SearchWindow_Closed;
+        }
+
+        private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)
+        {
+            DispatcherQueue.TryEnqueue(() =>
+            {                               
+                SearchBox.PlaceholderText = $"Translate from {e.EnglishName}";
+            });
+        }
+
+        private void SearchWindow_Closed(object sender, WindowEventArgs args)
+        {
+            inputLanguage.Dispose();
         }
 
         /// <summary>

@@ -12,3 +12,6 @@ GetWindowRect
 SetWindowPos
 CallWindowProc
 GetDpiForWindow
+GetKeyboardLayout
+GetWindowThreadProcessId
+GetForegroundWindow
