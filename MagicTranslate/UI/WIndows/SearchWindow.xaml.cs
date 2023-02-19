@@ -42,7 +42,8 @@ namespace MagicTranslate.UI.WIndows
         private int maxHeight = 496;
         private int MaxWidth = 596;
         Timer textChangedDebouncingTimer = new Timer(512);
-        private InputLanguage inputLanguage = new InputLanguage(); 
+        private InputLanguage inputLanguage = new InputLanguage();
+        private WindowBackdrops backdrops;
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -66,6 +67,8 @@ namespace MagicTranslate.UI.WIndows
             inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;
             InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
             this.Closed += SearchWindow_Closed;
+            backdrops = new WindowBackdrops(this);
+            backdrops.SetBackdrop(BackdropType.DesktopAcrylic);
         }
 
         private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)
