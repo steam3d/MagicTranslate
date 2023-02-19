@@ -38,9 +38,13 @@ namespace MagicTranslate.UI.WIndows
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         AppWindow _apw;
         private Thickness rootMagrin = new Thickness(16);
+
+        //Indepent pixels
         private int minHeight = 54;
-        private int maxHeight = 496;
+        private int maxHeight = 496;        
         private int MaxWidth = 596;
+        private int screenBorder = 16;
+
         Timer textChangedDebouncingTimer = new Timer(512);
         private InputLanguage inputLanguage = new InputLanguage();
         private WindowBackdrops backdrops;
@@ -57,8 +61,17 @@ namespace MagicTranslate.UI.WIndows
             _presenter.SetBorderAndTitleBar(false, false);
             
             var dpi = this.GetDpi();
+            var displayArea = DisplayArea.GetFromWindowId(myWndId, DisplayAreaFallback.Primary);
+            
+            var maxScreenWidth = (displayArea.WorkArea.Width / dpi) - screenBorder - rootMagrin.Left - rootMagrin.Right;
+            MaxWidth = MaxWidth > maxScreenWidth ? Convert.ToInt32(maxScreenWidth) : MaxWidth;
+
             _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(MaxWidth * dpi), Convert.ToInt32(minHeight * dpi)));
             this.CenterToScreen();
+
+            var windowRect = this.GetRect();
+            var maxScreenHeight = (displayArea.WorkArea.Height / dpi) - (windowRect.top / dpi) - rootMagrin.Bottom - rootMagrin.Top - screenBorder;
+            maxHeight = maxHeight > maxScreenHeight ? Convert.ToInt32(maxScreenHeight) : maxHeight;
 
             Root.SizeChanged += Root_SizeChanged;
             SearchBox.TextChanged += SearchBox_TextChanged;
@@ -67,8 +80,9 @@ namespace MagicTranslate.UI.WIndows
             inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;
             InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
             this.Closed += SearchWindow_Closed;
+            
             backdrops = new WindowBackdrops(this);
-            backdrops.SetBackdrop(BackdropType.DesktopAcrylic);
+            backdrops.SetBackdrop(BackdropType.Mica);            
         }
 
         private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)

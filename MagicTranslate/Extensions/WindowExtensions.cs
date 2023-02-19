@@ -5,6 +5,8 @@ using Windows.Win32;
 using Windows.Win32.UI.WindowsAndMessaging;
 using Windows.Win32.Foundation;
 using MagicTranslate.Helpers;
+using Microsoft.UI.Windowing;
+using Microsoft.UI;
 
 namespace MagicTranslate.Extensions
 {
@@ -118,6 +120,16 @@ namespace MagicTranslate.Extensions
                 return 1D;
 
             return dpi / DefaultPixelsPerInch;
+        }
+
+        public static RECT GetRect(this Window window)
+        {
+            var hWndMain = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            RECT rectWnd;
+            if (PInvoke.GetWindowRect(new HWND(hWndMain), out rectWnd))
+                return rectWnd;
+
+            return new RECT();
         }
     }
 }
