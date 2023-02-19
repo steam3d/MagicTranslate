@@ -12,7 +12,7 @@ namespace MagicTranslate.UI
         DefaultColor,
     }
 
-    internal class D
+    internal class WindowBackdrops
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private Window window;
