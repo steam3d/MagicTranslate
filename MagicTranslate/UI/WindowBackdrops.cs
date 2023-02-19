@@ -1,6 +1,6 @@
 ﻿using MagicTranslate.Helpers;
 using Microsoft.UI.Xaml;
-Wusing WinRT;
+using WinRT;
 
 namespace MagicTranslate.UI
 {
