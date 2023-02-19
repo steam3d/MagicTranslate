@@ -24,6 +24,7 @@ using System.Timers;
 using Windows.UI.Core;
 using Microsoft.UI.Xaml.Media.Animation;
 using MagicTranslate.Input;
+using MagicTranslate.Args;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -88,7 +89,7 @@ namespace MagicTranslate.UI.WIndows
         private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)
         {
             DispatcherQueue.TryEnqueue(() =>
-            {                               
+            {                
                 SearchBox.PlaceholderText = $"Translate from {e.EnglishName}";
             });
         }
@@ -136,10 +137,11 @@ namespace MagicTranslate.UI.WIndows
                 }
                 else
                 {
+                    var args = new TranslateArgs(inputLanguage.CurrentInput, SearchBox.Text, new System.Globalization.CultureInfo("en"));
                     Content.Visibility = Visibility.Visible;
                     Root.Height = double.NaN;
                     ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
-                    Content.Navigate(typeof(GoogleTranslatePage), null, new DrillInNavigationTransitionInfo());
+                    Content.Navigate(typeof(GoogleTranslatePage), args, new DrillInNavigationTransitionInfo());
                 }
             });           
         }

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using MagicTranslate.Args;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -34,9 +35,19 @@ namespace MagicTranslate.UI.Pages
         public GoogleTranslatePage()
         {
             this.InitializeComponent();
-            DataContext = this;
+            DataContext = this;            
             string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
-            TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json),null,null,TimeSpan.Zero,null);
+            //Translate translate = new Translate();
+            //TranslateResult = translate.TranslateGoogle("Ручка", "ru", "en");
+            //TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json),null,null,TimeSpan.Zero,null);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Translate translate = new Translate();
+            var args = e.Parameter as TranslateArgs;
+            TranslateResult = translate.TranslateGoogle(args.TextToTranslate, args.TranslateFrom.TwoLetterISOLanguageName, args.TranslateTo.TwoLetterISOLanguageName);
+            base.OnNavigatedTo(e);
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
