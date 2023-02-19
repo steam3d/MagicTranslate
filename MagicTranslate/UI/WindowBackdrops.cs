@@ -1,5 +1,7 @@
 ﻿using MagicTranslate.Helpers;
+using MagicTranslate.UI.Theme;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Media;
 using WinRT;
 
 namespace MagicTranslate.UI
@@ -41,8 +43,6 @@ namespace MagicTranslate.UI
             //       controller, reusing any existing m_configurationSource and Activated/Closed
             //       event handlers.
             m_currentBackdrop = BackdropType.DefaultColor;
-            //tbCurrentBackdrop.Text = "None (default theme color)";
-            //tbChangeStatus.Text = "";
             if (m_micaController != null)
             {
                 m_micaController.Dispose();
@@ -151,7 +151,8 @@ namespace MagicTranslate.UI
                 SetConfigurationSourceTheme();
 
                 m_acrylicController = new Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController();
-
+                UpdateAcrylicTint();
+                
                 // Enable the system backdrop.
                 // Note: Be sure to have "using WinRT;" to support the Window.As<...>() call.
                 m_acrylicController.AddSystemBackdropTarget(window.As<Microsoft.UI.Composition.ICompositionSupportsSystemBackdrop>());
@@ -190,7 +191,26 @@ namespace MagicTranslate.UI
             if (m_configurationSource != null)
             {
                 SetConfigurationSourceTheme();
+                UpdateAcrylicTint();
             }
+        }
+
+        private void UpdateAcrylicTint()
+        {
+            if (m_acrylicController == null)
+                return;
+
+            var isDarkTheme = ThemeManagement.IsDarkTheme();
+            float opacity = isDarkTheme ? 0.75f : 0.65f;
+
+
+            if (((FrameworkElement)window.Content).Resources.TryGetValue("ApplicationPageBackgroundThemeBrush", out object value))
+            {
+                var brush = (SolidColorBrush)value;
+                m_acrylicController.TintColor = brush.Color;
+            }
+            m_acrylicController.TintOpacity = opacity;
+            m_acrylicController.LuminosityOpacity = 1;
         }
 
         private void SetConfigurationSourceTheme()
@@ -201,20 +221,6 @@ namespace MagicTranslate.UI
                 case ElementTheme.Light: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Light; break;
                 case ElementTheme.Default: m_configurationSource.Theme = Microsoft.UI.Composition.SystemBackdrops.SystemBackdropTheme.Default; break;
             }
-        }
-
-        void ChangeBackdropButton_Click(object sender, RoutedEventArgs e)
-        {
-            BackdropType newType;
-            switch (m_currentBackdrop)
-            {
-                case BackdropType.Mica: newType = BackdropType.MicaAlt; break;
-                case BackdropType.MicaAlt: newType = BackdropType.DesktopAcrylic; break;
-                case BackdropType.DesktopAcrylic: newType = BackdropType.DefaultColor; break;
-                default:
-                case BackdropType.DefaultColor: newType = BackdropType.Mica; break;
-            }
-            SetBackdrop(newType);
         }
     }
 }

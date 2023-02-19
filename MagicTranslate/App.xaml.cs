@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using MagicTranslate.Helper;
+using MagicTranslate.UI.Theme;
 using MagicTranslate.UI.WIndows;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -50,11 +52,12 @@ namespace MagicTranslate
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            ThemeManagement.Initialize();
             //m_window = new PlayGroundWindow();
-            m_window = new SearchWindow();
-            m_window.Activate();
+            StartupWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
+            StartupWindow?.Activate();
         }
 
-        private Window m_window;
+        public static Window StartupWindow;
     }
 }
