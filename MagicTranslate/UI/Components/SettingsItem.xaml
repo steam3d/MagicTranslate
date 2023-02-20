@@ -18,31 +18,6 @@
     <UserControl.Resources>
         <converters:StringVisibilityConverter
             x:Key="StringVisibilityConverter" />
-        <Style
-            TargetType="Border"
-            x:Key="BorderContentStyle">
-            <Setter
-                Property="Background"
-                Value="{ThemeResource LayerFillColorDefaultBrush}" />
-            <Setter
-                Property="HorizontalAlignment"
-                Value="Stretch" />
-            <Setter
-                Property="VerticalAlignment"
-                Value="Top" />
-            <Setter
-                Property="Padding"
-                Value="24,16,24,16" />
-            <Setter
-                Property="CornerRadius"
-                Value="8" />
-            <Setter
-                Property="BorderThickness"
-                Value="1" />
-            <Setter
-                Property="BorderBrush"
-                Value="{ThemeResource CardStrokeColorDefaultBrush}" />
-        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -68,7 +43,13 @@
             Visibility="{Binding Header, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
         <Border
             Grid.Row="1"
-            Style="{ThemeResource BorderContentStyle}">
+            Background="{ThemeResource LayerFillColorDefaultBrush}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Padding="24,16,24,16"
+            CornerRadius="8"
+            BorderThickness="1"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
             <Grid
                 RowSpacing="4"
                 ColumnSpacing="16">
