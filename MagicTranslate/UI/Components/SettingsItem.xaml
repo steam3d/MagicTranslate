@@ -32,7 +32,7 @@
                 Value="Top" />
             <Setter
                 Property="Padding"
-                Value="16" />
+                Value="24,16,24,16" />
             <Setter
                 Property="CornerRadius"
                 Value="8" />
@@ -43,35 +43,6 @@
                 Property="BorderBrush"
                 Value="{ThemeResource CardStrokeColorDefaultBrush}" />
         </Style>
-
-        <Style
-            TargetType="TextBlock"
-            x:Key="HeaderStyle">
-            <Setter
-                Property="Margin"
-                Value="0,16,0,8" />
-            <Setter
-                Property="Opacity"
-                Value="0.5" />
-            <Setter
-                Property="TextWrapping"
-                Value="Wrap" />
-        </Style>
-
-        <Style
-            TargetType="TextBlock"
-            x:Name="TextStyle">
-            <Setter
-                Property="Grid.Column"
-                Value="0" />
-            <Setter
-                Property="TextWrapping"
-                Value="Wrap" />
-            <Setter
-                Property="VerticalAlignment"
-                Value="Center" />
-        </Style>
-
     </UserControl.Resources>
 
     <Grid>
@@ -90,27 +61,54 @@
         </Grid.ColumnDefinitions>
         <TextBlock
             Grid.Row="0"
-            Style="{ThemeResource HeaderStyle}"
+            Margin="0,16,0,8"
+            Opacity="0.5"
+            TextWrapping="Wrap"
             Text="{Binding Header, ElementName=SettingsItemControl,Mode=OneWay}"
             Visibility="{Binding Header, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
         <Border
             Grid.Row="1"
             Style="{ThemeResource BorderContentStyle}">
-            <Grid>
+            <Grid
+                RowSpacing="4"
+                ColumnSpacing="16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
                         Width="*" />
                     <ColumnDefinition
                         Width="Auto" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
                 <TextBlock
                     Grid.Column="0"
-                    Style="{ThemeResource TextStyle}"
+                    Grid.Row="0"
+                    TextWrapping="Wrap"
+                    LineHeight="20"
                     Text="{Binding Text, ElementName=SettingsItemControl,Mode=OneWay}"
                     Visibility="{Binding Text, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
+                <TextBlock
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    TextWrapping="Wrap"
+                    Opacity="0.5"
+                    LineHeight="20"
+                    Text="{Binding Description, ElementName=SettingsItemControl,Mode=OneWay}"
+                    Visibility="{Binding Description, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
+                <HyperlinkButton
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="-10,0,0,0"                    
+                    Content="{Binding HyperlinkText, ElementName=SettingsItemControl,Mode=OneWay}"
+                    Visibility="{Binding HyperlinkText, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
+
                 <ContentControl
+                    Grid.RowSpan="3"                    
                     Grid.Column="1"
-                    Margin="16,0,0,0"
+                    VerticalAlignment="Center"
                     Content="{Binding SettingsContent, ElementName=SettingsItemControl}" />
             </Grid>
         </Border>

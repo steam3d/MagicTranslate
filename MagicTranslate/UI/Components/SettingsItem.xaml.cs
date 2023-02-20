@@ -29,10 +29,29 @@ namespace MagicTranslate.UI.Components
 
         public static readonly DependencyProperty TextProperty =
         DependencyProperty.Register("Text", typeof(string), typeof(SettingsItem), null);
+
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
+        }
+
+        public static readonly DependencyProperty DescriptionProperty =
+        DependencyProperty.Register("Description", typeof(string), typeof(SettingsItem), null);
+
+        public string Description
+        {
+            get { return (string)GetValue(DescriptionProperty); }
+            set { SetValue(DescriptionProperty, value); }
+        }
+
+        public static readonly DependencyProperty HyperlinkTextProperty =
+        DependencyProperty.Register("HyperlinkText", typeof(string), typeof(SettingsItem), null);
+
+        public string HyperlinkText
+        {
+            get { return (string)GetValue(HyperlinkTextProperty); }
+            set { SetValue(HyperlinkTextProperty, value); }
         }
 
         public SettingsItem()
