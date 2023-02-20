@@ -13,8 +13,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Logo.ico" />
+    <None Remove="UI\Components\SettingsItem.xaml" />
     <None Remove="UI\Pages\EmptyPage.xaml" />
+    <None Remove="UI\Pages\SettingsPage.xaml" />
     <None Remove="UI\Pages\TestPage.xaml" />
+    <None Remove="UI\WIndows\DefaultWindow.xaml" />
     <None Remove="UI\WIndows\PlayGroundWindow.xaml" />
     <None Remove="UI\WIndows\SearchWindow.xaml" />
     <None Remove="UI\WIndows\TrayIconWindow.xaml" />
@@ -58,6 +61,15 @@
     <None Update="json.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Components\SettingsItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\Pages\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="UI\WIndows\DefaultWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Pages\EmptyPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
