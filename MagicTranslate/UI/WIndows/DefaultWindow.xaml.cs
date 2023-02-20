@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using MagicTranslate.Extensions;
 using MagicTranslate.UI.Pages;
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -14,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Intrinsics.Arm;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -27,11 +31,24 @@ namespace MagicTranslate.UI.WIndows
     /// </summary>
     public sealed partial class DefaultWindow : Window
     {
+        WindowBackdrops backdrops;
         public DefaultWindow()
         {
             this.InitializeComponent();
-            
-            this.Activated += DefaultWindow_Activated;
+
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+
+            WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            var _apw = AppWindow.GetFromWindowId(myWndId);
+            _apw.Resize(new Windows.Graphics.SizeInt32(1024, 512));
+            this.CenterToScreen();
+            this.Topmost(true);
+
+            backdrops = new WindowBackdrops(this);
+            backdrops.SetBackdrop(BackdropType.Mica);
+
+            Content.Navigate(typeof(SettingsPage));
+            //this.Activated += DefaultWindow_Activated;
         }
 
         private void DefaultWindow_Activated(object sender, WindowActivatedEventArgs args)

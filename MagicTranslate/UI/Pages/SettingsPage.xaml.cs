@@ -26,9 +26,15 @@ namespace MagicTranslate.UI.Pages
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         public SettingsPage()
         {
             this.InitializeComponent();
+        }
+
+        private void SettingsItem_HyperlinkClick(object sender, EventArgs e)
+        {
+            Logger.Debug("Click");
         }
     }
 }

@@ -10,13 +10,159 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:comp="using:MagicTranslate.UI.Components"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources
+                    Source="ms-appx:///UI/Icons/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
-    <Grid>
-        <comp:SettingsItem
-            Grid.Row="1"
-            Header="header"
-            Text="Text">
-        </comp:SettingsItem>
-    </Grid>
+    <ScrollViewer>
+        <Grid
+            Padding="16"
+            RowSpacing="8"
+            VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <comp:SettingsItem
+                Grid.Row="0"
+                Header="Translation"
+                Text="Translate to language"
+                Description="Typed text will be translated to this language">
+                <comp:SettingsItem.SettingsContent>
+                    <ComboBox
+                        Width="280"
+                        SelectedIndex="0">
+                        <TextBlock
+                            Text="English (United States)" />
+                    </ComboBox>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+            
+            <comp:SettingsItem
+                Grid.Row="1"
+                Text="Native language"
+                Description="Typed text on 'Translate to language' will be translate to this language">
+                <comp:SettingsItem.SettingsContent>
+                    <ComboBox
+                        Width="280"
+                        SelectedIndex="0">
+                        <TextBlock
+                            Text="Use system language" />
+                    </ComboBox>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+            
+            <comp:SettingsItem
+                Grid.Row="2"
+                Header="Hotkeys"
+                Text="Native language">
+                <comp:SettingsItem.SettingsContent>
+                    <ComboBox
+                        Width="280"
+                        SelectedIndex="0">
+                        <TextBlock
+                            Text="Use system language" />
+                    </ComboBox>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+
+            <comp:SettingsItem
+                Grid.Row="3"
+                Header="Application settings"
+                Text="Run on startup">
+                <comp:SettingsItem.SettingsContent>
+                    <ToggleSwitch />
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+
+            <comp:SettingsItem
+                Grid.Row="4"
+                Text="Theme">
+                <comp:SettingsItem.SettingsContent>
+                    <ComboBox
+                        Width="280"
+                        SelectedIndex="0">
+                        <TextBlock
+                            Text="Use system language" />
+                    </ComboBox>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+
+            <comp:SettingsItem
+                Grid.Row="5"
+                Text="Language">
+                <comp:SettingsItem.SettingsContent>
+                    <ComboBox
+                        Width="280"
+                        SelectedIndex="0">
+                        <TextBlock
+                            Text="Use system language" />
+                    </ComboBox>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+
+            <comp:SettingsItem
+                Grid.Row="6"
+                Text="Debug">
+                <comp:SettingsItem.SettingsContent>
+                    <StackPanel
+                        Spacing="8"
+                        Orientation="Horizontal">
+                        <Button>
+                            <Viewbox>
+                                <PathIcon
+                                    Data="{StaticResource SettingsLogFolder}" />
+                            </Viewbox>
+                        </Button>
+                        <ComboBox
+                            Width="280"
+                            SelectedIndex="0">
+                            <TextBlock
+                                Tag="Trace"
+                                Text="Trace" />
+                            <TextBlock
+                                Tag="Debug"
+                                Text="Debug" />
+                            <TextBlock
+                                Tag="Info"
+                                Text="Info" />
+                            <TextBlock
+                                Tag="Warn"
+                                Text="Warn" />
+                            <TextBlock
+                                Tag="Error"
+                                Text="Error" />
+                            <TextBlock
+                                Tag="Fatal"
+                                Text="Fatal" />
+                            <TextBlock
+                                Tag="Off"
+                                Text="Off" />
+                        </ComboBox>
+                    </StackPanel>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+
+            <comp:SettingsItem
+                Grid.Row="7"
+                Text="Reset to default settings">
+                <comp:SettingsItem.SettingsContent>
+                    <Button
+                        Content="Reset" />
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+        </Grid>
+    </ScrollViewer>
 </Page>
