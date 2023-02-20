@@ -1,11 +1,6 @@
-// Copyright (c) Microsoft Corporation and Contributors.
-// Licensed under the MIT License.
-
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using System;
 
 namespace MagicTranslate.UI.Components
 {
@@ -54,10 +49,17 @@ namespace MagicTranslate.UI.Components
             set { SetValue(HyperlinkTextProperty, value); }
         }
 
+        public event EventHandler HyperlinkClick;
+
         public SettingsItem()
         {
             this.InitializeComponent();
             this.DataContext= this;
+        }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            HyperlinkClick?.Invoke(this, new EventArgs());
         }
     }
 }
