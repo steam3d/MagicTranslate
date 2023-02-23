@@ -1,0 +1,44 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<UserControl
+    x:Class="MagicTranslate.UI.Components.SettingsItemHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MagicTranslate.UI.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:converters="using:MagicTranslate.ValueConverters"
+    mc:Ignorable="d"
+    x:Name="SettingsItemControl">
+
+	<UserControl.Resources>
+		<converters:StringVisibilityConverter
+            x:Key="StringVisibilityConverter" />
+	</UserControl.Resources>
+
+    <Grid
+        Margin="0,16,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="*" />
+            <ColumnDefinition
+                Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock
+            x:Name="_Header"
+            Grid.Column="0"            
+            Opacity="0.5"
+            TextWrapping="Wrap"
+            Text="{Binding Header, ElementName=SettingsItemControl,Mode=OneWay}"
+            Visibility="{Binding Header, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
+        <HyperlinkButton
+            Grid.Column="1"
+            VerticalAlignment="Top"
+            Padding="0"
+            Style="{ThemeResource TextBlockButtonStyle}"
+            Content="{Binding HyperlinkText, ElementName=SettingsItemControl,Mode=OneWay}"
+            Visibility="{Binding HyperlinkText, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}"
+            Click="HyperlinkButton_Click" />
+    </Grid>
+</UserControl>

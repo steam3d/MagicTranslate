@@ -14,6 +14,7 @@
   <ItemGroup>
     <None Remove="Assets\Logo.ico" />
     <None Remove="UI\Components\SettingsItem.xaml" />
+    <None Remove="UI\Components\SettingsItemHeader.xaml" />
     <None Remove="UI\Pages\EmptyPage.xaml" />
     <None Remove="UI\Pages\SettingsPage.xaml" />
     <None Remove="UI\Pages\TestPage.xaml" />
@@ -61,6 +62,9 @@
     <None Update="json.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Components\SettingsItemHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Components\SettingsItem.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

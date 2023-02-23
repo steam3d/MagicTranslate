@@ -22,15 +22,6 @@ namespace MagicTranslate.UI.Components
             set { SetValue(HeaderProperty, value); }
         }
 
-        public static readonly DependencyProperty TextProperty =
-        DependencyProperty.Register("Text", typeof(string), typeof(SettingsItem), null);
-
-        public string Text
-        {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
-        }
-
         public static readonly DependencyProperty DescriptionProperty =
         DependencyProperty.Register("Description", typeof(string), typeof(SettingsItem), null);
 
@@ -54,7 +45,7 @@ namespace MagicTranslate.UI.Components
         public SettingsItem()
         {
             this.InitializeComponent();
-            this.DataContext= this;
+            this.DataContext = this;
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)

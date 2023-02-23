@@ -9,80 +9,57 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    x:Name="SettingsItemControl"
-    Opacity="{x:Bind IsEnabled, Converter={StaticResource BoolToOpacityConverter}, Mode=OneWay}">
+    x:Name="SettingsItemControl">
 
     <UserControl.Resources>
         <converters:StringVisibilityConverter
             x:Key="StringVisibilityConverter" />
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition
-                Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition
-                Width="*" />
-            <ColumnDefinition
-                Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <TextBlock
-            Grid.Row="0"
-            Margin="0,16,0,8"
-            Opacity="0.5"
-            TextWrapping="Wrap"
-            Text="{Binding Header, ElementName=SettingsItemControl,Mode=OneWay}"
-            Visibility="{Binding Header, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
-        <Border
-            Grid.Row="1"
-            Background="{ThemeResource LayerFillColorDefaultBrush}"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Padding="24,16,24,16"
-            CornerRadius="8"
-            BorderThickness="1"
-            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
-            <Grid
-                ColumnSpacing="16">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <StackPanel
-                    Grid.Column="0"
-                    Spacing="0"
-                    VerticalAlignment="Center">
-                    <TextBlock
-                        TextWrapping="Wrap"
-                        LineHeight="20"                        
-                        Text="{Binding Text, ElementName=SettingsItemControl,Mode=OneWay}"
-                        Visibility="{Binding Text, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
-                    <TextBlock
-                        TextWrapping="Wrap"
-                        Opacity="0.5"
-                        LineHeight="20"
-                        Margin="0,4,0,0"
-                        Text="{Binding Description, ElementName=SettingsItemControl,Mode=OneWay}"
-                        Visibility="{Binding Description, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
-                    <HyperlinkButton
-                        Margin="-10,4,0,0"                        
-                        Content="{Binding HyperlinkText, ElementName=SettingsItemControl,Mode=OneWay}"
-                        Visibility="{Binding HyperlinkText, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}"
-                        Click="HyperlinkButton_Click" />
-                </StackPanel>
 
-                <ContentControl                 
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Content="{Binding SettingsContent, ElementName=SettingsItemControl}" />
-            </Grid>
-        </Border>
-    </Grid>
+    <Border
+        Background="{ThemeResource LayerFillColorDefaultBrush}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Top"
+        Padding="24,16,24,16"
+        CornerRadius="8"
+        BorderThickness="1"
+        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+        <Grid
+            ColumnSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition
+                    Width="*" />
+                <ColumnDefinition
+                    Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Column="0"
+                Spacing="0"
+                VerticalAlignment="Center">
+                <TextBlock
+                    TextWrapping="Wrap"
+                    LineHeight="20"
+                    Text="{Binding Header, ElementName=SettingsItemControl,Mode=OneWay}"
+                    Visibility="{Binding Header, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
+                <TextBlock
+                    TextWrapping="Wrap"
+                    Opacity="0.5"
+                    LineHeight="20"
+                    Margin="0,4,0,0"
+                    Text="{Binding Description, ElementName=SettingsItemControl,Mode=OneWay}"
+                    Visibility="{Binding Description, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
+                <HyperlinkButton
+                    Margin="-10,4,0,0"
+                    Content="{Binding HyperlinkText, ElementName=SettingsItemControl,Mode=OneWay}"
+                    Visibility="{Binding HyperlinkText, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}"
+                    Click="HyperlinkButton_Click" />
+            </StackPanel>
+
+            <ContentControl
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Content="{Binding SettingsContent, ElementName=SettingsItemControl}" />
+        </Grid>
+    </Border>
 </UserControl>

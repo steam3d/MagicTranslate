@@ -34,11 +34,17 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <comp:SettingsItem
+            <comp:SettingsItemHeader
                 Grid.Row="0"
                 Header="Translation"
-                Text="Translate to language"
+                HyperlinkText="Translation"/>
+            <comp:SettingsItem
+                Grid.Row="1"
+                Header="Translate to language"
                 Description="Typed text will be translated to this language">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
@@ -51,8 +57,8 @@
             </comp:SettingsItem>
             
             <comp:SettingsItem
-                Grid.Row="1"
-                Text="Native language"
+                Grid.Row="2"
+                Header="Native language"
                 Description="Typed text on 'Translate to language' will be translate to this language">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
@@ -63,11 +69,13 @@
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
-            
-            <comp:SettingsItem
-                Grid.Row="2"
+            <comp:SettingsItemHeader
+                Grid.Row="3"
                 Header="Hotkeys"
-                Text="Native language">
+                HyperlinkText="12"/> 
+            <comp:SettingsItem
+                Grid.Row="4"
+                Header="Open translate window">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
@@ -77,19 +85,20 @@
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
-
+            <comp:SettingsItemHeader
+                Grid.Row="5"
+                Header="Application settings" />
             <comp:SettingsItem
-                Grid.Row="3"
-                Header="Application settings"
-                Text="Run on startup">
+                Grid.Row="6"
+                Header="Run on startup">
                 <comp:SettingsItem.SettingsContent>
                     <ToggleSwitch />
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="4"
-                Text="Theme">
+                Grid.Row="7"
+                Header="Theme">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
@@ -101,8 +110,8 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="5"
-                Text="Language">
+                Grid.Row="8"
+                Header="Language">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
@@ -114,8 +123,8 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="6"
-                Text="Debug">
+                Grid.Row="9"
+                Header="Debug">
                 <comp:SettingsItem.SettingsContent>
                     <StackPanel
                         Spacing="8"
@@ -156,8 +165,8 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="7"
-                Text="Reset to default settings">
+                Grid.Row="10"
+                Header="Reset to default settings">
                 <comp:SettingsItem.SettingsContent>
                     <Button
                         Content="Reset" />
