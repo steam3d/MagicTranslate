@@ -59,6 +59,7 @@
             <comp:SettingsItem
                 Grid.Row="2"
                 Header="Native language"
+                HyperlinkText="Learn more"
                 Description="Typed text on 'Translate to language' will be translate to this language">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
@@ -71,8 +72,7 @@
             </comp:SettingsItem>
             <comp:SettingsItemHeader
                 Grid.Row="3"
-                Header="Hotkeys"
-                HyperlinkText="12"/> 
+                Header="Hotkeys"/> 
             <comp:SettingsItem
                 Grid.Row="4"
                 Header="Open translate window">

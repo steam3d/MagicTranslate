@@ -29,14 +29,14 @@
             x:Name="_Header"
             Grid.Column="0"            
             Opacity="0.5"
+            VerticalAlignment="Center"
             TextWrapping="Wrap"
             Text="{Binding Header, ElementName=SettingsItemControl,Mode=OneWay}"
             Visibility="{Binding Header, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
         <HyperlinkButton
             Grid.Column="1"
             VerticalAlignment="Top"
-            Padding="0"
-            Style="{ThemeResource TextBlockButtonStyle}"
+            Padding="4,2,4,2"            
             Content="{Binding HyperlinkText, ElementName=SettingsItemControl,Mode=OneWay}"
             Visibility="{Binding HyperlinkText, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}"
             Click="HyperlinkButton_Click" />

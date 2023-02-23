@@ -50,7 +50,7 @@
                     Text="{Binding Description, ElementName=SettingsItemControl,Mode=OneWay}"
                     Visibility="{Binding Description, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}" />
                 <HyperlinkButton
-                    Margin="-10,4,0,0"
+                    Margin="-12,2,0,0"                    
                     Content="{Binding HyperlinkText, ElementName=SettingsItemControl,Mode=OneWay}"
                     Visibility="{Binding HyperlinkText, ElementName=SettingsItemControl, Converter={ThemeResource StringVisibilityConverter}, Mode=OneWay}"
                     Click="HyperlinkButton_Click" />
