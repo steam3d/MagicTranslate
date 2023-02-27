@@ -16,6 +16,8 @@
             <!-- Other app resources here -->
             <converters:BoolToOpacityConverter
                 x:Key="BoolToOpacityConverter" />
+            <converters:BoolToVisabilityConverter
+                x:Key="BoolToVisabilityConverter" />
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary
                     x:Key="Light">

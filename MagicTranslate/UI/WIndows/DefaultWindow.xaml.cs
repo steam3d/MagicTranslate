@@ -20,6 +20,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Intrinsics.Arm;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,25 +36,38 @@ namespace MagicTranslate.UI.WIndows
         public DefaultWindow()
         {
             this.InitializeComponent();
-
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
 
             WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             var _apw = AppWindow.GetFromWindowId(myWndId);
             _apw.Resize(new Windows.Graphics.SizeInt32(1024, 512));
+            
+            this.ExtendsContentIntoTitleBar = true;  // enable custom titlebar            
+            this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
+
+            var res = Microsoft.UI.Xaml.Application.Current.Resources;
+            res["WindowCaptionBackground"] = new SolidColorBrush(Colors.Transparent);
+            //res["WindowCaptionForeground"] = new SolidColorBrush(Colors.Transparent);
+            //res["WindowCaptionForegroundDisabled"] = new SolidColorBrush(Colors.Transparent); //optional to set disabled state colors
+            res["WindowCaptionBackgroundDisabled"] = new SolidColorBrush(Colors.Transparent); //optional to set disabled state colors
+
+            //var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            //titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
+            //titleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
+
             this.CenterToScreen();
-            this.Topmost(true);
+            this.Topmost(true);            
 
             backdrops = new WindowBackdrops(this);
             backdrops.SetBackdrop(BackdropType.Mica);
 
-            Content.Navigate(typeof(SettingsPage));
+            contentFrame.Navigate(typeof(SettingsPage));
             //this.Activated += DefaultWindow_Activated;
         }
 
         private void DefaultWindow_Activated(object sender, WindowActivatedEventArgs args)
         {
-            Content.Navigate(typeof(SettingsPage));
+            contentFrame.Navigate(typeof(SettingsPage));
         }
     }
 }

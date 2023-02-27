@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using MagicTranslate.UI.Theme;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -35,6 +36,16 @@ namespace MagicTranslate.UI.Pages
         private void SettingsItem_HyperlinkClick(object sender, EventArgs e)
         {
             Logger.Debug("Click");
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeManagement.RootTheme = ElementTheme.Dark;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ThemeManagement.RootTheme = ElementTheme.Light;
         }
     }
 }

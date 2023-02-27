@@ -9,10 +9,63 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:comp="using:MagicTranslate.UI.Components"
+    xmlns:converters="using:MagicTranslate.ValueConverters"
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="Auto" />
+            <ColumnDefinition
+                Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Button
+            Grid.Column="0"
+            x:Name="BackButton"
+            Background="{ThemeResource CommandBarOverflowPresenterBackground}"
+            Style="{StaticResource NavigationBackButtonNormalStyle}"
+            ToolTipService.ToolTip="Back"
+            Height="32"
+            IsEnabled="{Binding ElementName=contentFrame, Path=CanGoBack, Mode=OneWay}"
+            Visibility="{Binding ElementName=contentFrame, Path=CanGoBack, Converter={StaticResource BoolToVisabilityConverter}, Mode=OneWay}" />
+        <!--Click="BackButton_Click" />-->
+        <!--Background="{ThemeResource CommandBarOverflowPresenterBackground}"-->
+        <Border
+            Grid.Row="0"
+            x:Name="AppTitleBar"
+            Grid.Column="1"
+            IsHitTestVisible="True"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            Height="32"
+            Margin="0,0,0,0"
+            Canvas.ZIndex="1">
+            <StackPanel
+                Orientation="Horizontal"
+                Spacing="8"
+                Margin="16,0,0,0">
+                <Image
+                    Width="16"
+                    Height="16"
+                    Source="ms-appx:///Assets/LockScreenLogo.scale-200.png" />
+                <TextBlock
+                    x:Name="AppTitle"
+                    Text="MagicSelect"
+                    VerticalAlignment="Center"
+                    Margin="0,-2,0,0"
+                    Style="{StaticResource CaptionTextBlockStyle}" />
+            </StackPanel>
+        </Border>
         <Frame
-            x:Name="Content" />
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            x:Name="contentFrame" />
     </Grid>
 </Window>

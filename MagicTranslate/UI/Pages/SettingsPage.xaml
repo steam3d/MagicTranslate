@@ -104,7 +104,8 @@
                             x:Uid="Settings_About_Weblate"
                             Tag="Weblate"
                             FlowDirection="LeftToRight"
-                            Margin="16,0,0,16">
+                            Margin="16,0,0,16"
+                            Click="Button_Click">
                             <StackPanel
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
@@ -122,7 +123,8 @@
                             x:Uid="Settings_About_MagicPods"
                             Tag="MagicPods"
                             FlowDirection="LeftToRight"
-                            Margin="16,0,0,16">
+                            Margin="16,0,0,16"
+                            Click="Button_Click_1">
                             <StackPanel
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
