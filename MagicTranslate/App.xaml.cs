@@ -52,10 +52,10 @@ namespace MagicTranslate
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            ThemeManagement.Initialize();
             //m_window = new PlayGroundWindow();
             //StartupWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
             StartupWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
+            ThemeManagement.Initialize();
             StartupWindow?.Activate();
         }
 

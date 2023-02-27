@@ -3,6 +3,12 @@ using Windows.Storage;
 using Microsoft.UI.Xaml;
 using MagicTranslate.Helper;
 using System.Reflection;
+using Windows.UI.ViewManagement;
+using Microsoft.UI;
+using Windows.UI;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Dispatching;
+using System.Threading;
 
 namespace MagicTranslate.UI.Theme
 {
@@ -11,6 +17,7 @@ namespace MagicTranslate.UI.Theme
     /// </summary>
     public static class ThemeManagement
     {
+        private static UISettings uiSettings;
         private const string SelectedAppThemeKey = "SelectedAppTheme";
 
 #if !UNPACKAGED
@@ -64,6 +71,7 @@ namespace MagicTranslate.UI.Theme
                         rootElement.RequestedTheme = value;
                     }
                 }
+                UpdateTitleBarColor();
 
 #if !UNPACKAGED
                 ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
@@ -83,6 +91,45 @@ namespace MagicTranslate.UI.Theme
                 RootTheme = GetEnum<ElementTheme>(savedTheme);
             }
 #endif
+            uiSettings = new UISettings();
+            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+        }
+
+        private static void UiSettings_ColorValuesChanged(UISettings sender, object args)
+        {
+#if !UNPACKAGED
+            if (CurrentApplicationWindow != null)
+            {
+                CurrentApplicationWindow.DispatcherQueue.TryEnqueue(() =>
+                {
+                    UpdateTitleBarColor();
+                });
+            }                        
+#endif
+        }
+
+        private static void UpdateTitleBarColor()
+        {
+            var res = Microsoft.UI.Xaml.Application.Current.Resources;
+
+            res["WindowCaptionBackground"] = new SolidColorBrush(Colors.Transparent);
+            res["WindowCaptionBackgroundDisabled"] = new SolidColorBrush(Colors.Transparent);
+            res["WindowCaptionButtonBackground"] = new SolidColorBrush(Colors.Transparent);
+
+            if (IsDarkTheme())
+            {
+                res["WindowCaptionForeground"] = new SolidColorBrush(Colors.White);
+                res["WindowCaptionForegroundDisabled"] = new SolidColorBrush(Colors.White);
+                res["WindowCaptionButtonBackgroundPointerOver"] = new SolidColorBrush(Color.FromArgb(25, 255, 255, 255));
+                res["WindowCaptionButtonBackgroundPressed"] = new SolidColorBrush(Color.FromArgb(14, 255, 255, 255));
+            }
+            else
+            {
+                res["WindowCaptionForeground"] = new SolidColorBrush(Colors.Black);
+                res["WindowCaptionForegroundDisabled"] = new SolidColorBrush(Colors.Black);
+                res["WindowCaptionButtonBackgroundPointerOver"] = new SolidColorBrush(Color.FromArgb(12, 0, 0, 0));
+                res["WindowCaptionButtonBackgroundPressed"] = new SolidColorBrush(Color.FromArgb(6, 0, 0, 0));
+            }
         }
 
         public static bool IsDarkTheme()

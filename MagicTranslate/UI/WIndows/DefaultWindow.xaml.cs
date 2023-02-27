@@ -45,16 +45,6 @@ namespace MagicTranslate.UI.WIndows
             this.ExtendsContentIntoTitleBar = true;  // enable custom titlebar            
             this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
 
-            var res = Microsoft.UI.Xaml.Application.Current.Resources;
-            res["WindowCaptionBackground"] = new SolidColorBrush(Colors.Transparent);
-            //res["WindowCaptionForeground"] = new SolidColorBrush(Colors.Transparent);
-            //res["WindowCaptionForegroundDisabled"] = new SolidColorBrush(Colors.Transparent); //optional to set disabled state colors
-            res["WindowCaptionBackgroundDisabled"] = new SolidColorBrush(Colors.Transparent); //optional to set disabled state colors
-
-            //var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            //titleBar.ButtonBackgroundColor = Microsoft.UI.Colors.Transparent;
-            //titleBar.ButtonInactiveBackgroundColor = Microsoft.UI.Colors.Transparent;
-
             this.CenterToScreen();
             this.Topmost(true);            
 
