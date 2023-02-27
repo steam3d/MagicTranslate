@@ -16,6 +16,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources
                     Source="ms-appx:///UI/Icons/Icons.xaml" />
+                <XamlControlsResources
+                    Source="ms-appx:///UI/Styles/LeftTextToggleSwitchStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -92,7 +94,8 @@
                 Grid.Row="6"
                 Header="Run on startup">
                 <comp:SettingsItem.SettingsContent>
-                    <ToggleSwitch />
+                    <ToggleSwitch
+                        Style="{StaticResource LeftTextToggleSwitchStyle}"/>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
 

@@ -18,6 +18,7 @@
     <None Remove="UI\Pages\EmptyPage.xaml" />
     <None Remove="UI\Pages\SettingsPage.xaml" />
     <None Remove="UI\Pages\TestPage.xaml" />
+    <None Remove="UI\Styles\LeftTextToggleSwitchStyle.xaml" />
     <None Remove="UI\WIndows\DefaultWindow.xaml" />
     <None Remove="UI\WIndows\PlayGroundWindow.xaml" />
     <None Remove="UI\WIndows\SearchWindow.xaml" />
@@ -62,6 +63,9 @@
     <None Update="json.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Styles\LeftTextToggleSwitchStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Components\SettingsItemHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
