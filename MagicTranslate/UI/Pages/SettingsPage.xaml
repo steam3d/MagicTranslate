@@ -180,12 +180,8 @@
                 Grid.Row="5"
                 Header="Open translate window">
                 <comp:SettingsItem.SettingsContent>
-                    <ComboBox
-                        Width="280"
-                        SelectedIndex="0">
-                        <TextBlock
-                            Text="Use system language" />
-                    </ComboBox>
+                    <comp:HotkeyBox
+                        Width="280" />
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             <comp:SettingsItemHeader

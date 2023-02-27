@@ -13,6 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Logo.ico" />
+    <None Remove="UI\Components\HotkeyBox.xaml" />
     <None Remove="UI\Components\SettingsItem.xaml" />
     <None Remove="UI\Components\SettingsItemHeader.xaml" />
     <None Remove="UI\Pages\EmptyPage.xaml" />
@@ -63,6 +64,9 @@
     <None Update="json.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Page Update="UI\Components\HotkeyBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Update="UI\Styles\LeftTextToggleSwitchStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

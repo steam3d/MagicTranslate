@@ -1,0 +1,45 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<UserControl
+    x:Class="MagicTranslate.UI.Components.HotkeyBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MagicTranslate.UI.Components"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <TextBox
+            x:Name="HotkeyTextBox"
+            Width="Auto"
+            MinWidth="204"
+            x:Uid="HotkeyBox_Input"
+            Tag="{Binding ElementName=UserControl,Path=Tag,Mode=TwoWay}"
+            KeyDown="TextBlock_KeyDown"
+            KeyUp="TextBlock_KeyUp"
+            GotFocus="TextBox_GotFocus"
+            IsHoldingEnabled="False"
+            ProcessKeyboardAccelerators="TextBox_ProcessKeyboardAccelerators"
+            LostFocus="TextBox_LostFocus"
+            ContextMenuOpening="HotkeyBox_ContextMenuOpening"
+            CanDrag="False"
+            IsReadOnly="True">
+        </TextBox>
+        <Button
+            x:Name="RemoveHotkeyButton"
+            x:Uid="HotkeyBox_Button_Remove"
+            Visibility="Collapsed"
+            ToolTipService.ToolTip="Remove hotkey"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            Margin="0,0,6,0"
+            Padding="6"
+            Click="RemoveHotkeyButton_Click">
+            <FontIcon
+                Glyph="&#xE8BB;"
+                FontSize="8" />
+        </Button>
+    </Grid>
+</UserControl>
