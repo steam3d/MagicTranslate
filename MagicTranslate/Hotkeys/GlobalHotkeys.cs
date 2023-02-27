@@ -12,7 +12,7 @@ namespace MagicTranslate.Hotkeys
     /// <summary>
     /// /https://www.travelneil.com/wndproc-in-uwp.html
     /// </summary>
-    internal class Hotkeys
+    internal class GlobalHotkeys
     {
         private const int WM_HOTKEY = 0x0312;
         private const int WM_DESTROY = 0x0002;
@@ -30,7 +30,7 @@ namespace MagicTranslate.Hotkeys
         /// 
         /// </summary>
         /// <param name="window">Window that will receive hotkeys events. If window close hotkeys event stops rising</param>
-        public Hotkeys(IntPtr window)
+        public GlobalHotkeys(IntPtr window)
         {
             this.hWnd = window;
             wndProc = WNDPROC;
