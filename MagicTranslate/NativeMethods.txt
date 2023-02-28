@@ -15,3 +15,6 @@ GetDpiForWindow
 GetKeyboardLayout
 GetWindowThreadProcessId
 GetForegroundWindow
+CreateEvent
+SetEvent
+CoWaitForMultipleObjects

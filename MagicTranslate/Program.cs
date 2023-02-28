@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
+using Windows.Win32;
+using Windows.Win32.Foundation;
 
 namespace MagicTranslate
 {
@@ -39,7 +40,7 @@ namespace MagicTranslate
 
             try
             {
-                AppInstance keyInstance = AppInstance.FindOrRegisterForKey("randomKey");
+                AppInstance keyInstance = AppInstance.FindOrRegisterForKey("MagicTranslateInstance");
 
                 if (keyInstance.IsCurrent)
                 {
@@ -60,35 +61,23 @@ namespace MagicTranslate
             return isRedirect;
         }
 
-        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
-        private static extern IntPtr CreateEvent(
-IntPtr lpEventAttributes, bool bManualReset,
-bool bInitialState, string lpName);
-
-        [DllImport("kernel32.dll")]
-        private static extern bool SetEvent(IntPtr hEvent);
-
-        [DllImport("ole32.dll")]
-        private static extern uint CoWaitForMultipleObjects(
-            uint dwFlags, uint dwMilliseconds, ulong nHandles,
-            IntPtr[] pHandles, out uint dwIndex);
-
-        private static IntPtr redirectEventHandle = IntPtr.Zero;
+        private static Microsoft.Win32.SafeHandles.SafeFileHandle redirectEventHandle;
 
         public static void RedirectActivationTo(
             AppActivationArguments args, AppInstance keyInstance)
         {
-            redirectEventHandle = CreateEvent(IntPtr.Zero, true, false, null);
+            redirectEventHandle = PInvoke.CreateEvent(null, true, false, (string)null);
+
             Task.Run(() =>
             {
                 keyInstance.RedirectActivationToAsync(args).AsTask().Wait();
-                SetEvent(redirectEventHandle);
+                PInvoke.SetEvent(redirectEventHandle);
             });
+
             uint CWMO_DEFAULT = 0;
             uint INFINITE = 0xFFFFFFFF;
-            _ = CoWaitForMultipleObjects(
-               CWMO_DEFAULT, INFINITE, 1,
-               new IntPtr[] { redirectEventHandle }, out uint handleIndex);
+            var handle = new HANDLE(redirectEventHandle.DangerousGetHandle());
+            _ = PInvoke.CoWaitForMultipleObjects(CWMO_DEFAULT, INFINITE, new HANDLE[] { handle }, out uint handleIndex1);
         }
 
         private static void _OnActivated(object sender, AppActivationArguments args)
