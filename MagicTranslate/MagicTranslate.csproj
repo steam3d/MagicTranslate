@@ -11,6 +11,24 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
+	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">
+	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Logo.ico" />
     <None Remove="UI\Components\HotkeyBox.xaml" />

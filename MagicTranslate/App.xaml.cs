@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,6 +20,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -33,6 +35,8 @@ namespace MagicTranslate
     /// </summary>
     public partial class App : Application
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -44,6 +48,12 @@ namespace MagicTranslate
                 System.IO.Path.Combine(ApplicationData.Current.TemporaryFolder.Path, "MagicTranslateLog.txt"),
                 NLog.LogLevel.Debug,
                 NLog.LogLevel.Fatal);
+            Program.OnActivated += Program_OnActivated;
+        }
+
+        private void Program_OnActivated(object sender, Microsoft.Windows.AppLifecycle.AppActivationArguments e)
+        {
+            CreatSearchWindowOrActive();
         }
 
         /// <summary>
@@ -58,8 +68,33 @@ namespace MagicTranslate
             StartupWindow = WindowHelper.CreateWindow(typeof(TrayIconWindow));
             ThemeManagement.Initialize();
             StartupWindow?.Activate();
+
+            SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
+            SearchWindow.Activate();
+        }
+
+        private void CreatSearchWindowOrActive()
+        {
+            if (StartupWindow == null)
+            {
+                Logger.Error("Main window is null");
+                return;
+            }
+
+            StartupWindow.DispatcherQueue.TryEnqueue(() =>
+            {
+                if (SearchWindow == null)
+                    SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
+                
+                if(SearchWindow != null)
+                {
+                    SearchWindow?.Activate();
+                    SearchWindow.Closed += (e, ee) => SearchWindow = null;
+                }
+            });
         }
 
         public static Window StartupWindow;
+        public static Window SearchWindow;
     }
 }
