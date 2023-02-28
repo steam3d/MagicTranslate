@@ -54,7 +54,8 @@ namespace MagicTranslate
         {
             //m_window = new PlayGroundWindow();
             //StartupWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
-            StartupWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
+            //StartupWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
+            StartupWindow = WindowHelper.CreateWindow(typeof(TrayIconWindow));
             ThemeManagement.Initialize();
             StartupWindow?.Activate();
         }

@@ -1,4 +1,4 @@
-<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+﻿<!-- Copyright (c) Microsoft Corporation and Contributors. -->
 <!-- Licensed under the MIT License. -->
 
 <Window
@@ -14,5 +14,26 @@
     <tb:TaskbarIcon
         ToolTipText="ToolTip"
         IconSource="/Assets/Logo.ico"
-        x:Name="tb" />
+        ContextMenuMode="SecondWindow"
+        DoubleClickCommand="{x:Bind DoubleClickCommand}"
+        RightTapped="tb_RightTapped"
+        x:Name="tb">
+        <tb:TaskbarIcon.ContextFlyout>
+            <MenuFlyout
+                Placement="RightEdgeAlignedTop"
+                AreOpenCloseAnimationsEnabled="False">
+                <MenuFlyoutItem
+                    Width="180"
+                    MaxWidth="180"
+                    Text="Settings" />
+                <MenuFlyoutSeparator />
+                <MenuFlyoutItem
+                    Width="180"
+                    MaxWidth="180"
+                    Text="Exit"
+                    Command="{x:Bind CloseProgram}"
+                    Icon="Cancel"/>
+            </MenuFlyout>
+        </tb:TaskbarIcon.ContextFlyout>
+    </tb:TaskbarIcon>
 </Window>
