@@ -69,8 +69,7 @@ namespace MagicTranslate
             ThemeManagement.Initialize();
             StartupWindow?.Activate();
 
-            SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
-            SearchWindow.Activate();
+            CreatSearchWindowOrActive();
         }
 
         private void CreatSearchWindowOrActive()

@@ -1,7 +1,8 @@
 {
   "profiles": {
     "MagicTranslate (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "nativeDebugging": true
     },
     "MagicTranslate (Unpackaged)": {
       "commandName": "Project"
