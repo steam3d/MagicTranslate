@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using MagicTranslate.Helper;
+using MagicTranslate.Settings;
 using MagicTranslate.UI.Theme;
 using MagicTranslate.UI.WIndows;
 using Microsoft.UI.Xaml;
@@ -46,9 +47,16 @@ namespace MagicTranslate
             this.InitializeComponent();
             NlogConfiguration.NlogConfig.Configure(
                 System.IO.Path.Combine(ApplicationData.Current.TemporaryFolder.Path, "MagicTranslateLog.txt"),
-                NLog.LogLevel.Debug,
+                NLog.LogLevel.Trace,
                 NLog.LogLevel.Fatal);
             Program.OnActivated += Program_OnActivated;
+            GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
+        }
+
+        
+        private void GlobalSettings_OnSettingChange(object sender, Args.SettingArgs e)
+        {
+            Logger.Debug($"{e.ContainerName} -> {e.SettingName} ->  {e.OldValue} changed to {e.NewValue} ");
         }
 
         private void Program_OnActivated(object sender, Microsoft.Windows.AppLifecycle.AppActivationArguments e)
@@ -83,7 +91,7 @@ namespace MagicTranslate
             StartupWindow.DispatcherQueue.TryEnqueue(() =>
             {
                 if (SearchWindow == null)
-                    SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
+                    SearchWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
                 
                 if(SearchWindow != null)
                 {

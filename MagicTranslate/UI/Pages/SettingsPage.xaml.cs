@@ -47,5 +47,10 @@ namespace MagicTranslate.UI.Pages
         {
             ThemeManagement.RootTheme = ElementTheme.Light;
         }
+
+        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

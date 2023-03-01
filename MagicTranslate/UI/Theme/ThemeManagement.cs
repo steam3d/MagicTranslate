@@ -9,6 +9,7 @@ using Windows.UI;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Dispatching;
 using System.Threading;
+using MagicTranslate.Settings;
 
 namespace MagicTranslate.UI.Theme
 {
@@ -74,7 +75,7 @@ namespace MagicTranslate.UI.Theme
                 UpdateTitleBarColor();
 
 #if !UNPACKAGED
-                ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
+                //ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey] = value.ToString();
 #endif
             }
         }
@@ -84,7 +85,7 @@ namespace MagicTranslate.UI.Theme
 #if !UNPACKAGED
             // Save reference as this might be null when the user is in another app
             CurrentApplicationWindow = App.StartupWindow;
-            string savedTheme = ApplicationData.Current.LocalSettings.Values[SelectedAppThemeKey]?.ToString();
+            string savedTheme = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings","Theme");
 
             if (savedTheme != null)
             {
@@ -93,6 +94,13 @@ namespace MagicTranslate.UI.Theme
 #endif
             uiSettings = new UISettings();
             uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+            GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
+        }
+
+        private static void GlobalSettings_OnSettingChange(object sender, Args.SettingArgs e)
+        {
+            if (e.ContainerName == "ApplicationSettings" && e.SettingName == "Theme")
+                RootTheme = GetEnum<ElementTheme>((string)e.NewValue);
         }
 
         private static void UiSettings_ColorValuesChanged(UISettings sender, object args)

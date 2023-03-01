@@ -9,6 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:comp="using:MagicTranslate.UI.Components"
+    xmlns:settings="using:MagicTranslate.Settings.UiControl"
     mc:Ignorable="d"
     Background="Transparent">
     <Page.Resources>
@@ -19,6 +20,9 @@
                 <XamlControlsResources
                     Source="ms-appx:///UI/Styles/LeftTextToggleSwitchStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <x:String
+                x:Key="AppSettings">ApplicationSettings</x:String>
         </ResourceDictionary>
     </Page.Resources>
 
@@ -198,13 +202,24 @@
 
             <comp:SettingsItem
                 Grid.Row="8"
+                Tag="{StaticResource AppSettings}"
                 Header="Theme">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        SelectedIndex="0">
+                        SelectedIndex="0"
+                        Tag="Theme"
+                        SelectionChanged="{x:Bind settings:ComboBoxControl.ComboBox_SelectionChanged}"
+                        Loaded="{x:Bind  settings:ComboBoxControl.ComboBox_Loaded}">
                         <TextBlock
-                            Text="Use system language" />
+                            Tag="Default"
+                            Text="Default" />
+                        <TextBlock
+                            Tag="Light"
+                            Text="Light" />
+                        <TextBlock
+                            Tag="Dark"
+                            Text="Dark" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
