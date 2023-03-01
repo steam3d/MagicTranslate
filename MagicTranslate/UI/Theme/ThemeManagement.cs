@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Dispatching;
 using System.Threading;
 using MagicTranslate.Settings;
+using MagicTranslate.Helpers;
 
 namespace MagicTranslate.UI.Theme
 {
@@ -42,7 +43,7 @@ namespace MagicTranslate.UI.Theme
                         }
                     }
                 }
-                return GetEnum<ElementTheme>(App.Current.RequestedTheme.ToString());
+                return EnumHelper.GetEnum<ElementTheme>(App.Current.RequestedTheme.ToString());
             }
         }
 
@@ -89,7 +90,7 @@ namespace MagicTranslate.UI.Theme
 
             if (savedTheme != null)
             {
-                RootTheme = GetEnum<ElementTheme>(savedTheme);
+                RootTheme = EnumHelper.GetEnum<ElementTheme>(savedTheme);
             }
 #endif
             uiSettings = new UISettings();
@@ -100,7 +101,7 @@ namespace MagicTranslate.UI.Theme
         private static void GlobalSettings_OnSettingChange(object sender, Args.SettingArgs e)
         {
             if (e.ContainerName == "ApplicationSettings" && e.SettingName == "Theme")
-                RootTheme = GetEnum<ElementTheme>((string)e.NewValue);
+                RootTheme = EnumHelper.GetEnum<ElementTheme>((string)e.NewValue);
         }
 
         private static void UiSettings_ColorValuesChanged(UISettings sender, object args)
@@ -147,15 +148,6 @@ namespace MagicTranslate.UI.Theme
                 return Application.Current.RequestedTheme == ApplicationTheme.Dark;
             }
             return RootTheme == ElementTheme.Dark;
-        }
-
-        private static TEnum GetEnum<TEnum>(string text) where TEnum : struct
-        {
-            if (!typeof(TEnum).GetTypeInfo().IsEnum)
-            {
-                throw new InvalidOperationException("Generic parameter 'TEnum' must be an enum.");
-            }
-            return (TEnum)Enum.Parse(typeof(TEnum), text);
         }
     }
 }
