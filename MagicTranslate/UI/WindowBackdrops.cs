@@ -1,4 +1,5 @@
 ﻿using MagicTranslate.Helpers;
+using MagicTranslate.Settings;
 using MagicTranslate.UI.Theme;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
@@ -30,6 +31,20 @@ namespace MagicTranslate.UI
             this.window = window;
             m_wsdqHelper = new WindowsSystemDispatcherQueueHelper();
             m_wsdqHelper.EnsureWindowsSystemDispatcherQueueController();
+
+            string savedBackground = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "Background");
+            if (!string.IsNullOrEmpty(savedBackground))
+                SetBackdrop(EnumHelper.GetEnum<BackdropType>(savedBackground));
+
+            //GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
+        }
+
+        private void GlobalSettings_OnSettingChange(object sender, Args.SettingArgs e)
+        {
+            if (e.ContainerName == "ApplicationSettings" && e.SettingName == "Background")
+            {
+                SetBackdrop(EnumHelper.GetEnum<BackdropType>((string)e.NewValue));
+            }
         }
 
         public void SetBackdrop(BackdropType type)
@@ -55,6 +70,9 @@ namespace MagicTranslate.UI
             }
             window.Activated -= Window_Activated;
             window.Closed -= Window_Closed;
+
+            //Error appears when GlobalSettings_OnSettingChange raised once. After it close the settings page and open it again. Try to change background and you will get this error.
+#warning The operation identifier is not valid. (0x800710DD)
             ((FrameworkElement)window.Content).ActualThemeChanged -= Window_ThemeChanged;
             m_configurationSource = null;
 

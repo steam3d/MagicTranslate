@@ -226,13 +226,27 @@
 
             <comp:SettingsItem
                 Grid.Row="9"
+                Tag="{StaticResource AppSettings}"
                 Header="Background">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        SelectedIndex="0">
+                        SelectedIndex="0"
+                        Tag="Background"
+                        SelectionChanged="Background_SelectionChanged"
+                        Loaded="{x:Bind  settings:ComboBoxControl.ComboBox_Loaded}">
                         <TextBlock
+                            Tag="Mica"
                             Text="Mica" />
+                        <TextBlock
+                            Tag="MicaAlt"
+                            Text="Mica alternative" />
+                        <TextBlock
+                            Tag="DesktopAcrylic"
+                            Text="Acrylic" />
+                        <TextBlock
+                            Tag="DefaultColor"
+                            Text="Off" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
@@ -243,9 +257,20 @@
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        SelectedIndex="0">
+                        x:Name="Test"
+                        SelectionChanged="ComboBox_SelectionChanged">
                         <TextBlock
-                            Text="Use system language" />
+                            Tag="Mica"
+                            Text="Mica" />
+                        <TextBlock
+                            Tag="MicaAlt"
+                            Text="Mica alternative" />
+                        <TextBlock
+                            Tag="DesktopAcrylic"
+                            Text="Acrylic" />
+                        <TextBlock
+                            Tag="DefaultColor"
+                            Text="Off" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>

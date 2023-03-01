@@ -82,8 +82,7 @@ namespace MagicTranslate.UI.WIndows
             InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
             this.Closed += SearchWindow_Closed;
             
-            backdrops = new WindowBackdrops(this);
-            backdrops.SetBackdrop(BackdropType.Mica);            
+            backdrops = new WindowBackdrops(this);          
         }
 
         private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)

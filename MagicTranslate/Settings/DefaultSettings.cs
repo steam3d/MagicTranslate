@@ -12,6 +12,7 @@ namespace MagicTranslate.Settings
         public static ValueSet Settings = new ValueSet()
         {
             ["Theme"] = "Default",            
+            ["Background"] = "Mica",            
         };
     }
 }

@@ -48,16 +48,8 @@ namespace MagicTranslate.UI.WIndows
             this.CenterToScreen();
             this.Topmost(true);            
 
-            backdrops = new WindowBackdrops(this);
-            backdrops.SetBackdrop(BackdropType.Mica);
-
-            contentFrame.Navigate(typeof(SettingsPage));
-            //this.Activated += DefaultWindow_Activated;
-        }
-
-        private void DefaultWindow_Activated(object sender, WindowActivatedEventArgs args)
-        {
-            contentFrame.Navigate(typeof(SettingsPage));
+            backdrops = new WindowBackdrops(this);            
+            contentFrame.Navigate(typeof(SettingsPage), backdrops);
         }
     }
 }

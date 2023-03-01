@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation and Contributors.
 // Licensed under the MIT License.
 
+using MagicTranslate.Args;
+using MagicTranslate.Helpers;
+using MagicTranslate.Settings;
+using MagicTranslate.Settings.UiControl;
 using MagicTranslate.UI.Theme;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -14,6 +18,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Timers;
+using TranslateLibrary;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -28,9 +34,15 @@ namespace MagicTranslate.UI.Pages
     public sealed partial class SettingsPage : Page
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+        WindowBackdrops backdrops;
         public SettingsPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            backdrops = e.Parameter as WindowBackdrops;
         }
 
         private void SettingsItem_HyperlinkClick(object sender, EventArgs e)
@@ -48,9 +60,19 @@ namespace MagicTranslate.UI.Pages
             ThemeManagement.RootTheme = ElementTheme.Light;
         }
 
-        private void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        private void Background_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var comboBox = (ComboBox)sender;
+            var selectedItem = (TextBlock)comboBox.SelectedItem;
+            backdrops?.SetBackdrop(EnumHelper.GetEnum<BackdropType>((string)selectedItem.Tag));
+            ComboBoxControl.ComboBox_SelectionChanged(sender, e);
+        }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = (ComboBox)sender;
+            var selectedItem = (TextBlock)comboBox.SelectedItem;
+            backdrops?.SetBackdrop(EnumHelper.GetEnum<BackdropType>((string)selectedItem.Tag));
         }
     }
 }
