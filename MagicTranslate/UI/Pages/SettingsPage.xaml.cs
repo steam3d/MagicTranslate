@@ -136,5 +136,49 @@ namespace MagicTranslate.UI.Pages
         {
             GlobalSettings.RemoveAllSettings();
         }
+
+        private void GoogleTranslateLanguages_Loaded(object sender, RoutedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+
+            var selectTag = (string)GlobalSettings.LoadApplicationSetting((string)comboBox.Tag);
+            var tags2ISO = TranslateLibrary.Translate.LanguagesTag;
+
+            SortedDictionary<string, string> language = new SortedDictionary<string, string>();
+            foreach (var tag2 in tags2ISO)
+            {
+#warning Auto detect language disabled
+                if (tag2 == "auto") continue;
+
+                var cultureInfo = CultureInfo.GetCultureInfo(tag2);
+                language.Add(tag2, cultureInfo.DisplayName);
+                Logger.Debug($"{cultureInfo.DisplayName} | {cultureInfo.IetfLanguageTag}");
+            }
+
+            int i = 1;
+            bool isFound = false;
+            foreach (var item in language)
+            {
+                comboBox.Items.Add(new TextBlock()
+                {
+                    Text = item.Value,
+                    Tag = item.Key,
+                });
+
+                if (item.Key == selectTag)
+                {
+                    comboBox.SelectedIndex = i;
+                    isFound = true;
+                }
+                i++;
+            }
+
+            if (!isFound)
+            {
+                var item = comboBox.Items[0] as TextBlock;
+                if ((string)item.Tag == selectTag)
+                    comboBox.SelectedIndex = 0;
+            }            
+        }
     }
 }

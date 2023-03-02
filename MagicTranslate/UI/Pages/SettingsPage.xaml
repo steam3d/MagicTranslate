@@ -147,33 +147,37 @@
             </Border>
             <comp:SettingsItemHeader
                 Grid.Row="1"
-                Header="Translation"
+                Header="Google translate"
                 HyperlinkText="Translation"/>
             <comp:SettingsItem
                 Grid.Row="2"
-                Header="Translate to language"
+                Header="Translate from"
                 Description="Typed text will be translated to this language">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        SelectedIndex="0">
+                        Tag="GoogleTranslateTo"
+                        Loaded="GoogleTranslateLanguages_Loaded" >
                         <TextBlock
-                            Text="English (United States)" />
+                            Tag="SystemLanguage"
+                            x:Uid="Settings_Translation_To_Item_SystemLanguage" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             
             <comp:SettingsItem
                 Grid.Row="3"
-                Header="Native language"
+                Header="Translate to"
                 HyperlinkText="Learn more"
-                Description="Typed text on 'Translate to language' will be translate to this language">
+                Description="If 'Translate from' is 'Same as kyeboard layout'">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        SelectedIndex="0">
+                        Tag="GoogleTranslateFrom"
+                        Loaded="GoogleTranslateLanguages_Loaded">
                         <TextBlock
-                            Text="Use system language" />
+                            Tag="SystemLanguage"
+                            x:Uid="Settings_Translation_To_Item_SystemLanguage" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
