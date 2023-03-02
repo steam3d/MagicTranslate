@@ -257,25 +257,14 @@
 
             <comp:SettingsItem
                 Grid.Row="10"
-                Header="Language">
+                Header="Language"
+                >
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
+                        x:Name="Language"
                         Width="280"
-                        x:Name="Test"
-                        SelectionChanged="ComboBox_SelectionChanged">
-                        <TextBlock
-                            Tag="Mica"
-                            Text="Mica" />
-                        <TextBlock
-                            Tag="MicaAlt"
-                            Text="Mica alternative" />
-                        <TextBlock
-                            Tag="DesktopAcrylic"
-                            Text="Acrylic" />
-                        <TextBlock
-                            Tag="DefaultColor"
-                            Text="Off" />
-                    </ComboBox>
+                        SelectionChanged="Language_SelectionChanged"
+                        Loaded="Language_Loaded" />
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
 

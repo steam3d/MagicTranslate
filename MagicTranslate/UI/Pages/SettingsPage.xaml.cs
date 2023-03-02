@@ -15,6 +15,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -73,6 +74,62 @@ namespace MagicTranslate.UI.Pages
             var comboBox = (ComboBox)sender;
             var selectedItem = (TextBlock)comboBox.SelectedItem;
             backdrops?.SetBackdrop(EnumHelper.GetEnum<BackdropType>((string)selectedItem.Tag));
+        }
+
+        private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var textblock = (TextBlock)Language.SelectedItem;
+            var language = (string)textblock.Tag;
+
+            if (Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride != language)
+            {
+                Logger.Info($"Language was change {Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride} => {language}");
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
+            }
+        }
+
+        private void Language_Loaded(object sender, RoutedEventArgs e)
+        {
+            bool isFound = false;
+
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+            // Add default language
+            Language.Items.Add(new TextBlock()
+            {
+                Text = resourceLoader.GetString("Settings_AppSettings_Language_DefaultSystem/Text"),
+                Tag = "",
+            });
+
+            int i = 1;
+            foreach (var lang in Windows.Globalization.ApplicationLanguages.ManifestLanguages)
+            {
+                CultureInfo cultureInfo = null;
+                try
+                {
+                    cultureInfo = CultureInfo.GetCultureInfo(lang);
+                }
+                catch (Exception exception)
+                {
+                    Logger.Error($"{exception.HResult} {exception.Message} ({lang})");
+                }
+
+                Language.Items.Add(new TextBlock()
+                {
+                    Text = cultureInfo != null ? cultureInfo.DisplayName : lang,
+                    Tag = lang,
+                });
+
+                if (Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride == lang)
+                {
+                    Language.SelectedIndex = i;
+                    isFound = true;
+                }
+                i++;
+            }
+
+            //If no found selected language set the default one
+            if (!isFound)
+                Language.SelectedIndex = 0;
         }
     }
 }
