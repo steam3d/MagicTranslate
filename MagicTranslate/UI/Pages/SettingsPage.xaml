@@ -280,7 +280,8 @@
                     <StackPanel
                         Spacing="8"
                         Orientation="Horizontal">
-                        <Button>
+                        <Button
+                            Click="ShowLogFolder_Click">
                             <Viewbox>
                                 <PathIcon
                                     Data="{StaticResource SettingsLogFolder}" />

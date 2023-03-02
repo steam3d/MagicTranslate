@@ -23,6 +23,8 @@ using System.Timers;
 using TranslateLibrary;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -187,6 +189,12 @@ namespace MagicTranslate.UI.Pages
             var SelectedItem = (TextBlock)comboBox.SelectedItem;
             NlogConfiguration.NlogConfig.ChangeLogLevel((string)SelectedItem.Tag);
             ComboBoxControl.ComboBox_SelectionChanged(sender, e);
+        }
+
+        private async void ShowLogFolder_Click(object sender, RoutedEventArgs e)
+        {
+            StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.TemporaryFolder.Path);
+            await Launcher.LaunchFolderAsync(folder);
         }
     }
 }
