@@ -180,5 +180,13 @@ namespace MagicTranslate.UI.Pages
                     comboBox.SelectedIndex = 0;
             }            
         }
+
+        private void Logger_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = (ComboBox)sender;
+            var SelectedItem = (TextBlock)comboBox.SelectedItem;
+            NlogConfiguration.NlogConfig.ChangeLogLevel((string)SelectedItem.Tag);
+            ComboBoxControl.ComboBox_SelectionChanged(sender, e);
+        }
     }
 }

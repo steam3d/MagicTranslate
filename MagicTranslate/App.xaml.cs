@@ -47,7 +47,7 @@ namespace MagicTranslate
             this.InitializeComponent();
             NlogConfiguration.NlogConfig.Configure(
                 System.IO.Path.Combine(ApplicationData.Current.TemporaryFolder.Path, "MagicTranslateLog.txt"),
-                NLog.LogLevel.Trace,
+                NlogConfiguration.NlogConfig.LogLevelFromString((string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "LogLevel")),
                 NLog.LogLevel.Fatal);
             Program.OnActivated += Program_OnActivated;
             GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
