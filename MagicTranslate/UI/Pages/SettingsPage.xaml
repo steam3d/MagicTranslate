@@ -182,10 +182,14 @@
                 Header="Hotkeys"/> 
             <comp:SettingsItem
                 Grid.Row="5"
+                Tag="{StaticResource AppSettings}"
                 Header="Open translate window">
                 <comp:SettingsItem.SettingsContent>
                     <comp:HotkeyBox
-                        Width="280" />
+                        Width="280"
+                        Tag="HotkeyOpenSearchBar"
+                        Loaded="{x:Bind settings:HotkeyBoxControl.HotkeyBox_Loaded}"
+                        HotkeyChanged="{x:Bind settings:HotkeyBoxControl.HotkeyBox_HotkeyChanged}"/>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             <comp:SettingsItemHeader
