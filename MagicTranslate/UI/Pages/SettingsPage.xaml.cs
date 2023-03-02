@@ -131,5 +131,10 @@ namespace MagicTranslate.UI.Pages
             if (!isFound)
                 Language.SelectedIndex = 0;
         }
+
+        private void ResetSettings_Click(object sender, RoutedEventArgs e)
+        {
+            GlobalSettings.RemoveAllSettings();
+        }
     }
 }

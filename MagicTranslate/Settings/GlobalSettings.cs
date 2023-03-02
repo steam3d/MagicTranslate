@@ -184,5 +184,16 @@ namespace MagicTranslate.Settings
                 Logger.Error($"{tag} Container '{containerName}' does not exist");
             }
         }
+
+        public static void RemoveAllSettings()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            var containersList = localSettings.Containers.Keys.ToList();
+            foreach (var conainerName in containersList)
+            {
+                localSettings.DeleteContainer(conainerName);
+                Logger.Info($"Removed {conainerName} container");
+            }
+        }
     }
 }
