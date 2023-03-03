@@ -95,12 +95,12 @@ namespace MagicTranslate.UI.Pages
             bool isFound = false;
 
             var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
-            // Add default language
-            Language.Items.Add(new TextBlock()
-            {
-                Text = resourceLoader.GetString("Settings_AppSettings_Language_DefaultSystem/Text"),
-                Tag = "",
-            });
+            //// Add default language
+            //Language.Items.Add(new TextBlock()
+            //{
+            //    Text = resourceLoader.GetString("Settings_AppSettings_Language_DefaultSystem/Text"),
+            //    Tag = "",
+            //});
 
             int i = 1;
             foreach (var lang in Windows.Globalization.ApplicationLanguages.ManifestLanguages)

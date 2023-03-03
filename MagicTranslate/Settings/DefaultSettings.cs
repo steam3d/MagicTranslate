@@ -14,7 +14,7 @@ namespace MagicTranslate.Settings
             ["Theme"] = "Default",            
             ["Background"] = "Mica",            
             ["HotkeyOpenSearchBar"] = new Windows.Storage.ApplicationDataCompositeValue(),            
-            ["GoogleTranslateFrom"] = "KeyboardLayout",            
+            ["GoogleTranslateFrom"] = "LanguageNotSelected",            
             ["GoogleTranslateTo"] = "SystemLanguage",   
             ["LogLevel"] = "Info",   
             

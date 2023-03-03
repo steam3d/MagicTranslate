@@ -147,47 +147,44 @@
             </Border>
             <comp:SettingsItemHeader
                 Grid.Row="1"
-                Header="Google translate"
+                x:Uid="Settings_GoogleTranslate_Header"
                 HyperlinkText="Translation"/>
             <comp:SettingsItem
                 Grid.Row="2"
-                Header="Translate from"
-                Description="Typed text will be translated to this language">
+                x:Uid="Settings_GoogleTranslate_Setting_From">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        Tag="GoogleTranslateTo"
+                        Tag="GoogleTranslateFrom"
                         Loaded="GoogleTranslateLanguages_Loaded" >
                         <TextBlock
-                            Tag="SystemLanguage"
-                            x:Uid="Settings_Translation_To_Item_SystemLanguage" />
+                            Tag="LanguageNotSelected"
+                            x:Uid="Settings_LanguageOptions_LanguageNotSelected" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             
             <comp:SettingsItem
                 Grid.Row="3"
-                Header="Translate to"
-                HyperlinkText="Learn more"
-                Description="If 'Translate from' is 'Same as kyeboard layout'">
+                x:Uid="Settings_GoogleTranslate_Setting_To">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
-                        Tag="GoogleTranslateFrom"
+                        Tag="GoogleTranslateTo"
                         Loaded="GoogleTranslateLanguages_Loaded">
                         <TextBlock
                             Tag="SystemLanguage"
-                            x:Uid="Settings_Translation_To_Item_SystemLanguage" />
+                            x:Uid="Settings_LanguageOptions_SystemLanguage" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             <comp:SettingsItemHeader
                 Grid.Row="4"
-                Header="Hotkeys"/> 
+                x:Uid="Settings_Hotkeys_Header"/> 
             <comp:SettingsItem
                 Grid.Row="5"
                 Tag="{StaticResource AppSettings}"
-                Header="Open translate window">
+                x:Uid="Settings_Hotkeys_Setting_OpenTranslateWindow">
                 <comp:SettingsItem.SettingsContent>
                     <comp:HotkeyBox
                         Width="280"
@@ -198,10 +195,10 @@
             </comp:SettingsItem>
             <comp:SettingsItemHeader
                 Grid.Row="6"
-                Header="Application settings" />
+                x:Uid="Settings_App_Header" />
             <comp:SettingsItem
                 Grid.Row="7"
-                Header="Run on startup">
+                x:Uid="Settings_App_Setting_Startup">
                 <comp:SettingsItem.SettingsContent>
                     <ToggleSwitch
                         Style="{StaticResource LeftTextToggleSwitchStyle}"/>
@@ -211,7 +208,7 @@
             <comp:SettingsItem
                 Grid.Row="8"
                 Tag="{StaticResource AppSettings}"
-                Header="Theme">
+                x:Uid="Settings_App_Setting_Theme">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
@@ -221,13 +218,13 @@
                         Loaded="{x:Bind  settings:ComboBoxControl.ComboBox_Loaded}">
                         <TextBlock
                             Tag="Default"
-                            Text="Default" />
+                            x:Uid="Settings_ThemeOptions_System" />
                         <TextBlock
                             Tag="Light"
-                            Text="Light" />
+                            x:Uid="Settings_ThemeOptions_Light" />
                         <TextBlock
                             Tag="Dark"
-                            Text="Dark" />
+                            x:Uid="Settings_ThemeOptions_Dark" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
@@ -235,7 +232,7 @@
             <comp:SettingsItem
                 Grid.Row="9"
                 Tag="{StaticResource AppSettings}"
-                Header="Background">
+                x:Uid="Settings_App_Setting_Background">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
@@ -245,37 +242,41 @@
                         Loaded="{x:Bind  settings:ComboBoxControl.ComboBox_Loaded}">
                         <TextBlock
                             Tag="Mica"
-                            Text="Mica" />
+                            x:Uid="Settings_BackgroundOptions_Mica" />
                         <TextBlock
                             Tag="MicaAlt"
-                            Text="Mica alternative" />
+                            x:Uid="Settings_BackgroundOptions_MicaAlt" />
                         <TextBlock
                             Tag="DesktopAcrylic"
-                            Text="Acrylic" />
+                            x:Uid="Settings_BackgroundOptions_Acrylic" />
                         <TextBlock
                             Tag="DefaultColor"
-                            Text="Off" />
+                            x:Uid="Settings_BackgroundOptions_Off" />
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
 
             <comp:SettingsItem
                 Grid.Row="10"
-                Header="Language"
+                x:Uid="Settings_App_Setting_Language"
                 >
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         x:Name="Language"
                         Width="280"
                         SelectionChanged="Language_SelectionChanged"
-                        Loaded="Language_Loaded" />
+                        Loaded="Language_Loaded">
+                        <TextBlock
+                            Tag=""
+                            x:Uid="Settings_LanguageOptions_SystemLanguage"                            />
+                    </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
 
             <comp:SettingsItem
                 Grid.Row="11"
                 Tag="{StaticResource AppSettings}"
-                Header="Debug">
+                x:Uid="Settings_App_Setting_Debug">
                 <comp:SettingsItem.SettingsContent>
                     <StackPanel
                         Spacing="8"
@@ -320,10 +321,10 @@
 
             <comp:SettingsItem
                 Grid.Row="12"
-                Header="Reset to default settings">
+                x:Uid="Settings_App_Setting_ResetSettings">
                 <comp:SettingsItem.SettingsContent>
                     <Button
-                        x:Uid="Settings_Button1"
+                        x:Uid="Settings_App_Setting_ResetSettings_ResetButton"
                         Margin="0,16,0,0">
                         <Button.Flyout>
                             <Flyout>
@@ -332,9 +333,9 @@
                                     <TextBlock
                                         Margin="0,0,0,8"
                                         Style="{ThemeResource BaseTextBlockStyle}"
-                                        x:Uid="Settings_Connection_Button1_Flyout_Text1" />
+                                        x:Uid="Settings_App_Setting_ResetSettings_Button_Flyout_ResetMessage" />
                                     <Button
-                                        x:Uid="Settings_Connection_Button1_Flyout_Button1"
+                                        x:Uid="Settings_App_Setting_ResetSettings_Button_Flyout_ResetButton"
                                         Click="ResetSettings_Click" />
                                 </StackPanel>
                             </Flyout>
