@@ -73,7 +73,7 @@ namespace MagicTranslate.UI.WIndows
             var windowRect = this.GetRect();
             var maxScreenHeight = (displayArea.WorkArea.Height / dpi) - (windowRect.top / dpi) - rootMagrin.Bottom - rootMagrin.Top - screenBorder;
             maxHeight = maxHeight > maxScreenHeight ? Convert.ToInt32(maxScreenHeight) : maxHeight;
-
+            this.ApplyTheme();
             Root.SizeChanged += Root_SizeChanged;
             SearchBox.TextChanged += SearchBox_TextChanged;
             textChangedDebouncingTimer.Elapsed += TextChangedDebouncingTimer_Elapsed;

@@ -7,6 +7,7 @@ using Windows.Win32.Foundation;
 using MagicTranslate.Helpers;
 using Microsoft.UI.Windowing;
 using Microsoft.UI;
+using MagicTranslate.Settings;
 
 namespace MagicTranslate.Extensions
 {
@@ -130,6 +131,13 @@ namespace MagicTranslate.Extensions
                 return rectWnd;
 
             return new RECT();
+        }
+
+        public static void ApplyTheme(this Window window)
+        {
+            string savedTheme = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "Theme");
+            if (savedTheme != null && window.Content is FrameworkElement rootElement)
+                rootElement.RequestedTheme = EnumHelper.GetEnum<ElementTheme>(savedTheme);
         }
     }
 }

@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 using MagicTranslate.Extensions;
+using MagicTranslate.Helpers;
+using MagicTranslate.Settings;
 using MagicTranslate.UI.Pages;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -46,7 +48,8 @@ namespace MagicTranslate.UI.WIndows
             this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
 
             this.CenterToScreen();
-            this.Topmost(true);            
+            this.Topmost(true);
+            this.ApplyTheme();
 
             backdrops = new WindowBackdrops(this);            
             contentFrame.Navigate(typeof(SettingsPage), backdrops);
