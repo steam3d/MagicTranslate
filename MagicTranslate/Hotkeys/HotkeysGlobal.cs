@@ -12,7 +12,7 @@ using Windows.Win32.UI.Input.KeyboardAndMouse;
 
 namespace MagicTranslate.Hotkeys
 {
-    internal class AppGlobalHotkeys
+    internal class HotkeysGlobal
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -21,7 +21,7 @@ namespace MagicTranslate.Hotkeys
         /// <summary>
         /// Main hotkey logic
         /// </summary>
-        private GlobalHotkeys hotkeyWindow;
+        private HotkeysWin32Logic hotkeyWin32;
 
         /// <summary>
         /// Unique id for hotkeys
@@ -34,12 +34,12 @@ namespace MagicTranslate.Hotkeys
         /// </summary>
         public event EventHandler<HotkeyEventArgs> HotkeyPressed;
 
-        public AppGlobalHotkeys(Window window)
+        public HotkeysGlobal(Window window)
         {
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
-            hotkeyWindow = new GlobalHotkeys(hWnd);
+            hotkeyWin32 = new HotkeysWin32Logic(hWnd);
 
-            hotkeyWindow.HotkeyPressed += HotkeyWindow_HotkeyPressed;
+            hotkeyWin32.HotkeyPressed += HotkeyWindow_HotkeyPressed;
             RegisterAllCombos();
             GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
         }
@@ -85,7 +85,7 @@ namespace MagicTranslate.Hotkeys
         {
             idCounter += 1;
             HotkeyData hotkeyData = new HotkeyData(settingName, data, modifiers, key, idCounter);
-            hotkeyWindow.RegisterCombo(hotkeyData.ID, (HOT_KEY_MODIFIERS)hotkeyData.Modifiers, Convert.ToUInt32(hotkeyData.Key));
+            hotkeyWin32.RegisterCombo(hotkeyData.ID, (HOT_KEY_MODIFIERS)hotkeyData.Modifiers, Convert.ToUInt32(hotkeyData.Key));
             hotkeyDataList.Add(hotkeyData);
             Logger.Info("Registered hotkey {0} {1} {2}", hotkeyData.ContainerName, hotkeyData.SettingName, HotkeyHelper.GetReadableStringFromHotkey(hotkeyData.Modifiers, hotkeyData.Key));
         }
@@ -103,8 +103,8 @@ namespace MagicTranslate.Hotkeys
                         hd.Key = key;
 
                         // update combo
-                        hotkeyWindow.UnRegisterCombo(hd.ID);
-                        hotkeyWindow.RegisterCombo(hd.ID, (HOT_KEY_MODIFIERS)hd.Modifiers, Convert.ToUInt32(hd.Key));
+                        hotkeyWin32.UnRegisterCombo(hd.ID);
+                        hotkeyWin32.RegisterCombo(hd.ID, (HOT_KEY_MODIFIERS)hd.Modifiers, Convert.ToUInt32(hd.Key));
                         Logger.Info("Updated hotkey {0} {1} {2}", hd.ContainerName, hd.SettingName, HotkeyHelper.GetReadableStringFromHotkey(modifiers, key));
                         return true;
                     }
@@ -121,7 +121,7 @@ namespace MagicTranslate.Hotkeys
             {
                 if (hd.ContainerName == containerName && hd.SettingName == settingName)
                 {
-                    hotkeyWindow.UnRegisterCombo(hd.ID);
+                    hotkeyWin32.UnRegisterCombo(hd.ID);
                     hotkeyDataList.Remove(hd);
                     return;
                 }

@@ -39,7 +39,7 @@ namespace MagicTranslate
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
-        internal static AppGlobalHotkeys Hotkeys = null;
+        internal static HotkeysGlobal Hotkeys = null;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -81,7 +81,7 @@ namespace MagicTranslate
 
             if (Hotkeys == null)
             {
-                Hotkeys = new AppGlobalHotkeys(StartupWindow);
+                Hotkeys = new HotkeysGlobal(StartupWindow);
                 Hotkeys.HotkeyPressed += Hotkeys_HotkeyPressed;
             }
 
