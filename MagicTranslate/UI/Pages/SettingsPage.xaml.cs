@@ -146,7 +146,7 @@ namespace MagicTranslate.UI.Pages
             var selectTag = (string)GlobalSettings.LoadApplicationSetting((string)comboBox.Tag);
             var tags2ISO = TranslateLibrary.Translate.LanguagesTag;
 
-            SortedDictionary<string, string> language = new SortedDictionary<string, string>();
+            Dictionary<string, string> language = new Dictionary<string, string>();
             foreach (var tag2 in tags2ISO)
             {
 #warning Auto detect language disabled
@@ -154,12 +154,12 @@ namespace MagicTranslate.UI.Pages
 
                 var cultureInfo = CultureInfo.GetCultureInfo(tag2);
                 language.Add(tag2, cultureInfo.DisplayName);
-                Logger.Debug($"{cultureInfo.DisplayName} | {cultureInfo.IetfLanguageTag}");
+                Logger.Debug($"{cultureInfo.DisplayName} | {cultureInfo.IetfLanguageTag}");            
             }
 
             int i = 1;
             bool isFound = false;
-            foreach (var item in language)
+            foreach (KeyValuePair<string, string> item in language.OrderBy(key => key.Value))
             {
                 comboBox.Items.Add(new TextBlock()
                 {

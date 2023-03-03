@@ -151,11 +151,13 @@
                 HyperlinkText="Translation"/>
             <comp:SettingsItem
                 Grid.Row="2"
+                Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_GoogleTranslate_Setting_From">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
                         Tag="GoogleTranslateFrom"
+                        SelectionChanged="{x:Bind settings:ComboBoxControl.ComboBox_SelectionChanged}"
                         Loaded="GoogleTranslateLanguages_Loaded" >
                         <TextBlock
                             Tag="LanguageNotSelected"
@@ -166,11 +168,13 @@
             
             <comp:SettingsItem
                 Grid.Row="3"
+                Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_GoogleTranslate_Setting_To">
                 <comp:SettingsItem.SettingsContent>
                     <ComboBox
                         Width="280"
                         Tag="GoogleTranslateTo"
+                        SelectionChanged="{x:Bind settings:ComboBoxControl.ComboBox_SelectionChanged}"
                         Loaded="GoogleTranslateLanguages_Loaded">
                         <TextBlock
                             Tag="SystemLanguage"

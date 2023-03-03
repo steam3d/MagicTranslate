@@ -94,12 +94,22 @@ namespace MagicTranslate.UI.WIndows
             
             if (!string.IsNullOrEmpty(translateToTag) && !string.IsNullOrEmpty(translateFromTag))
             {
-                translateToTag = translateToTag == "SystemLanguage" ? CultureInfo.InstalledUICulture.EnglishName : new CultureInfo(translateToTag).EnglishName;
-                translateFromTag = translateFromTag == "LanguageNotSelected" ? e.EnglishName : new CultureInfo(translateFromTag).EnglishName;
+                CultureInfo translateFromCalture = e;
+
+                var translateToCalture = translateToTag == "SystemLanguage" ? CultureInfo.InstalledUICulture : new CultureInfo(translateToTag);
+
+                if (translateToCalture.Equals(e))
+                {
+                    if (translateFromTag != "LanguageNotSelected")
+                    {
+                        translateFromCalture = translateToCalture;
+                        translateToCalture = new CultureInfo(translateFromTag);
+                    }
+                }
 
                 DispatcherQueue.TryEnqueue(() =>
                 {                
-                    SearchBox.PlaceholderText = $"Translate from {translateFromTag} to {translateToTag}";
+                    SearchBox.PlaceholderText = $"Translate from {translateFromCalture.EnglishName} to {translateToCalture.EnglishName}";
                 });
             }
         }
@@ -147,11 +157,30 @@ namespace MagicTranslate.UI.WIndows
                 }
                 else
                 {
-                    var args = new TranslateArgs(inputLanguage.CurrentInput, SearchBox.Text, new System.Globalization.CultureInfo("en"));
-                    Content.Visibility = Visibility.Visible;
-                    Root.Height = double.NaN;
-                    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
-                    Content.Navigate(typeof(GoogleTranslatePage), args, new DrillInNavigationTransitionInfo());
+                    var translateFromTag = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "GoogleTranslateFrom");
+                    var translateToTag = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "GoogleTranslateTo");
+
+                    if (!string.IsNullOrEmpty(translateToTag) && !string.IsNullOrEmpty(translateFromTag))
+                    {
+                        CultureInfo translateFromCalture = inputLanguage.CurrentInput;
+                        
+                        var translateToCalture = translateToTag == "SystemLanguage" ? CultureInfo.InstalledUICulture : new CultureInfo(translateToTag);
+
+                        if (translateToCalture.Equals(inputLanguage.CurrentInput))
+                        {
+                            if (translateFromTag != "LanguageNotSelected")
+                            {
+                                translateFromCalture = translateToCalture;
+                                translateToCalture = new CultureInfo(translateFromTag);
+                            }
+                        }
+
+                        var args = new TranslateArgs(translateFromCalture, SearchBox.Text, translateToCalture);
+                        Content.Visibility = Visibility.Visible;
+                        Root.Height = double.NaN;
+                        ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
+                        Content.Navigate(typeof(GoogleTranslatePage), args, new DrillInNavigationTransitionInfo());
+                    }
                 }
             });           
         }
