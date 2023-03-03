@@ -42,8 +42,8 @@ namespace MagicTranslate.Settings.UiControl
                     //composite.Add("data", (string)hotkeyBox.Tag);
                     composite.Add("modifiers", ModifiersHelper.ConvertVirtualKeyModifiersIntToModifiersInt((int)hotkeyBox.Modifiers));
                     composite.Add("key", (int)hotkeyBox.Key);
-                    GlobalSettings.SaveHeadphoneSetting((string)settingItem.Tag, (string)hotkeyBox.Tag, composite);
                 }                
+                GlobalSettings.SaveHeadphoneSetting((string)settingItem.Tag, (string)hotkeyBox.Tag, composite);
             }
         }
     }

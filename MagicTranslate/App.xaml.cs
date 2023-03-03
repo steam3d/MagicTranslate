@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using MagicTranslate.Helper;
+using MagicTranslate.Hotkeys;
 using MagicTranslate.Settings;
 using MagicTranslate.UI.Theme;
 using MagicTranslate.UI.WIndows;
@@ -37,6 +38,8 @@ namespace MagicTranslate
     public partial class App : Application
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
+        internal static AppGlobalHotkeys Hotkeys = null;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -75,8 +78,21 @@ namespace MagicTranslate
             //StartupWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
             StartupWindow = WindowHelper.CreateWindow(typeof(TrayIconWindow));
             ThemeManagement.Initialize();
+
+            if (Hotkeys == null)
+            {
+                Hotkeys = new AppGlobalHotkeys(StartupWindow);
+                Hotkeys.HotkeyPressed += Hotkeys_HotkeyPressed;
+            }
+
             StartupWindow?.Activate();
 
+            CreatSearchWindowOrActive();
+        }
+
+        private void Hotkeys_HotkeyPressed(object sender, HotkeyEventArgs e)
+        {
+            Logger.Debug(e.ReadableHotkey);
             CreatSearchWindowOrActive();
         }
 

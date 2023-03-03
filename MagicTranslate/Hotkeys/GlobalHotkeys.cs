@@ -38,7 +38,7 @@ namespace MagicTranslate.Hotkeys
             setWindowLongWndProc = Win32Helper.SetWindowLong(hWnd, WINDOW_LONG_PTR_INDEX.GWL_WNDPROC, Marshal.GetFunctionPointerForDelegate(wndProc));            
         }
 
-        public void RegisterHotKey(int id, Windows.Win32.UI.Input.KeyboardAndMouse.HOT_KEY_MODIFIERS fsModifiers, uint vk)
+        public void RegisterCombo(int id, Windows.Win32.UI.Input.KeyboardAndMouse.HOT_KEY_MODIFIERS fsModifiers, uint vk)
         {
             if (PInvoke.RegisterHotKey((HWND)hWnd, id, fsModifiers, vk))
             {
