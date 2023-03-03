@@ -25,6 +25,8 @@ using Windows.UI.Core;
 using Microsoft.UI.Xaml.Media.Animation;
 using MagicTranslate.Input;
 using MagicTranslate.Args;
+using MagicTranslate.Settings;
+using System.Globalization;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -87,10 +89,19 @@ namespace MagicTranslate.UI.WIndows
 
         private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)
         {
-            DispatcherQueue.TryEnqueue(() =>
-            {                
-                SearchBox.PlaceholderText = $"Translate from {e.EnglishName}";
-            });
+            var translateFromTag = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "GoogleTranslateFrom");
+            var translateToTag = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "GoogleTranslateTo");
+            
+            if (!string.IsNullOrEmpty(translateToTag) && !string.IsNullOrEmpty(translateFromTag))
+            {
+                translateToTag = translateToTag == "SystemLanguage" ? CultureInfo.InstalledUICulture.EnglishName : new CultureInfo(translateToTag).EnglishName;
+                translateFromTag = translateFromTag == "LanguageNotSelected" ? e.EnglishName : new CultureInfo(translateFromTag).EnglishName;
+
+                DispatcherQueue.TryEnqueue(() =>
+                {                
+                    SearchBox.PlaceholderText = $"Translate from {translateFromTag} to {translateToTag}";
+                });
+            }
         }
 
         private void SearchWindow_Closed(object sender, WindowEventArgs args)
