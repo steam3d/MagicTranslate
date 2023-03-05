@@ -183,7 +183,8 @@ namespace MagicTranslate.UI
 
         private void Window_Activated(object sender, WindowActivatedEventArgs args)
         {
-            m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
+            if (m_configurationSource != null)
+                m_configurationSource.IsInputActive = args.WindowActivationState != WindowActivationState.Deactivated;
         }
 
         private void Window_Closed(object sender, WindowEventArgs args)

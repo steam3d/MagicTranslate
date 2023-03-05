@@ -62,7 +62,7 @@ namespace MagicTranslate.UI.WIndows
 
         private void _DoubleClickCommand_CommandExecuted(object sender, EventArgs e)
         {
-            var w = WindowHelper.CreateWindow(typeof(SearchWindow));
+            var w = WindowHelper.CreateWindow(typeof(DefaultWindow));
             w.Activate();
         }
 

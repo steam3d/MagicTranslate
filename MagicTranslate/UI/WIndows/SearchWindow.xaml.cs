@@ -27,6 +27,7 @@ using MagicTranslate.Input;
 using MagicTranslate.Args;
 using MagicTranslate.Settings;
 using System.Globalization;
+using Windows.Win32;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -83,8 +84,22 @@ namespace MagicTranslate.UI.WIndows
             inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;
             InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
             this.Closed += SearchWindow_Closed;
+            this.Activated += SearchWindow_Activated;
             
             backdrops = new WindowBackdrops(this);          
+        }
+
+        private void SearchWindow_Activated(object sender, Microsoft.UI.Xaml.WindowActivatedEventArgs args)
+        {
+            if (args.WindowActivationState == WindowActivationState.Deactivated)
+                this.Close();
+
+            if (args.WindowActivationState == WindowActivationState.PointerActivated || args.WindowActivationState == WindowActivationState.CodeActivated)
+            {
+                PInvoke.SetForegroundWindow((Windows.Win32.Foundation.HWND)WinRT.Interop.WindowNative.GetWindowHandle(this));
+                SearchBox.Focus(FocusState.Keyboard);
+            }
+
         }
 
         private void InputLanguage_CurrentInputChanged(object sender, System.Globalization.CultureInfo e)

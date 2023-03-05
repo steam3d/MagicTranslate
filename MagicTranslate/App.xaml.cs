@@ -107,7 +107,7 @@ namespace MagicTranslate
             StartupWindow.DispatcherQueue.TryEnqueue(() =>
             {
                 if (SearchWindow == null)
-                    SearchWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
+                    SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
                 
                 if(SearchWindow != null)
                 {

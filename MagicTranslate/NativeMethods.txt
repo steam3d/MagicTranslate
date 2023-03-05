@@ -18,3 +18,4 @@ GetForegroundWindow
 CreateEvent
 SetEvent
 CoWaitForMultipleObjects
+SetForegroundWindow
