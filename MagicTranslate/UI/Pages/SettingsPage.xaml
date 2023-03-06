@@ -45,6 +45,9 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Border
                 Grid.Row="0"
@@ -142,7 +145,7 @@
                                     VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
-                        <Button
+                        <!--<Button
                             x:Uid="Settings_About_Weblate"
                             Tag="Weblate"
                             FlowDirection="LeftToRight"
@@ -179,7 +182,7 @@
                                     Text="Community"
                                     VerticalAlignment="Center" />
                             </StackPanel>
-                        </Button>
+                        </Button>-->
                     </comp:WrapPanel>
                 </Grid>
             </Border>
@@ -310,7 +313,7 @@
                         Loaded="Language_Loaded">
                         <TextBlock
                             Tag=""
-                            x:Uid="Settings_LanguageOptions_SystemLanguage"                            />
+                            x:Uid="Settings_LanguageOptions_SystemLanguage"/>
                     </ComboBox>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
@@ -382,6 +385,62 @@
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>
+                    </Button>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+
+            <comp:SettingsItemHeader
+                Grid.Row="13"
+                Header="Services"/>
+            <comp:SettingsItem
+                Grid.Row="14"
+                Tag="{StaticResource AppSettings}"
+                Header="Translate application"
+                Description="Translate, edit or add new languages">
+                <comp:SettingsItem.SettingsContent>
+                    <Button
+                        x:Uid="Settings_About_Weblate"
+                        Tag="Weblate"
+                        FlowDirection="LeftToRight"
+                        Click="Button_Click">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                            <Image
+                                Width="16"
+                                Height="16"
+                                Source="ms-appx:///Assets/AppLogos/AppLogo_Weblate_512px.png" />
+                            <TextBlock
+                                Text="Weblate"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+            <comp:SettingsItem
+                Grid.Row="15"
+                Tag="{StaticResource AppSettings}"
+                Header="Community"
+                Description="Join to our community to get update, news and discussions">
+                <comp:SettingsItem.SettingsContent>
+                    <Button
+                        x:Uid="Settings_About_MagicSelect"
+                        Tag="Discord"
+                        FlowDirection="LeftToRight"                        
+                        Click="Button_Click_1">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                            <Image
+                                Width="16"
+                                Height="16"
+                                Source="ms-appx:///Assets/AppLogos/AppLogo_Discord_512px.png" />
+                            <TextBlock
+                                Text="Discord"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
