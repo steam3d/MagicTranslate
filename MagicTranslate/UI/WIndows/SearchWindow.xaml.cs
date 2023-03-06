@@ -96,7 +96,7 @@ namespace MagicTranslate.UI.WIndows
 
             if (args.WindowActivationState == WindowActivationState.PointerActivated || args.WindowActivationState == WindowActivationState.CodeActivated)
             {
-                PInvoke.SetForegroundWindow((Windows.Win32.Foundation.HWND)WinRT.Interop.WindowNative.GetWindowHandle(this));
+                this.Focus();            
                 SearchBox.Focus(FocusState.Keyboard);
             }
 

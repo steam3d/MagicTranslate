@@ -139,5 +139,11 @@ namespace MagicTranslate.Extensions
             if (savedTheme != null && window.Content is FrameworkElement rootElement)
                 rootElement.RequestedTheme = EnumHelper.GetEnum<ElementTheme>(savedTheme);
         }
+
+        public static void Focus(this Window window)
+        {
+            var hWndMain = WinRT.Interop.WindowNative.GetWindowHandle(window);
+            PInvoke.SetForegroundWindow(new HWND(hWndMain));
+        }
     }
 }
