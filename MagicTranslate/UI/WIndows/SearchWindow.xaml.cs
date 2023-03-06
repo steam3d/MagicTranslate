@@ -54,6 +54,8 @@ namespace MagicTranslate.UI.WIndows
         Timer textChangedDebouncingTimer = new Timer(512);
         private InputLanguage inputLanguage = new InputLanguage();
         private WindowBackdrops backdrops;
+
+        char[] charsToTrim = { ' ', '\n', '\t','\r' };
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -163,6 +165,7 @@ namespace MagicTranslate.UI.WIndows
         {
             DispatcherQueue.TryEnqueue(() =>
             {
+                SearchBox.Text = SearchBox.Text.Trim(charsToTrim);
                 if (string.IsNullOrEmpty(SearchBox.Text))
                 {
                     Root.Height = double.NaN;
