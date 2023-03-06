@@ -111,13 +111,15 @@ namespace MagicTranslate
             StartupWindow.DispatcherQueue.TryEnqueue(() =>
             {
                 if (SearchWindow == null)
-                    SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
-                
-                if(SearchWindow != null)
                 {
-                    SearchWindow?.Activate();
-                    SearchWindow.Closed += (e, ee) => SearchWindow = null;
+                    SearchWindow = WindowHelper.CreateWindow(typeof(SearchWindow));
+                    if (SearchWindow != null)
+                    {
+                        SearchWindow.Closed += (e, ee) => SearchWindow = null;
+                    } 
                 }
+                
+                SearchWindow?.Activate();
             });
         }
 
@@ -132,13 +134,16 @@ namespace MagicTranslate
             StartupWindow.DispatcherQueue.TryEnqueue(() =>
             {
                 if (SettingsWindow == null)
-                    SettingsWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
-
-                if (SettingsWindow != null)
                 {
-                    ((DefaultWindow)SettingsWindow).Navigate(typeof(SettingsPage));
-                    SettingsWindow.Closed += (e, ee) => SettingsWindow = null;
+                    SettingsWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
+                    if (SettingsWindow != null)
+                    {
+                        ((DefaultWindow)SettingsWindow).Navigate(typeof(SettingsPage));
+                        SettingsWindow.Closed += (e, ee) => SettingsWindow = null;
+                    }
                 }
+
+                SettingsWindow?.Activate();
             });
         }
 
