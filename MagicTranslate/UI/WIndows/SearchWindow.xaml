@@ -15,14 +15,26 @@
         x:Name="Root"
         VerticalAlignment="Top"
         HorizontalAlignment="Stretch">
+        <Grid.KeyboardAccelerators>
+            <KeyboardAccelerator
+                x:Name="ShortcutOpenSettings"
+                Key="I"
+                Modifiers="Control"
+                Invoked="ShortcutOpenSettings_Invoked" />
+            <KeyboardAccelerator
+                x:Name="ShortcutClose"
+                Key="Escape"
+                Invoked="ShortcutClose_Invoked" />
+        </Grid.KeyboardAccelerators>
         <Grid.RowDefinitions>
             <RowDefinition
                 Height="Auto" />
             <RowDefinition
                 x:Name="ContentRowDefinition"
-                Height="Auto"/>
+                Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel x:Name="SearchStack">
+        <StackPanel
+            x:Name="SearchStack">
             <TextBox
                 x:Name="SearchBox"
                 AcceptsReturn="True"

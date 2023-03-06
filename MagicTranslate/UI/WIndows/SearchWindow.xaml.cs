@@ -28,6 +28,7 @@ using MagicTranslate.Args;
 using MagicTranslate.Settings;
 using System.Globalization;
 using Windows.Win32;
+using MagicTranslate.Helper;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -86,7 +87,10 @@ namespace MagicTranslate.UI.WIndows
             this.Closed += SearchWindow_Closed;
             this.Activated += SearchWindow_Activated;
             
-            backdrops = new WindowBackdrops(this);          
+            backdrops = new WindowBackdrops(this);
+
+            //Root.PreviewKeyDown += Root_PreviewKeyDown;            
+            //Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread
         }
 
         private void SearchWindow_Activated(object sender, Microsoft.UI.Xaml.WindowActivatedEventArgs args)
@@ -212,6 +216,17 @@ namespace MagicTranslate.UI.WIndows
                 textChangedDebouncingTimer.Stop();
                 textChangedDebouncingTimer.Start();
             }
-        }        
+        }
+
+        private void ShortcutOpenSettings_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            var w = WindowHelper.CreateWindow(typeof(DefaultWindow));
+            w.Activate();
+        }
+
+        private void ShortcutClose_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
+        {
+            this.Close();
+        }
     }
 }
