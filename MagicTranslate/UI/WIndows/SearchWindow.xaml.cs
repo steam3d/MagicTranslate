@@ -55,7 +55,7 @@ namespace MagicTranslate.UI.WIndows
         private InputLanguage inputLanguage = new InputLanguage();
         private WindowBackdrops backdrops;
 
-        char[] charsToTrim = { ' ', '\n', '\t','\r' };
+        char[] charsToTrim = { ' ', '\n', '\t','\r', '\0' };
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -134,6 +134,12 @@ namespace MagicTranslate.UI.WIndows
                     var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
                     var placeholder = resourceLoader.GetString("Search_SearchBox_Placeholder");
                     SearchBox.PlaceholderText = string.Format(placeholder,translateFromCalture.EnglishName,translateToCalture.EnglishName);
+                    
+                    //Rise timer if user type something and changed language
+                    if (!string.IsNullOrEmpty(SearchBox.Text))
+                    {
+                        SearchBox_TextChanged(null, null);
+                    }
                 });
             }
         }
@@ -166,6 +172,8 @@ namespace MagicTranslate.UI.WIndows
             DispatcherQueue.TryEnqueue(() =>
             {
                 SearchBox.Text = SearchBox.Text.Trim(charsToTrim);
+                SearchBox.SelectionStart = SearchBox.Text.Length;
+                SearchBox.SelectionLength = 0;
                 if (string.IsNullOrEmpty(SearchBox.Text))
                 {
                     Root.Height = double.NaN;
