@@ -13,8 +13,7 @@
 
     <tb:TaskbarIcon
         ToolTipText="ToolTip"
-        IconSource="/Assets/Logo.ico"
-        
+        IconSource="/Assets/Logo.ico"        
         DoubleClickCommand="{x:Bind DoubleClickCommand}"
         RightTapped="tb_RightTapped"
         x:Name="tb">
@@ -24,7 +23,8 @@
                 AreOpenCloseAnimationsEnabled="False">
                 <MenuFlyoutItem
                     x:Uid="Taskbar_MenuFlyout_Settings"
-                    Text="Settings" />
+                    Text="Settings"
+                    Command="{x:Bind OpenSettings}"/>
                 <MenuFlyoutSeparator />
                 <MenuFlyoutItem
                     x:Uid="Taskbar_MenuFlyout_Exit"

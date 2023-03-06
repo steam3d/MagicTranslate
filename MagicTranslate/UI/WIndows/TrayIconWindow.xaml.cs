@@ -33,6 +33,7 @@ namespace MagicTranslate.UI.WIndows
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
         public ICommand DoubleClickCommand { get; set; }
+        public ICommand OpenSettings { get; set; }
         public ICommand CloseProgram { get; set; }
 
         public TrayIconWindow()
@@ -43,11 +44,20 @@ namespace MagicTranslate.UI.WIndows
             _DoubleClickCommand.CommandExecuted += _DoubleClickCommand_CommandExecuted;
             DoubleClickCommand = _DoubleClickCommand;
 
+            var _openSettings = new EventCommand();
+            _openSettings.CommandExecuted += _openSettings_CommandExecuted;
+            OpenSettings = _openSettings;
+
             var _closeProgram = new EventCommand();
             _closeProgram.CommandExecuted += _closeProgram_CommandExecuted;
             CloseProgram = _closeProgram;
 
             this.Activated += TrayIcon_Activated;
+        }
+
+        private void _openSettings_CommandExecuted(object sender, EventArgs e)
+        {
+            App.OpenSettingWindow();
         }
 
         private void _closeProgram_CommandExecuted(object sender, EventArgs e)
