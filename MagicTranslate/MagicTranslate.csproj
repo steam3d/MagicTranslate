@@ -30,6 +30,11 @@
 	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>
     </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\AppLogos\AppLogo_Discord_512px.png" />
+    <None Remove="Assets\AppLogos\AppLogo_MagicPods_512px.png" />
+    <None Remove="Assets\AppLogos\AppLogo_MagicSelect_512px.png" />
+    <None Remove="Assets\AppLogos\AppLogo_MagicTranslate_512px.png" />
+    <None Remove="Assets\AppLogos\AppLogo_Weblate_512px.png" />
     <None Remove="Assets\Logo.ico" />
     <None Remove="UI\Components\HotkeyBox.xaml" />
     <None Remove="UI\Components\SettingsItem.xaml" />

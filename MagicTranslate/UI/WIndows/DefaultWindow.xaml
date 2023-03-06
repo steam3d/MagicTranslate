@@ -26,7 +26,7 @@
                 Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button
+        <!--<Button
             Grid.Column="0"
             x:Name="BackButton"
             Background="{ThemeResource CommandBarOverflowPresenterBackground}"
@@ -34,7 +34,7 @@
             ToolTipService.ToolTip="Back"
             Height="32"
             IsEnabled="{Binding ElementName=contentFrame, Path=CanGoBack, Mode=OneWay}"
-            Visibility="{Binding ElementName=contentFrame, Path=CanGoBack, Converter={StaticResource BoolToVisabilityConverter}, Mode=OneWay}" />
+            Visibility="{Binding ElementName=contentFrame, Path=CanGoBack, Converter={StaticResource BoolToVisabilityConverter}, Mode=OneWay}" />-->
         <!--Click="BackButton_Click" />-->
         <!--Background="{ThemeResource CommandBarOverflowPresenterBackground}"-->
         <Border
@@ -54,10 +54,10 @@
                 <Image
                     Width="16"
                     Height="16"
-                    Source="ms-appx:///Assets/LockScreenLogo.scale-200.png" />
+                    Source="{StaticResource AppIconPath}" />
                 <TextBlock
                     x:Name="AppTitle"
-                    Text="MagicSelect"
+                    Text="{StaticResource AppName}"
                     VerticalAlignment="Center"
                     Margin="0,0,0,0"
                     Style="{StaticResource CaptionTextBlockStyle}" />

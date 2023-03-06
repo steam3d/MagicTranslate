@@ -73,7 +73,7 @@
                             VerticalAlignment="Center"
                             Width="48"
                             Height="48"
-                            Source="ms-appx:///Assets/LockScreenLogo.scale-200.png" />
+                            Source="{ThemeResource AppIconPath}" />
                         <StackPanel
                             VerticalAlignment="Center">
                             <TextBlock
@@ -105,25 +105,6 @@
                             Margin="16,0,0,16"
                             Visibility="Collapsed" />
                         <Button
-                            x:Uid="Settings_About_Weblate"
-                            Tag="Weblate"
-                            FlowDirection="LeftToRight"
-                            Margin="16,0,0,16"
-                            Click="Button_Click">
-                            <StackPanel
-                                Orientation="Horizontal"
-                                VerticalAlignment="Center"
-                                Spacing="8">
-                                <Image
-                                    Width="16"
-                                    Height="16"
-                                    Source="ms-appx:///Assets/LockScreenLogo.scale-200.png" />
-                                <TextBlock
-                                    Text="Weblate"
-                                    VerticalAlignment="Center" />
-                            </StackPanel>
-                        </Button>
-                        <Button
                             x:Uid="Settings_About_MagicPods"
                             Tag="MagicPods"
                             FlowDirection="LeftToRight"
@@ -136,9 +117,66 @@
                                 <Image
                                     Width="16"
                                     Height="16"
-                                    Source="ms-appx:///Assets/LockScreenLogo.scale-200.png" />
+                                    Source="ms-appx:///Assets/AppLogos/AppLogo_MagicPods_512px.png" />
                                 <TextBlock
                                     Text="MagicPods"
+                                    VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button
+                            x:Uid="Settings_About_MagicSelect"
+                            Tag="MagicSelect"
+                            FlowDirection="LeftToRight"
+                            Margin="16,0,0,16"
+                            Click="Button_Click_1">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Spacing="8">
+                                <Image
+                                    Width="16"
+                                    Height="16"
+                                    Source="ms-appx:///Assets/AppLogos/AppLogo_MagicSelect_512px.png" />
+                                <TextBlock
+                                    Text="MagicSelect"
+                                    VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button
+                            x:Uid="Settings_About_Weblate"
+                            Tag="Weblate"
+                            FlowDirection="LeftToRight"
+                            Margin="16,0,0,16"
+                            Click="Button_Click">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Spacing="8">
+                                <Image
+                                    Width="16"
+                                    Height="16"
+                                    Source="ms-appx:///Assets/AppLogos/AppLogo_Weblate_512px.png" />
+                                <TextBlock
+                                    Text="MagicWeblate"
+                                    VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <Button
+                            x:Uid="Settings_About_MagicSelect"
+                            Tag="MagicSelect"
+                            FlowDirection="LeftToRight"
+                            Margin="16,0,0,16"
+                            Click="Button_Click_1">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Spacing="8">
+                                <Image
+                                    Width="16"
+                                    Height="16"
+                                    Source="ms-appx:///Assets/AppLogos/AppLogo_Discord_512px.png" />
+                                <TextBlock
+                                    Text="Community"
                                     VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
