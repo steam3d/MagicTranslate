@@ -14,6 +14,7 @@
         Margin="{x:Bind rootMagrin}"
         x:Name="Root"
         VerticalAlignment="Top"
+        KeyboardAcceleratorPlacementMode="Hidden"
         HorizontalAlignment="Stretch">
         <Grid.KeyboardAccelerators>
             <KeyboardAccelerator

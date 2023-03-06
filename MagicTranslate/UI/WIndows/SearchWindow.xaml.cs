@@ -29,7 +29,6 @@ using MagicTranslate.Settings;
 using System.Globalization;
 using Windows.Win32;
 using MagicTranslate.Helper;
-using static System.Net.Mime.MediaTypeNames;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -171,9 +170,9 @@ namespace MagicTranslate.UI.WIndows
         {
             DispatcherQueue.TryEnqueue(() =>
             {
-                SearchBox.Text = SearchBox.Text.Trim(charsToTrim);
-                SearchBox.SelectionStart = SearchBox.Text.Length;
-                SearchBox.SelectionLength = 0;
+                //SearchBox.Text = SearchBox.Text.Trim(charsToTrim);
+                //SearchBox.SelectionStart = SearchBox.Text.Length;
+                //SearchBox.SelectionLength = 0;
                 if (string.IsNullOrEmpty(SearchBox.Text))
                 {
                     Root.Height = double.NaN;
