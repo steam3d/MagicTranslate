@@ -30,8 +30,7 @@
         <Button
             x:Name="RemoveHotkeyButton"
             x:Uid="HotkeyBox_Button_Remove"
-            Visibility="Collapsed"
-            ToolTipService.ToolTip="Remove hotkey"
+            Visibility="Collapsed"            
             VerticalAlignment="Center"
             HorizontalAlignment="Right"
             Margin="0,0,6,0"

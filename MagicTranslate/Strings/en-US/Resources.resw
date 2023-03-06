@@ -195,4 +195,13 @@
   <data name="Settings_LanguageOptions_SystemLanguage.Text" xml:space="preserve">
     <value>Use system language</value>
   </data>
+  <data name="HotkeyBox_Input.PlaceholderText" xml:space="preserve">
+    <value>Type a hotkey</value>
+  </data>
+  <data name="HotkeyBox_Input.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Include Win, Shift, Alt or Ctrl key</value>
+  </data>
+  <data name="HotkeyBox_Button_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
+    <value>Remove hotkey</value>
+  </data>
 </root>
