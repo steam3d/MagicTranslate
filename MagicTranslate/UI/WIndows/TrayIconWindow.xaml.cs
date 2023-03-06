@@ -62,8 +62,7 @@ namespace MagicTranslate.UI.WIndows
 
         private void _DoubleClickCommand_CommandExecuted(object sender, EventArgs e)
         {
-            var w = WindowHelper.CreateWindow(typeof(DefaultWindow));
-            w.Activate();
+            App.OpenSearchWindow();
         }
 
         private void TrayIcon_Activated(object sender, WindowActivatedEventArgs args)

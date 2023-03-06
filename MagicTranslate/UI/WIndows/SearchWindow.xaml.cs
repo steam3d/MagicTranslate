@@ -220,8 +220,7 @@ namespace MagicTranslate.UI.WIndows
 
         private void ShortcutOpenSettings_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            var w = WindowHelper.CreateWindow(typeof(DefaultWindow));
-            w.Activate();
+            App.OpenSettingWindow();
         }
 
         private void ShortcutClose_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)

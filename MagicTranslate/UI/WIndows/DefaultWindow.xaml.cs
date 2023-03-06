@@ -51,8 +51,14 @@ namespace MagicTranslate.UI.WIndows
             this.Topmost(true);
             this.ApplyTheme();
 
-            backdrops = new WindowBackdrops(this);            
-            contentFrame.Navigate(typeof(SettingsPage), backdrops);
+            //Fix to update in real time background
+            backdrops = new WindowBackdrops(this);                        
+        }
+
+        public void Navigate(Type sourcePageType)
+        {
+            contentFrame.Navigate(sourcePageType, backdrops);
+            this.Activate();
         }
     }
 }

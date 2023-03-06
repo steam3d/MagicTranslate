@@ -4,6 +4,7 @@
 using MagicTranslate.Helper;
 using MagicTranslate.Hotkeys;
 using MagicTranslate.Settings;
+using MagicTranslate.UI.Pages;
 using MagicTranslate.UI.Theme;
 using MagicTranslate.UI.WIndows;
 using Microsoft.UI.Xaml;
@@ -54,6 +55,9 @@ namespace MagicTranslate
                 NLog.LogLevel.Fatal);
             Program.OnActivated += Program_OnActivated;
             GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
+
+            OpenSearchWindow = CreatSearchWindowOrActive;
+            OpenSettingWindow = CreatSettingsWindowOrActive;
         }
 
         
@@ -117,7 +121,33 @@ namespace MagicTranslate
             });
         }
 
+        private void CreatSettingsWindowOrActive()
+        {
+            if (StartupWindow == null)
+            {
+                Logger.Error("Main window is null");
+                return;
+            }
+
+            StartupWindow.DispatcherQueue.TryEnqueue(() =>
+            {
+                if (SettingsWindow == null)
+                    SettingsWindow = WindowHelper.CreateWindow(typeof(DefaultWindow));
+
+                if (SettingsWindow != null)
+                {
+                    ((DefaultWindow)SettingsWindow).Navigate(typeof(SettingsPage));
+                    SettingsWindow.Closed += (e, ee) => SettingsWindow = null;
+                }
+            });
+        }
+
         public static Window StartupWindow;
         public static Window SearchWindow;
+        public static Window SettingsWindow;
+
+        public delegate void ActionDelegate();
+        public static ActionDelegate OpenSearchWindow;
+        public static ActionDelegate OpenSettingWindow;
     }
 }
