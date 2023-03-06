@@ -94,7 +94,7 @@ namespace MagicTranslate.UI.Pages
         {
             bool isFound = false;
 
-            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+            //var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
             //// Add default language
             //Language.Items.Add(new TextBlock()
             //{

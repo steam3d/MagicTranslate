@@ -204,4 +204,7 @@
   <data name="HotkeyBox_Button_Remove.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Remove hotkey</value>
   </data>
+  <data name="Search_SearchBox_Placeholder" xml:space="preserve">
+    <value>Translate from {0} to {1}</value>
+  </data>
 </root>

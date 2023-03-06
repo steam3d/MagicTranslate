@@ -29,6 +29,7 @@ using MagicTranslate.Settings;
 using System.Globalization;
 using Windows.Win32;
 using MagicTranslate.Helper;
+using static System.Net.Mime.MediaTypeNames;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -127,8 +128,10 @@ namespace MagicTranslate.UI.WIndows
                 }
 
                 DispatcherQueue.TryEnqueue(() =>
-                {                
-                    SearchBox.PlaceholderText = $"Translate from {translateFromCalture.EnglishName} to {translateToCalture.EnglishName}";
+                {
+                    var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+                    var placeholder = resourceLoader.GetString("Search_SearchBox_Placeholder");
+                    SearchBox.PlaceholderText = string.Format(placeholder,translateFromCalture.EnglishName,translateToCalture.EnglishName);
                 });
             }
         }
