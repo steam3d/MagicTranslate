@@ -15,7 +15,6 @@
         ToolTipText="ToolTip"
         IconSource="/Assets/Logo.ico"        
         DoubleClickCommand="{x:Bind DoubleClickCommand}"
-        RightTapped="tb_RightTapped"
         x:Name="tb">
         <tb:TaskbarIcon.ContextFlyout>
             <MenuFlyout

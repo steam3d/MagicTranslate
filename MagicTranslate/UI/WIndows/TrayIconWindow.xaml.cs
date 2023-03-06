@@ -3,6 +3,9 @@
 
 using H.NotifyIcon;
 using MagicTranslate.Helper;
+using MagicTranslate.Helpers;
+using MagicTranslate.Hotkeys;
+using MagicTranslate.Settings;
 using MagicTranslate.UI.Commands;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -53,6 +56,14 @@ namespace MagicTranslate.UI.WIndows
             CloseProgram = _closeProgram;
 
             this.Activated += TrayIcon_Activated;
+            this.Closed += TrayIconWindow_Closed;
+            GlobalSettings.OnSettingChange += GlobalSettings_OnSettingChange;
+            UpdateToolTipText();
+        }
+
+        private void TrayIconWindow_Closed(object sender, WindowEventArgs args)
+        {
+            GlobalSettings.OnSettingChange -= GlobalSettings_OnSettingChange;
         }
 
         private void _openSettings_CommandExecuted(object sender, EventArgs e)
@@ -80,9 +91,30 @@ namespace MagicTranslate.UI.WIndows
             this.Hide(true);
         }
 
-        private void tb_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void UpdateToolTipText()
         {
-            Logger.Debug("tapped");
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+
+            string toolTipText;
+            var compositeValue = (Windows.Storage.ApplicationDataCompositeValue)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "HotkeyOpenSearchBar");
+            if (compositeValue != null && compositeValue.Count > 0)
+            {
+                var hotkeyReadableString = HotkeyHelper.GetReadableStringFromHotkey((int)compositeValue["modifiers"], (int)compositeValue["key"]);
+                toolTipText = string.Format(resourceLoader.GetString("Taskbar_TaskbarIcon_ToolTipText_hotkey"), hotkeyReadableString);
+
+            }
+            else
+            {
+                toolTipText = resourceLoader.GetString("Taskbar_TaskbarIcon_ToolTipText");
+            }
+
+            tb.ToolTipText = toolTipText;
+        }
+
+        private void GlobalSettings_OnSettingChange(object sender, Args.SettingArgs e)
+        {
+            if (e.ContainerName == "ApplicationSettings" && e.SettingName == "HotkeyOpenSearchBar")
+                this.DispatcherQueue.TryEnqueue(() => { UpdateToolTipText(); });
         }
     }
 }

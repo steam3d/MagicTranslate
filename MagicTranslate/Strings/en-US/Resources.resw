@@ -213,4 +213,10 @@
   <data name="Taskbar_MenuFlyout_Settings.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Taskbar_TaskbarIcon_ToolTipText" xml:space="preserve">
+    <value>Double click to translate</value>
+  </data>
+  <data name="Taskbar_TaskbarIcon_ToolTipText_Hotkey" xml:space="preserve">
+    <value>Double click or {0} to translate</value>
+  </data>
 </root>
