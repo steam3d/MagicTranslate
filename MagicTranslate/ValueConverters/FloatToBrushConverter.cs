@@ -1,14 +1,18 @@
-﻿using Microsoft.UI.Xaml;
+﻿using MagicTranslate.UI.Theme;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Media;
 using System;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 
 namespace MagicTranslate.ValueConverters
 {
     internal class FloatToBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {            
+        {
+            var isDarkTheme = ThemeManagement.IsDarkTheme();
             if (value != null && parameter != null)
             {
                 var score = (float)value;                
@@ -32,12 +36,16 @@ namespace MagicTranslate.ValueConverters
 
                 if (round >= bestScore)
                 {
-                    //var uiSettings = new Windows.UI.ViewManagement.UISettings();
-                    //return new SolidColorBrush(uiSettings.GetColorValue(Windows.UI.ViewManagement.UIColorType.Accent));
-                    return (SolidColorBrush)Application.Current.Resources["AltSystemAccentColor"];
+                    var uiSettings = new UISettings();
+                    UIColorType uIColorType = isDarkTheme ? UIColorType.AccentLight2 : UIColorType.AccentDark2;              
+                    return new SolidColorBrush(uiSettings.GetColorValue(uIColorType));
+                    //return (SolidColorBrush)Application.Current.Resources["AltSystemAccentColor"];
                 }
             }
-            return (SolidColorBrush)Application.Current.Resources["ContextMenuBorderBrush"];
+#warning Hardcoded colors
+            var color = isDarkTheme ? Color.FromArgb(255, 64, 64, 64) : Color.FromArgb(255, 207, 207, 207);
+            return new SolidColorBrush(color);
+            //return (SolidColorBrush)Application.Current.Resources["ContextMenuBorderBrush"];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

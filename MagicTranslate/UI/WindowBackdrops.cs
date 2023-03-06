@@ -1,8 +1,10 @@
 ﻿using MagicTranslate.Helpers;
 using MagicTranslate.Settings;
 using MagicTranslate.UI.Theme;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
+using Windows.UI;
 using WinRT;
 
 namespace MagicTranslate.UI
@@ -222,12 +224,16 @@ namespace MagicTranslate.UI
             var isDarkTheme = ThemeManagement.IsDarkTheme();
             float opacity = isDarkTheme ? 0.75f : 0.65f;
 
+#warning Hardcoded colors
+            var color = isDarkTheme ? Color.FromArgb(255,32,32,32) : Color.FromArgb(255, 243, 243, 243);
+            m_acrylicController.TintColor = color;
 
-            if (((FrameworkElement)window.Content).Resources.TryGetValue("ApplicationPageBackgroundThemeBrush", out object value))
-            {
-                var brush = (SolidColorBrush)value;
-                m_acrylicController.TintColor = brush.Color;
-            }
+
+            //if (((FrameworkElement)window.Content).Resources.TryGetValue("BackgroundBrush", out object value)) // always return wrong value https://github.com/microsoft/WindowsAppSDK/issues/3487
+            //{
+            //    var brush = (SolidColorBrush)value;
+            //    m_acrylicController.TintColor = brush.Color;
+            //}
             m_acrylicController.TintOpacity = opacity;
             m_acrylicController.LuminosityOpacity = 1;
         }
