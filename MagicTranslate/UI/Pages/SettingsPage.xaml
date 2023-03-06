@@ -85,7 +85,7 @@
                                 FontSize="24"
                                 FontWeight="Bold" />
                             <TextBlock
-                                x:Name="ver"
+                                x:Name="Version"
                                 FontSize="14"
                                 Text="Version 1.0.0.0" />
                         </StackPanel>

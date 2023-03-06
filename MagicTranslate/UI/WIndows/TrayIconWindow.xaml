@@ -14,7 +14,7 @@
     <tb:TaskbarIcon
         ToolTipText="ToolTip"
         IconSource="/Assets/Logo.ico"
-        ContextMenuMode="SecondWindow"
+        
         DoubleClickCommand="{x:Bind DoubleClickCommand}"
         RightTapped="tb_RightTapped"
         x:Name="tb">
@@ -23,16 +23,13 @@
                 Placement="RightEdgeAlignedTop"
                 AreOpenCloseAnimationsEnabled="False">
                 <MenuFlyoutItem
-                    Width="180"
-                    MaxWidth="180"
+                    x:Uid="Taskbar_MenuFlyout_Settings"
                     Text="Settings" />
                 <MenuFlyoutSeparator />
                 <MenuFlyoutItem
-                    Width="180"
-                    MaxWidth="180"
+                    x:Uid="Taskbar_MenuFlyout_Exit"
                     Text="Exit"
-                    Command="{x:Bind CloseProgram}"
-                    Icon="Cancel"/>
+                    Command="{x:Bind CloseProgram}"/>
             </MenuFlyout>
         </tb:TaskbarIcon.ContextFlyout>
     </tb:TaskbarIcon>

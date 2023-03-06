@@ -207,4 +207,10 @@
   <data name="Search_SearchBox_Placeholder" xml:space="preserve">
     <value>Translate from {0} to {1}</value>
   </data>
+  <data name="Taskbar_MenuFlyout_Exit.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Taskbar_MenuFlyout_Settings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

@@ -41,6 +41,7 @@ namespace MagicTranslate.UI.Pages
         public SettingsPage()
         {
             this.InitializeComponent();
+            Version.Text = "Version " + App.GetAppVersion();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
