@@ -153,6 +153,7 @@ namespace MagicTranslate.UI.Pages
         private void ResetSettings_Click(object sender, RoutedEventArgs e)
         {
             GlobalSettings.RemoveAllSettings();
+            Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
         }
 
         private void GoogleTranslateLanguages_Loaded(object sender, RoutedEventArgs e)
