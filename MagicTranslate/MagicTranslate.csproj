@@ -45,7 +45,6 @@
     <None Remove="UI\Pages\TestPage.xaml" />
     <None Remove="UI\Styles\LeftTextToggleSwitchStyle.xaml" />
     <None Remove="UI\WIndows\DefaultWindow.xaml" />
-    <None Remove="UI\WIndows\PlayGroundWindow.xaml" />
     <None Remove="UI\WIndows\SearchWindow.xaml" />
     <None Remove="UI\WIndows\TrayIconWindow.xaml" />
   </ItemGroup>
@@ -109,9 +108,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Update="UI\Pages\TestPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Update="UI\WIndows\PlayGroundWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
