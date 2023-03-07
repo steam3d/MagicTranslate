@@ -44,6 +44,14 @@ namespace MagicTranslate.UI.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            // Demo mode
+            if (e.Parameter == null)
+            {
+                string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
+                TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json), null, null, TimeSpan.Zero, null);
+                return;
+            }
+
             Translate translate = new Translate();
             var args = e.Parameter as TranslateArgs;
             TranslateResult = translate.TranslateGoogle(args.TextToTranslate, args.TranslateFrom.TwoLetterISOLanguageName, args.TranslateTo.TwoLetterISOLanguageName);

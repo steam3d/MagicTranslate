@@ -29,6 +29,8 @@ using MagicTranslate.Settings;
 using System.Globalization;
 using Windows.Win32;
 using MagicTranslate.Helper;
+using System.Threading.Tasks;
+using MagicTranslate.Helpers;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -55,6 +57,9 @@ namespace MagicTranslate.UI.WIndows
         private WindowBackdrops backdrops;
 
         char[] charsToTrim = { ' ', '\n', '\t','\r', '\0' };
+
+        private bool DemoMode = true;
+
         public SearchWindow()
         {
             this.InitializeComponent();
@@ -90,11 +95,114 @@ namespace MagicTranslate.UI.WIndows
             this.Closed += SearchWindow_Closed;
             this.Activated += SearchWindow_Activated;
             
-            backdrops = new WindowBackdrops(this);
+            backdrops = new WindowBackdrops(this);            
 
             //Root.PreviewKeyDown += Root_PreviewKeyDown;            
             //Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread
         }
+
+        #region Teaching
+        private async void TeachingTipTour()
+        {
+            string hotkeyReadableString = string.Empty;
+            var compositeValue = (Windows.Storage.ApplicationDataCompositeValue)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "HotkeyOpenSearchBar");
+            if (compositeValue != null && compositeValue.Count > 0)            
+                hotkeyReadableString = HotkeyHelper.GetReadableStringFromHotkey((int)compositeValue["modifiers"], (int)compositeValue["key"]);
+            
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+            var teachingTip = new TeachingTip();
+            teachingTip.Tag = 0;
+            teachingTip.PreferredPlacement = TeachingTipPlacementMode.Center;
+            teachingTip.Title = resourceLoader.GetString("Search_TeachingTip_Welcome/Title");
+            teachingTip.Subtitle = string.Format(resourceLoader.GetString("Search_TeachingTip_Welcome/Subtitle"), hotkeyReadableString);
+            teachingTip.CloseButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Next");
+            teachingTip.CloseButtonClick += TeachingTip_CloseButtonClick;
+            Root.Children.Add(teachingTip);
+
+            //https://github.com/microsoft/microsoft-ui-xaml/issues/7937
+            await Task.Delay(100);
+            teachingTip.IsOpen = true;
+        }
+
+        private async void TeachingTipTour1()
+        {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+            var teachingTip = new TeachingTip();
+            teachingTip.Tag = 1;
+            teachingTip.Target = SearchBox;
+            teachingTip.PreferredPlacement = TeachingTipPlacementMode.BottomLeft;
+            teachingTip.Subtitle = resourceLoader.GetString("Search_TeachingTip_SwitchLanguage/Subtitle");
+            teachingTip.CloseButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Next");
+            teachingTip.CloseButtonClick += TeachingTip_CloseButtonClick;            
+            Root.Children.Add(teachingTip);
+            
+            //https://github.com/microsoft/microsoft-ui-xaml/issues/7937
+            await Task.Delay(100);
+            teachingTip.IsOpen = true;            
+        }
+
+        private async void TeachingTipTour2()
+        {
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+            var teachingTip = new TeachingTip();
+            teachingTip.Tag = 2;
+            teachingTip.Target = Content;
+            teachingTip.PreferredPlacement = TeachingTipPlacementMode.Center;
+            teachingTip.Subtitle = resourceLoader.GetString("Search_TeachingTip_TranslationResult/Subtitle");
+            teachingTip.CloseButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Next");
+            teachingTip.CloseButtonClick += TeachingTip_CloseButtonClick;
+            Root.Children.Add(teachingTip);
+
+            await Task.Delay(100);
+            teachingTip.IsOpen = true;
+        }
+
+        private async void TeachingTipTour3()
+        {
+            string hotkeyReadableString = HotkeyHelper.GetReadableStringFromHotkey(ShortcutOpenSettings.Modifiers, ShortcutOpenSettings.Key);
+            var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+
+            var teachingTip = new TeachingTip();
+            teachingTip.Tag = 3;
+            teachingTip.PreferredPlacement = TeachingTipPlacementMode.Bottom;
+            teachingTip.Subtitle = string.Format(resourceLoader.GetString("Search_TeachingTip_OpenSettings/Subtitle"), hotkeyReadableString);
+            teachingTip.CloseButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Finish");
+            teachingTip.ActionButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Settings");
+            teachingTip.CloseButtonClick += TeachingTip_CloseButtonClick;
+            teachingTip.ActionButtonClick += TeachingTip_ActionButtonClick;
+            Root.Children.Add(teachingTip);
+
+            await Task.Delay(100);
+            teachingTip.IsOpen = true;
+        }
+
+        private void TeachingTip_ActionButtonClick(TeachingTip sender, object args)
+        {
+            DemoMode = false;
+            App.OpenSettingWindow();
+        }
+
+        private void TeachingTip_CloseButtonClick(TeachingTip sender, object args)
+        {            
+            Root.Children.Remove(sender);                   
+            switch ((int)sender.Tag)
+            {
+                case 0:
+                    TeachingTipTour1();
+                    break;
+                case 1:                    
+                    TeachingTipTour2();
+                    break;
+                case 2:
+                    TeachingTipTour3();
+                    break;
+                case 3:
+                    DemoMode = false;
+                    TextChangedDebouncingTimer_Elapsed(null, null);
+                    break;
+            }
+        }
+        #endregion
 
         private void SearchWindow_Activated(object sender, Microsoft.UI.Xaml.WindowActivatedEventArgs args)
         {
@@ -105,6 +213,8 @@ namespace MagicTranslate.UI.WIndows
             {
                 this.Focus();            
                 SearchBox.Focus(FocusState.Keyboard);
+                if (DemoMode == true)
+                    TextChangedDebouncingTimer_Elapsed(null, null);
             }
 
         }
@@ -174,20 +284,22 @@ namespace MagicTranslate.UI.WIndows
                 //SearchBox.Text = SearchBox.Text.Trim(charsToTrim);
                 //SearchBox.SelectionStart = SearchBox.Text.Length;
                 //SearchBox.SelectionLength = 0;
-                if (string.IsNullOrEmpty(SearchBox.Text))
+                if (DemoMode == true)
+                {
+                    Logger.Debug("demo mode");
+                    Content.Visibility = Visibility.Visible;
+                    Root.Height = double.NaN;
+                    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
+                    Content.Navigate(typeof(GoogleTranslatePage), null, new DrillInNavigationTransitionInfo());
+                    TeachingTipTour();
+                }
+                else if (string.IsNullOrEmpty(SearchBox.Text))
                 {
                     Root.Height = double.NaN;
                     ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);                    
                     Content.Navigate(typeof(EmptyPage));
                     Content.Visibility = Visibility.Collapsed;
                 }
-                //else if (SearchBox.Text.Length == 1)
-                //{
-                //    Content.Visibility = Visibility.Visible;
-                //    Root.Height = double.NaN;
-                //    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
-                //    Content.Navigate(typeof(TestPage), null, new DrillInNavigationTransitionInfo());
-                //}
                 else
                 {
                     var translateFromTag = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "GoogleTranslateFrom");

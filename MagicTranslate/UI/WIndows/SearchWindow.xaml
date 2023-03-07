@@ -46,7 +46,7 @@
             <StackPanel
                 Margin="0,16,0,0"
                 Spacing="8"
-                Orientation="Horizontal">
+                Orientation="Horizontal" Visibility="Collapsed">
                 <ToggleButton
                     Content="Google" />
                 <ToggleButton

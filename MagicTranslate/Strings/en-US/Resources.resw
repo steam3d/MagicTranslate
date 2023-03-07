@@ -218,6 +218,7 @@
   </data>
   <data name="Taskbar_TaskbarIcon_ToolTipText_Hotkey" xml:space="preserve">
     <value>Double click or {0} to translate</value>
+    <comment>{0} will be replaced on shurtcut</comment>
   </data>
   <data name="Settings_About_MagicPods.[using:Microsoft.UI.Xaml.Controls]ToolTipService.ToolTip" xml:space="preserve">
     <value>Add a little magic to your AirPods</value>
@@ -242,5 +243,31 @@
   </data>
   <data name="Settings_Support_Setting_Weblate.Header" xml:space="preserve">
     <value>Translate application</value>
+  </data>
+  <data name="Search_TeachingTip_Buttons_Finish" xml:space="preserve">
+    <value>Got it</value>
+  </data>
+  <data name="Search_TeachingTip_Buttons_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Search_TeachingTip_Buttons_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Search_TeachingTip_OpenSettings.Subtitle" xml:space="preserve">
+    <value>To configure the translation language, appearance and keyboard shortcuts, right-click on the tray icon and select «Settings» or use the {0} shortcut while in the translation window</value>
+    <comment>{0} will be replaced on shurtcut</comment>
+  </data>
+  <data name="Search_TeachingTip_SwitchLanguage.Subtitle" xml:space="preserve">
+    <value>To switch language, switch your current keyboard layout</value>
+  </data>
+  <data name="Search_TeachingTip_TranslationResult.Subtitle" xml:space="preserve">
+    <value>Translation results can be selected and copied</value>
+  </data>
+  <data name="Search_TeachingTip_Welcome.Subtitle" xml:space="preserve">
+    <value>You can start translating by opening the application, by double-clicking on the tray icon, or by pressing the hotkey {0}</value>
+    <comment>{0} will be replaced on shurtcut</comment>
+  </data>
+  <data name="Search_TeachingTip_Welcome.Title" xml:space="preserve">
+    <value>Welcome to MagicTranslate</value>
   </data>
 </root>
