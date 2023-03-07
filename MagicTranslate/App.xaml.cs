@@ -97,7 +97,15 @@ namespace MagicTranslate
         private void Hotkeys_HotkeyPressed(object sender, HotkeyEventArgs e)
         {
             Logger.Debug(e.ReadableHotkey);
-            CreatSearchWindowOrActive();
+
+            if (SearchWindow != null)
+            {
+                StartupWindow?.DispatcherQueue.TryEnqueue(() => { SearchWindow.Close(); });
+            }
+            else
+            {
+                CreatSearchWindowOrActive();
+            }
         }
 
         private void CreatSearchWindowOrActive()
