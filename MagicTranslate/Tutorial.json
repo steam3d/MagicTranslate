@@ -1,0 +1,51 @@
+{
+    "sentences": [{
+        "trans": "Hello",
+        "orig": "Привет",
+        "backend": 10
+    }],
+    "dict": [{
+        "pos": "interjection",
+        "terms": ["Hi!", "Hello!", "Ciao!", "Bye!", "Hallo!", "Hullo!", "Hail!", "Chin-Chin!", "Cheer!", "Cheerio!", "Howdy!"],
+        "entry": [{
+            "word": "Hi!",
+            "reverse_translation": ["Привет!", "Ну!", "Салют!", "Здорово!", "Эй!"],
+            "score": 0.351033
+        }, {
+            "word": "Hello!",
+            "reverse_translation": ["Здравствуйте!", "Привет!", "Алло!"],
+            "score": 0.21967085
+        }, {
+            "word": "Ciao!",
+            "reverse_translation": ["Чао!", "Привет!"]
+        }, {
+            "word": "Bye!",
+            "reverse_translation": ["Пока!", "До свидания!", "Привет!", "Бай-Бай!"]
+        }, {
+            "word": "Hallo!",
+            "reverse_translation": ["Привет!", "Алло!"]
+        }, {
+            "word": "Hullo!",
+            "reverse_translation": ["Привет!", "Алло!"]
+        }, {
+            "word": "Hail!",
+            "reverse_translation": ["Привет!"]
+        }, {
+            "word": "Chin-Chin!",
+            "reverse_translation": ["За ваше здоровье!", "Привет!"]
+        }, {
+            "word": "Cheer!",
+            "reverse_translation": ["За ваше здоровье!", "Всего хорошего!", "Ура!", "Здорово!", "Привет!"]
+        }, {
+            "word": "Cheerio!",
+            "reverse_translation": ["Ваше здоровье!", "Будьте здоровы!", "Всего хорошего!", "За ваше здоровье!", "Здорово!", "Привет!"]
+        }, {
+            "word": "Howdy!",
+            "reverse_translation": ["Привет!", "Здорово!"]
+        }],
+        "base_form": "Привет!",
+        "pos_enum": 9
+    }],
+    "src": "ru",
+    "spell": {}
+}

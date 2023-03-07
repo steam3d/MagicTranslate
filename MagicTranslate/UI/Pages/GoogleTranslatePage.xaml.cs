@@ -35,11 +35,7 @@ namespace MagicTranslate.UI.Pages
         public GoogleTranslatePage()
         {
             this.InitializeComponent();
-            DataContext = this;            
-            //string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
-            //Translate translate = new Translate();
-            //TranslateResult = translate.TranslateGoogle("Ручка", "ru", "en");
-            //TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json),null,null,TimeSpan.Zero,null);
+            DataContext = this;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -47,7 +43,7 @@ namespace MagicTranslate.UI.Pages
             // Tutorial
             if (e.Parameter == null)
             {
-                string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
+                string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Tutorial.json"));
                 TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json), null, null, TimeSpan.Zero, null);
                 return;
             }
