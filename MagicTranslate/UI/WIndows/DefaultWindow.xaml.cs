@@ -38,7 +38,7 @@ namespace MagicTranslate.UI.WIndows
         public DefaultWindow()
         {
             this.InitializeComponent();
-            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            //var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
 
             //WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             //var _apw = AppWindow.GetFromWindowId(myWndId);

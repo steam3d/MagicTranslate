@@ -7,6 +7,7 @@ using MagicTranslate.Helpers;
 using MagicTranslate.Hotkeys;
 using MagicTranslate.Settings;
 using MagicTranslate.UI.Commands;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -42,6 +43,14 @@ namespace MagicTranslate.UI.WIndows
         public TrayIconWindow()
         {
             this.InitializeComponent();
+
+            // Make blink almost invisible 
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            var myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            var apw = AppWindow.GetFromWindowId(myWndId);
+            var presenter = apw.Presenter as OverlappedPresenter;
+            presenter.SetBorderAndTitleBar(false, false);
+            apw.Resize(new Windows.Graphics.SizeInt32(1, 1));
 
             var _DoubleClickCommand = new EventCommand();
             _DoubleClickCommand.CommandExecuted += _DoubleClickCommand_CommandExecuted;
