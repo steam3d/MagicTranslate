@@ -49,19 +49,33 @@ namespace MagicTranslate.UI.Pages
             backdrops = e.Parameter as WindowBackdrops;
         }
 
-        private void SettingsItem_HyperlinkClick(object sender, EventArgs e)
+        private async void Button_NavigateToURL(object sender, RoutedEventArgs e)
         {
-            Logger.Debug("Click");
-        }
+            var button = sender as Button;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ThemeManagement.RootTheme = ElementTheme.Dark;
-        }
+            if (button != null && button.Tag != null)
+            {
+                Uri uri = null;
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            ThemeManagement.RootTheme = ElementTheme.Light;
+                switch ((string)button.Tag)
+                {
+                    case "MagicPods":
+                        uri = new Uri(@"https://www.microsoft.com/store/apps/9P6SKKFKSHKM");
+                        break;
+                    case "MagicSelect":
+                        uri = new Uri(@"https://www.microsoft.com/store/apps/9N78GWBTW7L5");
+                        break;
+                    case "Weblate":
+                        uri = new Uri(@"https://weblate.magicpods.app/engage/magicselect-windows/");
+                        break;
+                    case "YAD":
+                        uri = new Uri(@"https://magicpods.app/yetanotherdino/");
+                        break;
+                }
+
+                if (uri != null)
+                    await Windows.System.Launcher.LaunchUriAsync(uri);                
+            }
         }
 
         private void Background_SelectionChanged(object sender, SelectionChangedEventArgs e)

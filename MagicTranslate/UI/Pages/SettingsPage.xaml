@@ -111,8 +111,8 @@
                             x:Uid="Settings_About_MagicPods"
                             Tag="MagicPods"
                             FlowDirection="LeftToRight"
-                            Margin="16,0,0,16"
-                            Click="Button_Click_1">
+                            Margin="16,0,0,16"                            
+                            Click="Button_NavigateToURL">
                             <StackPanel
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
@@ -131,7 +131,7 @@
                             Tag="MagicSelect"
                             FlowDirection="LeftToRight"
                             Margin="16,0,0,16"
-                            Click="Button_Click_1">
+                            Click="Button_NavigateToURL">
                             <StackPanel
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
@@ -147,10 +147,10 @@
                         </Button>
                         <Button
                             x:Uid="Settings_About_YAD"
-                            Tag="MagicPods"
+                            Tag="YAD"
                             FlowDirection="LeftToRight"
                             Margin="16,0,0,16"
-                            Click="Button_Click_1">
+                            Click="Button_NavigateToURL">
                             <StackPanel
                                 Orientation="Horizontal"
                                 VerticalAlignment="Center"
@@ -217,7 +217,7 @@
                         x:Uid="Settings_About_Weblate"
                         Tag="Weblate"
                         FlowDirection="LeftToRight"
-                        Click="Button_Click">
+                        Click="Button_NavigateToURL">
                         <StackPanel
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
@@ -242,7 +242,7 @@
                         x:Uid="Settings_About_MagicSelect"
                         Tag="Discord"
                         FlowDirection="LeftToRight"
-                        Click="Button_Click_1">
+                        Click="Button_NavigateToURL">
                         <StackPanel
                             Orientation="Horizontal"
                             VerticalAlignment="Center"
