@@ -36,7 +36,7 @@ namespace MagicTranslate.UI.Pages
         {
             this.InitializeComponent();
             DataContext = this;            
-            string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
+            //string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
             //Translate translate = new Translate();
             //TranslateResult = translate.TranslateGoogle("Ручка", "ru", "en");
             //TranslateResult = new GoogleTranslateResult(JsonSerializer.Deserialize<GoogleTranslateJson>(json),null,null,TimeSpan.Zero,null);
