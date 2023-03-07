@@ -146,7 +146,7 @@
                             </StackPanel>
                         </Button>
                         <Button
-                            x:Uid="Settings_About_MagicPods"
+                            x:Uid="Settings_About_YAD"
                             Tag="MagicPods"
                             FlowDirection="LeftToRight"
                             Margin="16,0,0,16"
@@ -207,10 +207,63 @@
             </Border>
             <comp:SettingsItemHeader
                 Grid.Row="1"
+                x:Uid="Settings_Support_Header" />
+            <comp:SettingsItem
+                Grid.Row="2"
+                Tag="{StaticResource AppSettings}"
+                x:Uid="Settings_Support_Setting_Weblate">
+                <comp:SettingsItem.SettingsContent>
+                    <Button
+                        x:Uid="Settings_About_Weblate"
+                        Tag="Weblate"
+                        FlowDirection="LeftToRight"
+                        Click="Button_Click">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                            <Image
+                                Width="16"
+                                Height="16"
+                                Source="ms-appx:///Assets/AppLogos/AppLogo_Weblate_512px.png" />
+                            <TextBlock
+                                Text="Weblate"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+            <comp:SettingsItem
+                Grid.Row="3"
+                Tag="{StaticResource AppSettings}"
+                x:Uid="Settings_Support_Setting_Discord">
+                <comp:SettingsItem.SettingsContent>
+                    <Button
+                        x:Uid="Settings_About_MagicSelect"
+                        Tag="Discord"
+                        FlowDirection="LeftToRight"
+                        Click="Button_Click_1">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Spacing="8">
+                            <Image
+                                Width="16"
+                                Height="16"
+                                Source="ms-appx:///Assets/AppLogos/AppLogo_Discord_512px.png" />
+                            <TextBlock
+                                Text="Discord"
+                                VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+                </comp:SettingsItem.SettingsContent>
+            </comp:SettingsItem>
+            <comp:SettingsItemHeader
+                Grid.Row="4"
                 x:Uid="Settings_GoogleTranslate_Header"
                 HyperlinkText="Translation"/>
             <comp:SettingsItem
-                Grid.Row="2"
+                Grid.Row="5"
                 Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_GoogleTranslate_Setting_From">
                 <comp:SettingsItem.SettingsContent>
@@ -227,7 +280,7 @@
             </comp:SettingsItem>
             
             <comp:SettingsItem
-                Grid.Row="3"
+                Grid.Row="6"
                 Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_GoogleTranslate_Setting_To">
                 <comp:SettingsItem.SettingsContent>
@@ -243,10 +296,10 @@
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             <comp:SettingsItemHeader
-                Grid.Row="4"
+                Grid.Row="7"
                 x:Uid="Settings_Hotkeys_Header"/> 
             <comp:SettingsItem
-                Grid.Row="5"
+                Grid.Row="8"
                 Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_Hotkeys_Setting_OpenTranslateWindow">
                 <comp:SettingsItem.SettingsContent>
@@ -258,10 +311,10 @@
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
             <comp:SettingsItemHeader
-                Grid.Row="6"
+                Grid.Row="9"
                 x:Uid="Settings_App_Header" />
             <comp:SettingsItem
-                Grid.Row="7"
+                Grid.Row="10"
                 x:Uid="Settings_App_Setting_Startup">
                 <comp:SettingsItem.SettingsContent>
                     <ToggleSwitch
@@ -270,7 +323,7 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="8"
+                Grid.Row="11"
                 Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_App_Setting_Theme">
                 <comp:SettingsItem.SettingsContent>
@@ -294,7 +347,7 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="9"
+                Grid.Row="12"
                 Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_App_Setting_Background">
                 <comp:SettingsItem.SettingsContent>
@@ -321,7 +374,7 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="10"
+                Grid.Row="13"
                 x:Uid="Settings_App_Setting_Language"
                 >
                 <comp:SettingsItem.SettingsContent>
@@ -338,7 +391,7 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="11"
+                Grid.Row="14"
                 Tag="{StaticResource AppSettings}"
                 x:Uid="Settings_App_Setting_Debug">
                 <comp:SettingsItem.SettingsContent>
@@ -384,7 +437,7 @@
             </comp:SettingsItem>
 
             <comp:SettingsItem
-                Grid.Row="12"
+                Grid.Row="15"
                 x:Uid="Settings_App_Setting_ResetSettings">
                 <comp:SettingsItem.SettingsContent>
                     <Button
@@ -404,62 +457,6 @@
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>
-                    </Button>
-                </comp:SettingsItem.SettingsContent>
-            </comp:SettingsItem>
-
-            <comp:SettingsItemHeader
-                Grid.Row="13"
-                Header="Services"/>
-            <comp:SettingsItem
-                Grid.Row="14"
-                Tag="{StaticResource AppSettings}"
-                Header="Translate application"
-                Description="Translate, edit or add new languages">
-                <comp:SettingsItem.SettingsContent>
-                    <Button
-                        x:Uid="Settings_About_Weblate"
-                        Tag="Weblate"
-                        FlowDirection="LeftToRight"
-                        Click="Button_Click">
-                        <StackPanel
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Spacing="8">
-                            <Image
-                                Width="16"
-                                Height="16"
-                                Source="ms-appx:///Assets/AppLogos/AppLogo_Weblate_512px.png" />
-                            <TextBlock
-                                Text="Weblate"
-                                VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-                </comp:SettingsItem.SettingsContent>
-            </comp:SettingsItem>
-            <comp:SettingsItem
-                Grid.Row="15"
-                Tag="{StaticResource AppSettings}"
-                Header="Community"
-                Description="Join to our community to get update, news and discussions">
-                <comp:SettingsItem.SettingsContent>
-                    <Button
-                        x:Uid="Settings_About_MagicSelect"
-                        Tag="Discord"
-                        FlowDirection="LeftToRight"                        
-                        Click="Button_Click_1">
-                        <StackPanel
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Spacing="8">
-                            <Image
-                                Width="16"
-                                Height="16"
-                                Source="ms-appx:///Assets/AppLogos/AppLogo_Discord_512px.png" />
-                            <TextBlock
-                                Text="Discord"
-                                VerticalAlignment="Center" />
-                        </StackPanel>
                     </Button>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>
