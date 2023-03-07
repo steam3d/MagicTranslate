@@ -75,6 +75,7 @@ namespace MagicTranslate.UI.WIndows
 
             _apw.Resize(new Windows.Graphics.SizeInt32(Convert.ToInt32(MaxWidth * dpi), Convert.ToInt32(minHeight * dpi)));
             this.CenterToScreen();
+            this.HideTaskBarAndAltTabIcon();
 
             var windowRect = this.GetRect();
             var maxScreenHeight = (displayArea.WorkArea.Height / dpi) - (windowRect.top / dpi) - rootMagrin.Bottom - rootMagrin.Top - screenBorder;
