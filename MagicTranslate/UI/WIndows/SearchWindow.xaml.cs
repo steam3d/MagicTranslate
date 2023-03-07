@@ -58,7 +58,7 @@ namespace MagicTranslate.UI.WIndows
 
         char[] charsToTrim = { ' ', '\n', '\t','\r', '\0' };
 
-        private bool DemoMode = true;
+        private bool SkipTutorial = true;
 
         public SearchWindow()
         {
@@ -92,11 +92,11 @@ namespace MagicTranslate.UI.WIndows
 
             inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;
             InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
+            SkipTutorial = (bool)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "SkipTutorial");
             this.Closed += SearchWindow_Closed;
             this.Activated += SearchWindow_Activated;
             
-            backdrops = new WindowBackdrops(this);            
-
+            backdrops = new WindowBackdrops(this);
             //Root.PreviewKeyDown += Root_PreviewKeyDown;            
             //Microsoft.UI.Input.InputKeyboardSource.GetKeyStateForCurrentThread
         }
@@ -178,7 +178,8 @@ namespace MagicTranslate.UI.WIndows
 
         private void TeachingTip_ActionButtonClick(TeachingTip sender, object args)
         {
-            DemoMode = false;
+            SkipTutorial = true;
+            GlobalSettings.SaveHeadphoneSetting("ApplicationSettings", "SkipTutorial", true);
             App.OpenSettingWindow();
         }
 
@@ -197,7 +198,8 @@ namespace MagicTranslate.UI.WIndows
                     TeachingTipTour3();
                     break;
                 case 3:
-                    DemoMode = false;
+                    SkipTutorial = true;
+                    GlobalSettings.SaveHeadphoneSetting("ApplicationSettings", "SkipTutorial", true);
                     TextChangedDebouncingTimer_Elapsed(null, null);
                     break;
             }
@@ -213,7 +215,7 @@ namespace MagicTranslate.UI.WIndows
             {
                 this.Focus();            
                 SearchBox.Focus(FocusState.Keyboard);
-                if (DemoMode == true)
+                if (SkipTutorial == false)
                     TextChangedDebouncingTimer_Elapsed(null, null);
             }
 
@@ -284,9 +286,8 @@ namespace MagicTranslate.UI.WIndows
                 //SearchBox.Text = SearchBox.Text.Trim(charsToTrim);
                 //SearchBox.SelectionStart = SearchBox.Text.Length;
                 //SearchBox.SelectionLength = 0;
-                if (DemoMode == true)
+                if (SkipTutorial == false)
                 {
-                    Logger.Debug("demo mode");
                     Content.Visibility = Visibility.Visible;
                     Root.Height = double.NaN;
                     ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);

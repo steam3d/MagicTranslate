@@ -130,23 +130,33 @@ namespace MagicTranslate.Hotkeys
 
         private void RegisterAllCombos()
         {
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            var containersList = localSettings.Containers.Keys.ToList();
-            foreach (var containerName in containersList)
+            var compositeValue = (Windows.Storage.ApplicationDataCompositeValue)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "HotkeyOpenSearchBar");
+            if (compositeValue != null && compositeValue.Count != 0)
             {
-                foreach (var setting in localSettings.Containers[containerName].Values)
-                {
-                    if (setting.Key.Contains("Hotkey") && setting.Value is Windows.Storage.ApplicationDataCompositeValue compositeValue)
-                    {
-                        if (compositeValue.Count != 0)
-                        {
-                            int modifiers = (int)compositeValue["modifiers"];
-                            int key = (int)compositeValue["key"];                            
-                            RegisterCombo(containerName, setting.Key, modifiers, key);
-                        }
-                    }                    
-                }
+                int modifiers = (int)compositeValue["modifiers"];
+                int key = (int)compositeValue["key"];
+                RegisterCombo("ApplicationSettings", "HotkeyOpenSearchBar", modifiers, key);
             }
+            //TODO: Check default settings and user settings and bind every available hotkeys
+            // This code will not work if user do not change settings, because we get user settings and do no check values in DefaultSettings.cs
+
+            //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            //var containersList = localSettings.Containers.Keys.ToList();
+            //foreach (var containerName in containersList)
+            //{
+            //    foreach (var setting in localSettings.Containers[containerName].Values)
+            //    {
+            //        if (setting.Key.Contains("Hotkey") && setting.Value is Windows.Storage.ApplicationDataCompositeValue compositeValue)
+            //        {
+            //            if (compositeValue.Count != 0)
+            //            {
+            //                int modifiers = (int)compositeValue["modifiers"];
+            //                int key = (int)compositeValue["key"];                            
+            //                RegisterCombo(containerName, setting.Key, modifiers, key);
+            //            }
+            //        }                    
+            //    }
+            //}
         }
     }
 }

@@ -11,13 +11,13 @@ namespace MagicTranslate.Settings
 
         public static ValueSet Settings = new ValueSet()
         {
-            ["Theme"] = "Default",            
-            ["Background"] = "Mica",            
-            ["HotkeyOpenSearchBar"] = new Windows.Storage.ApplicationDataCompositeValue(),            
-            ["GoogleTranslateFrom"] = "LanguageNotSelected",            
-            ["GoogleTranslateTo"] = "SystemLanguage",   
-            ["LogLevel"] = "Info",   
-            
+            ["Theme"] = "Default",
+            ["Background"] = "Mica",
+            ["HotkeyOpenSearchBar"] = new Windows.Storage.ApplicationDataCompositeValue() { ["modifiers"] = 2, ["key"] = 32 },
+            ["GoogleTranslateFrom"] = "LanguageNotSelected",
+            ["GoogleTranslateTo"] = "SystemLanguage",
+            ["LogLevel"] = "Info",
+            ["SkipTutorial"] = false,
         };
     }
 }

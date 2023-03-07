@@ -44,7 +44,7 @@ namespace MagicTranslate.UI.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // Demo mode
+            // Tutorial
             if (e.Parameter == null)
             {
                 string json = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "json.json"));
