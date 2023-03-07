@@ -180,13 +180,13 @@ namespace MagicTranslate.UI.WIndows
                     Content.Navigate(typeof(EmptyPage));
                     Content.Visibility = Visibility.Collapsed;
                 }
-                else if (SearchBox.Text.Length == 1)
-                {
-                    Content.Visibility = Visibility.Visible;
-                    Root.Height = double.NaN;
-                    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
-                    Content.Navigate(typeof(TestPage), null, new DrillInNavigationTransitionInfo());
-                }
+                //else if (SearchBox.Text.Length == 1)
+                //{
+                //    Content.Visibility = Visibility.Visible;
+                //    Root.Height = double.NaN;
+                //    ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
+                //    Content.Navigate(typeof(TestPage), null, new DrillInNavigationTransitionInfo());
+                //}
                 else
                 {
                     var translateFromTag = (string)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "GoogleTranslateFrom");
