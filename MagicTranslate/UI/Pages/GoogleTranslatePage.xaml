@@ -195,6 +195,7 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     TextWrapping="Wrap"
+                    VerticalAlignment="Center"
                     Foreground="{ThemeResource TextBrush}"
                     Text="{Binding TranslateResult.sentences, Converter={StaticResource ListSentencesToStringConverter}}"
                     FontSize="14"
