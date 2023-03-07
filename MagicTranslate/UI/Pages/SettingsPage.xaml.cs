@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using MagicTranslate.Args;
+using MagicTranslate.Extensions;
 using MagicTranslate.Helpers;
 using MagicTranslate.Settings;
 using MagicTranslate.Settings.UiControl;
@@ -132,7 +133,7 @@ namespace MagicTranslate.UI.Pages
 
                 Language.Items.Add(new TextBlock()
                 {
-                    Text = cultureInfo != null ? cultureInfo.DisplayName : lang,
+                    Text = cultureInfo != null ? cultureInfo.NativeName.ToFirstCharUpper() : lang,
                     Tag = lang,
                 });
 
@@ -168,8 +169,8 @@ namespace MagicTranslate.UI.Pages
                 if (tag2 == "auto") continue;
 
                 var cultureInfo = CultureInfo.GetCultureInfo(tag2);
-                language.Add(tag2, cultureInfo.DisplayName);
-                Logger.Debug($"{cultureInfo.DisplayName} | {cultureInfo.IetfLanguageTag}");            
+                language.Add(tag2, cultureInfo.DisplayName.ToFirstCharUpper());
+                //Logger.Debug($"{cultureInfo.DisplayName} | {cultureInfo.IetfLanguageTag}");            
             }
 
             int i = 1;
