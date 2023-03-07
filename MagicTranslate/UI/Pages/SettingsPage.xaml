@@ -145,6 +145,25 @@
                                     VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
+                        <Button
+                            x:Uid="Settings_About_MagicPods"
+                            Tag="MagicPods"
+                            FlowDirection="LeftToRight"
+                            Margin="16,0,0,16"
+                            Click="Button_Click_1">
+                            <StackPanel
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Spacing="8">
+                                <Image
+                                    Width="16"
+                                    Height="16"
+                                    Source="ms-appx:///Assets/AppLogos/AppLogo_YAD_512px.png" />
+                                <TextBlock
+                                    Text="Yet Another Dino"
+                                    VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--<Button
                             x:Uid="Settings_About_Weblate"
                             Tag="Weblate"

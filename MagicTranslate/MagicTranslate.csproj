@@ -35,6 +35,7 @@
     <None Remove="Assets\AppLogos\AppLogo_MagicSelect_512px.png" />
     <None Remove="Assets\AppLogos\AppLogo_MagicTranslate_512px.png" />
     <None Remove="Assets\AppLogos\AppLogo_Weblate_512px.png" />
+    <None Remove="Assets\AppLogos\AppLogo_YAD_512px.png" />
     <None Remove="Assets\Logo.ico" />
     <None Remove="UI\Components\HotkeyBox.xaml" />
     <None Remove="UI\Components\SettingsItem.xaml" />
