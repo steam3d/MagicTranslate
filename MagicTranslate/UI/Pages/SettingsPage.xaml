@@ -260,8 +260,7 @@
             </comp:SettingsItem>
             <comp:SettingsItemHeader
                 Grid.Row="4"
-                x:Uid="Settings_GoogleTranslate_Header"
-                HyperlinkText="Translation"/>
+                x:Uid="Settings_GoogleTranslate_Header"/>
             <comp:SettingsItem
                 Grid.Row="5"
                 Tag="{StaticResource AppSettings}"
