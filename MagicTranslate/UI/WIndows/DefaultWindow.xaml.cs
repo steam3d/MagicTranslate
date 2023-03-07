@@ -40,15 +40,15 @@ namespace MagicTranslate.UI.WIndows
             this.InitializeComponent();
             var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
 
-            WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
-            var _apw = AppWindow.GetFromWindowId(myWndId);
-            _apw.Resize(new Windows.Graphics.SizeInt32(1024, 512));
+            //WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            //var _apw = AppWindow.GetFromWindowId(myWndId);
+            //_apw.Resize(new Windows.Graphics.SizeInt32(1024, 512));
             
             this.ExtendsContentIntoTitleBar = true;  // enable custom titlebar            
             this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
 
-            this.CenterToScreen();
-            this.Topmost(true);
+            //this.CenterToScreen();
+            //this.Topmost(true);
             this.ApplyTheme();
 
             //Fix to update in real time background
