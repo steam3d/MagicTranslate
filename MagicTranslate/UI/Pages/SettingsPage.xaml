@@ -317,6 +317,8 @@
                 x:Uid="Settings_App_Setting_Startup">
                 <comp:SettingsItem.SettingsContent>
                     <ToggleSwitch
+						x:Name="Startup"
+                        Loaded="Startup_Loaded"
                         Style="{StaticResource LeftTextToggleSwitchStyle}"/>
                 </comp:SettingsItem.SettingsContent>
             </comp:SettingsItem>

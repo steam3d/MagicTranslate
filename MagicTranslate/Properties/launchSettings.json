@@ -2,7 +2,10 @@
   "profiles": {
     "MagicTranslate (Package)": {
       "commandName": "MsixPackage",
-      "nativeDebugging": false
+      "nativeDebugging": false,
+      "remoteDebugEnabled": false,
+      "remoteDebugMachine": "192.168.1.190",
+      "authenticationMode": "None"
     },
     "MagicTranslate (Unpackaged)": {
       "commandName": "Project"

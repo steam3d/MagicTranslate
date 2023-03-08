@@ -88,7 +88,10 @@ namespace MagicTranslate
 
             StartupWindow?.Activate();
 
-            CreatSearchWindowOrActive();
+            var kind = AppInstance.GetActivatedEventArgs().Kind;
+            Logger.Debug($"OnLaunched args {kind}");
+            if (kind != ActivationKind.StartupTask)
+                CreatSearchWindowOrActive();
         }
 
         private void Hotkeys_HotkeyPressed(object sender, HotkeyEventArgs e)

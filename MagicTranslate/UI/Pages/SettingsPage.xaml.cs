@@ -22,6 +22,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Timers;
 using TranslateLibrary;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -212,6 +213,76 @@ namespace MagicTranslate.UI.Pages
         {
             StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.TemporaryFolder.Path);
             await Launcher.LaunchFolderAsync(folder);
+        }
+
+        private async void Startup_Loaded(object sender, RoutedEventArgs e)
+        {
+            StartupTask startupTask = await StartupTask.GetAsync("MagicTranslateHotkeyId");
+            Logger.Info("Startup state {0}", startupTask.State);
+            switch (startupTask.State)
+            {
+                case StartupTaskState.Disabled:
+                    Startup.IsOn = false;
+                    break;
+                case StartupTaskState.DisabledByUser:
+                    Startup.IsOn = false;
+                    break;
+                case StartupTaskState.DisabledByPolicy:
+                    Startup.IsOn = false;
+                    break;
+                case StartupTaskState.Enabled:
+                    Startup.IsOn = true;
+                    break;
+            }
+
+            Startup.Toggled += Startup_Toggled;
+        }
+
+        private async void Startup_Toggled(object sender, RoutedEventArgs e)
+        {
+            Startup.Toggled -= Startup_Toggled;
+            StartupTask startupTask = await StartupTask.GetAsync("MagicTranslateHotkeyId");
+
+            if (Startup.IsOn)
+            {
+                switch (startupTask.State)
+                {
+                    case StartupTaskState.Disabled:
+                        Logger.Info("Try to enable startup");
+                        await startupTask.RequestEnableAsync();
+                        break;
+
+                    case StartupTaskState.DisabledByUser:
+                        Logger.Info("Startup disabled by user show dialog");
+                        var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+                        ContentDialog dialog = new ContentDialog();
+                        dialog.Title = resourceLoader.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByUser/Title");
+                        dialog.Content = string.Format(resourceLoader.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByUser/Content"), Application.Current.Resources["AppName"]);
+                        dialog.PrimaryButtonText = resourceLoader.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByUser/PrimaryButtonText");
+                        dialog.CloseButtonText = resourceLoader.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByUser/CloseButtonText");
+                        dialog.DefaultButton = ContentDialogButton.Primary;
+                        dialog.XamlRoot = this.Content.XamlRoot;
+                        if (ContentDialogResult.Primary == await dialog.ShowAsync())
+                            await Launcher.LaunchUriAsync(new Uri("ms-settings:startupapps"));
+                        break;
+                    case StartupTaskState.DisabledByPolicy:
+                        Logger.Info("Startup disabled by pilicy show dialog");
+                        var resourceLoader1 = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+                        ContentDialog dialog1 = new ContentDialog();
+                        dialog1.Title = resourceLoader1.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByPolicy/Title");
+                        dialog1.Content = resourceLoader1.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByPolicy/Content");
+                        dialog1.CloseButtonText = resourceLoader1.GetString("Settings_App_Setting_Startup_ContentDialog_DisabledByPolicy/CloseButtonText");
+                        dialog1.XamlRoot = this.Content.XamlRoot;
+                        await dialog1.ShowAsync();
+                        break;
+                }
+            }
+            else
+            {
+                Logger.Info("Disable startup");
+                startupTask.Disable();
+            }
+            Startup_Loaded(sender, e);            
         }
     }
 }
