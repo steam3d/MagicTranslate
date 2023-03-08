@@ -10,6 +10,7 @@
     <PublishProfile>win10-$(Platform).pubxml</PublishProfile>
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <ApplicationIcon>Assets\Logo.ico</ApplicationIcon>
   </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
 	    <DefineConstants>DISABLE_XAML_GENERATED_MAIN</DefineConstants>

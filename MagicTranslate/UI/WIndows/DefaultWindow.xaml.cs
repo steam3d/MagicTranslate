@@ -38,12 +38,14 @@ namespace MagicTranslate.UI.WIndows
         public DefaultWindow()
         {
             this.InitializeComponent();
-            //var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
-
-            //WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
-            //var _apw = AppWindow.GetFromWindowId(myWndId);
+            var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+            WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            var _apw = AppWindow.GetFromWindowId(myWndId);
+            _apw.SetIcon((string)Application.Current.Resources["AppIcoIconPath"]);
+            this.Title = (string)Application.Current.Resources["AppName"];
             //_apw.Resize(new Windows.Graphics.SizeInt32(1024, 512));
-            
+
+
             this.ExtendsContentIntoTitleBar = true;  // enable custom titlebar            
             this.SetTitleBar(AppTitleBar);      // set user ui element as titlebar
 

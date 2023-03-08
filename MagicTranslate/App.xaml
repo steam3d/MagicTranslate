@@ -22,6 +22,8 @@
                 x:Key="AppName">MagicTranslate</x:String>
             <x:String
                 x:Key="AppIconPath">ms-appx:///Assets/AppLogos/AppLogo_MagicTranslate_512px.png</x:String>
+            <x:String
+                x:Key="AppIcoIconPath">Assets\Logo.ico</x:String>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary
                     x:Key="Light">

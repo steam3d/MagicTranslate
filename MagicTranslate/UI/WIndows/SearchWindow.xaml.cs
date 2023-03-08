@@ -68,6 +68,8 @@ namespace MagicTranslate.UI.WIndows
             
             WindowId myWndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
             _apw = AppWindow.GetFromWindowId(myWndId);
+            this.Title = (string)Application.Current.Resources["AppName"];
+            _apw.SetIcon((string)Application.Current.Resources["AppIcoIconPath"]);
             var _presenter = _apw.Presenter as OverlappedPresenter;
             _presenter.IsResizable = false;
             _presenter.IsAlwaysOnTop = true;            
