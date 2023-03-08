@@ -59,6 +59,7 @@ namespace MagicTranslate.UI.WIndows
         char[] charsToTrim = { ' ', '\n', '\t','\r', '\0' };
 
         private bool SkipTutorial = true;
+        private bool SkipTutorialStarted = false;
 
         public SearchWindow()
         {
@@ -104,6 +105,8 @@ namespace MagicTranslate.UI.WIndows
         #region Teaching
         private async void TeachingTipTour()
         {
+            ShortcutOpenSettings.IsEnabled = false; //App will crash when use shortcut during tutorial
+            SkipTutorialStarted = true; //To prevent multiple tutorial when user try to type something in SearchBox
             string hotkeyReadableString = string.Empty;
             var compositeValue = (Windows.Storage.ApplicationDataCompositeValue)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "HotkeyOpenSearchBar");
             if (compositeValue != null && compositeValue.Count > 0)            
@@ -179,6 +182,7 @@ namespace MagicTranslate.UI.WIndows
         private void TeachingTip_ActionButtonClick(TeachingTip sender, object args)
         {
             SkipTutorial = true;
+            ShortcutOpenSettings.IsEnabled = true;
             GlobalSettings.SaveHeadphoneSetting("ApplicationSettings", "SkipTutorial", true);
             App.OpenSettingWindow();
         }
@@ -200,6 +204,7 @@ namespace MagicTranslate.UI.WIndows
                 case 3:
                     SkipTutorial = true;
                     GlobalSettings.SaveHeadphoneSetting("ApplicationSettings", "SkipTutorial", true);
+                    ShortcutOpenSettings.IsEnabled = true;
                     TextChangedDebouncingTimer_Elapsed(null, null);
                     break;
             }
@@ -288,6 +293,9 @@ namespace MagicTranslate.UI.WIndows
                 //SearchBox.SelectionLength = 0;
                 if (SkipTutorial == false)
                 {
+                    if (SkipTutorialStarted)
+                        return;
+
                     Content.Visibility = Visibility.Visible;
                     Root.Height = double.NaN;
                     ContentRowDefinition.Height = new GridLength(1, GridUnitType.Auto);
