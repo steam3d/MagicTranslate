@@ -88,7 +88,7 @@ namespace MagicTranslate
 
             StartupWindow?.Activate();
 
-            var kind = AppInstance.GetActivatedEventArgs().Kind;
+            var kind = AppInstance.GetActivatedEventArgs()?.Kind;
             Logger.Debug($"OnLaunched args {kind}");
             if (kind != ActivationKind.StartupTask)
                 CreatSearchWindowOrActive();
