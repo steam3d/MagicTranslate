@@ -239,7 +239,6 @@
                 x:Uid="Settings_Support_Setting_Discord">
                 <comp:SettingsItem.SettingsContent>
                     <Button
-                        x:Uid="Settings_About_MagicSelect"
                         Tag="Discord"
                         FlowDirection="LeftToRight"
                         Click="Button_NavigateToURL">
