@@ -93,8 +93,7 @@ namespace MagicTranslate.UI.WIndows
             SearchBox.TextChanged += SearchBox_TextChanged;
             textChangedDebouncingTimer.Elapsed += TextChangedDebouncingTimer_Elapsed;
 
-            inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;
-            InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
+            inputLanguage.CurrentInputChanged += InputLanguage_CurrentInputChanged;            
             SkipTutorial = (bool)GlobalSettings.LoadHeadphoneSetting("ApplicationSettings", "SkipTutorial");
             this.Closed += SearchWindow_Closed;
             this.Activated += SearchWindow_Activated;
@@ -221,6 +220,7 @@ namespace MagicTranslate.UI.WIndows
 
             if (args.WindowActivationState == WindowActivationState.PointerActivated || args.WindowActivationState == WindowActivationState.CodeActivated)
             {
+                InputLanguage_CurrentInputChanged(this, inputLanguage.CurrentInput);
                 this.Focus();            
                 SearchBox.Focus(FocusState.Keyboard);
                 if (SkipTutorial == false)

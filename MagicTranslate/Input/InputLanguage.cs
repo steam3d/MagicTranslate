@@ -12,7 +12,7 @@ namespace MagicTranslate.Input
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private Task getInputLanguageLoop;
         CancellationTokenSource cancelToken = new CancellationTokenSource();
-        private short cultureId = 0;
+        private short cultureId = 1033; //1033 (en-US)
 
         public CultureInfo CurrentInput { get => new CultureInfo(cultureId); }
 
