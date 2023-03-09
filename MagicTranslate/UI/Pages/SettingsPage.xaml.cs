@@ -154,6 +154,7 @@ namespace MagicTranslate.UI.Pages
         private void ResetSettings_Click(object sender, RoutedEventArgs e)
         {
             GlobalSettings.RemoveAllSettings();
+            Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "";
             Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
         }
 
