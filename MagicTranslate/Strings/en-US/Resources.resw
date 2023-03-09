@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,7 +59,7 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -124,13 +124,13 @@
     <value>Translate from</value>
   </data>
   <data name="Settings_GoogleTranslate_Setting_From.Description" xml:space="preserve">
-    <value>To switch between languages use switch keyboard layout </value>
+    <value>To switch between languages use switch keyboard layout</value>
   </data>
   <data name="Settings_GoogleTranslate_Setting_To.Header" xml:space="preserve">
     <value>Translate to</value>
   </data>
   <data name="Settings_GoogleTranslate_Setting_To.Description" xml:space="preserve">
-    <value>To switch between languages use switch keyboard layout </value>
+    <value>To switch between languages use switch keyboard layout</value>
   </data>
   <data name="Settings_Hotkeys_Header.Header" xml:space="preserve">
     <value>Hotkeys</value>
@@ -254,7 +254,7 @@
     <value>Settings</value>
   </data>
   <data name="Search_TeachingTip_OpenSettings.Subtitle" xml:space="preserve">
-    <value>To configure the translation language, appearance and keyboard shortcuts, right-click on the tray icon and select «Settings» or use the {0} shortcut while in the translation window</value>
+    <value>To configure the translation language, appearance and keyboard shortcuts, right-click on the tray icon and select «{0}» or use the {1} shortcut while in the translation window</value>
     <comment>{0} will be replaced on shurtcut</comment>
   </data>
   <data name="Search_TeachingTip_SwitchLanguage.Subtitle" xml:space="preserve">
@@ -283,7 +283,7 @@
     <value>Cancel</value>
   </data>
   <data name="Settings_App_Setting_Startup_ContentDialog_DisabledByUser.Content" xml:space="preserve">
-    <value>Open Windows settings on Application page, go to Startup, enable «{0}» and restart the app.</value>
+    <value>Open Windows settings on Application page, go to «Startup», enable «{0}» and restart the app.</value>
     <comment>{0} will be replaced on application name</comment>
   </data>
   <data name="Settings_App_Setting_Startup_ContentDialog_DisabledByUser.PrimaryButtonText" xml:space="preserve">

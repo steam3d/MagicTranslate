@@ -166,11 +166,12 @@ namespace MagicTranslate.UI.WIndows
         {
             string hotkeyReadableString = HotkeyHelper.GetReadableStringFromHotkey(ShortcutOpenSettings.Modifiers, ShortcutOpenSettings.Key);
             var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+            string settingsString = resourceLoader.GetString("Taskbar_MenuFlyout_Settings/Text");
 
             var teachingTip = new TeachingTip();
             teachingTip.Tag = 3;
             teachingTip.PreferredPlacement = TeachingTipPlacementMode.Bottom;
-            teachingTip.Subtitle = string.Format(resourceLoader.GetString("Search_TeachingTip_OpenSettings/Subtitle"), hotkeyReadableString);
+            teachingTip.Subtitle = string.Format(resourceLoader.GetString("Search_TeachingTip_OpenSettings/Subtitle"), settingsString, hotkeyReadableString);
             teachingTip.CloseButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Finish");
             teachingTip.ActionButtonContent = resourceLoader.GetString("Search_TeachingTip_Buttons_Settings");
             teachingTip.CloseButtonClick += TeachingTip_CloseButtonClick;
