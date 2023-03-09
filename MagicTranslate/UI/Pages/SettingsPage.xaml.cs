@@ -68,10 +68,13 @@ namespace MagicTranslate.UI.Pages
                         uri = new Uri(@"https://www.microsoft.com/store/apps/9N78GWBTW7L5");
                         break;
                     case "Weblate":
-                        uri = new Uri(@"https://weblate.magicpods.app/engage/magicselect-windows/");
+                        uri = new Uri(@"https://weblate.magicpods.app/engage/magictranslate-windows/");
                         break;
                     case "YAD":
                         uri = new Uri(@"https://magicpods.app/yetanotherdino/");
+                        break;
+                    case "Discord":
+                        uri = new Uri(@"https://discord.gg/AfY8dQVXkS");
                         break;
                 }
 
