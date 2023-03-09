@@ -233,4 +233,16 @@
     <value>Откройте настройки Windows, на странице приложения выберите «Автозагрузка», включите «{0}» и перезапустите приложение.</value>
     <comment>{0} will be replaced on application name</comment>
   </data>
+  <data name="Settings_App_Setting_Common_ContentDialog_RestartRequired.Title" xml:space="preserve">
+    <value>Требуется перезапуск</value>
+  </data>
+  <data name="Settings_App_Setting_Common_ContentDialog_RestartRequired.Content" xml:space="preserve">
+    <value>Перезапустите приложение для применения настроек</value>
+  </data>
+  <data name="Settings_App_Setting_Common_ContentDialog_RestartRequired.CloseButtonText" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Settings_App_Setting_Common_ContentDialog_RestartRequired.PrimaryButtonText" xml:space="preserve">
+    <value>Перезапустить</value>
+  </data>
 </root>

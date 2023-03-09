@@ -95,15 +95,26 @@ namespace MagicTranslate.UI.Pages
             backdrops?.SetBackdrop(EnumHelper.GetEnum<BackdropType>((string)selectedItem.Tag));
         }
 
-        private void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var textblock = (TextBlock)Language.SelectedItem;
-            var language = (string)textblock.Tag;
+            var language = textblock.Tag == null ? "" : (string)textblock.Tag;
 
             if (Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride != language)
             {
                 Logger.Info($"Language was change {Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride} => {language}");
                 Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = language;
+
+                var resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForViewIndependentUse();
+                ContentDialog dialog = new ContentDialog();
+                dialog.Title = resourceLoader.GetString("Settings_App_Setting_Common_ContentDialog_RestartRequired/Title");
+                dialog.Content = resourceLoader.GetString("Settings_App_Setting_Common_ContentDialog_RestartRequired/Content");
+                dialog.PrimaryButtonText = resourceLoader.GetString("Settings_App_Setting_Common_ContentDialog_RestartRequired/PrimaryButtonText");
+                dialog.CloseButtonText = resourceLoader.GetString("Settings_App_Setting_Common_ContentDialog_RestartRequired/CloseButtonText");
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.XamlRoot = this.Content.XamlRoot;
+                if (ContentDialogResult.Primary == await dialog.ShowAsync())
+                    Microsoft.Windows.AppLifecycle.AppInstance.Restart("");
             }
         }
 
