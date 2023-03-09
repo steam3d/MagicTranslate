@@ -54,11 +54,13 @@ namespace MagicTranslate.Helpers
     {
         public static long GetWindowLong(IntPtr hWnd, WINDOW_LONG_PTR_INDEX nIndex)
         {
-            if (IntPtr.Size == 4)
-            {
-                return PInvoke.GetWindowLong((Windows.Win32.Foundation.HWND)hWnd, nIndex);
-            }
+#if x86
+            return PInvoke.GetWindowLong((Windows.Win32.Foundation.HWND)hWnd, nIndex);
+#endif
+
+#if x64 || ARM64
             return PInvoke.GetWindowLongPtr((Windows.Win32.Foundation.HWND)hWnd, nIndex);
+#endif
         }
 
         private static int IntPtrToInt32(IntPtr intPtr)
@@ -73,20 +75,17 @@ namespace MagicTranslate.Helpers
             // Win32 SetWindowLong doesn't clear error on success
             PInvoke.SetLastError(0);
 
-            if (IntPtr.Size == 4)
-            {
-                // use SetWindowLong                
-                int tempResult = PInvoke.SetWindowLong((Windows.Win32.Foundation.HWND)hWnd, nIndex, IntPtrToInt32(dwNewLong));
-                error = Marshal.GetLastWin32Error();
-                result = new IntPtr(tempResult);
-            }
-            else
-            {
-                // use SetWindowLongPtr
-                result = PInvoke.SetWindowLongPtr((Windows.Win32.Foundation.HWND)hWnd, nIndex, dwNewLong);
-                error = Marshal.GetLastWin32Error();
-            }
+#if x86            
+            int tempResult = PInvoke.SetWindowLong((Windows.Win32.Foundation.HWND)hWnd, nIndex, IntPtrToInt32(dwNewLong));
+            error = Marshal.GetLastWin32Error();
+            result = new IntPtr(tempResult);
+#endif
 
+#if x64 || ARM64
+            
+            result = PInvoke.SetWindowLongPtr((Windows.Win32.Foundation.HWND)hWnd, nIndex, dwNewLong);
+            error = Marshal.GetLastWin32Error();           
+#endif
             if (result == IntPtr.Zero && error != 0)
             {
                 throw new System.ComponentModel.Win32Exception(error);

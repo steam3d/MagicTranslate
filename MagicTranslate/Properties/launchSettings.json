@@ -4,7 +4,7 @@
       "commandName": "MsixPackage",
       "nativeDebugging": true,
       "remoteDebugEnabled": true,
-      "remoteDebugMachine": "192.168.1.241",
+      "remoteDebugMachine": "192.168.1.217",
       "authenticationMode": "None"
     },
     "MagicTranslate (Unpackaged)": {
