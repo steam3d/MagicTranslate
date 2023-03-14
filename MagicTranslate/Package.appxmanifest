@@ -8,13 +8,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="ce12e044-170b-4d3a-948a-ae0ebe431a00"
-    Publisher="CN=steam"
+    Name="Dev.AleksandrMaslov.MagicTranslate"
+    Publisher="AleksandrMaslov"
     Version="1.0.0.0" />
 
   <Properties>
     <DisplayName>MagicTranslate</DisplayName>
-    <PublisherDisplayName>steam</PublisherDisplayName>
+    <PublisherDisplayName>Aleksandr Maslov</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -33,7 +33,7 @@
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
         DisplayName="MagicTranslate"
-        Description="MagicTranslate"
+        Description="Your personal translator"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
@@ -54,5 +54,6 @@
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClient"/>
   </Capabilities>
 </Package>
