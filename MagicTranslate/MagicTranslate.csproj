@@ -64,7 +64,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="H.NotifyIcon.WinUI" Version="2.0.93" />
+    <PackageReference Include="H.NotifyIcon.WinUI" Version="2.0.94" />
     <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.2.188-beta">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
