@@ -23,5 +23,7 @@ You can add you native language using Weblate service hosted on [MagicPods.app](
 
 <a href='https://discord.com/invite/AfY8dQVXkS'><img src='https://raw.githubusercontent.com/steam3d/MagicPods-Windows/master/Media/discord-logo-blue.svg' alt='English badge'  height="32"/></a>
 
+## Support project
 
+TON: `EQDU3Pagbzs0VTiF47QKnCGDZtWHsk0jOSPKYR6jSJtnkcpN`
 
